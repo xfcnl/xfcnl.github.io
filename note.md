@@ -5,12 +5,13 @@ permalink: /note/
 ---
 
 # 随记
+
 共有 {{ site.note | size }} 文章
 
-{% assign notes = site.note | sort: "date" | reverse %}
+{% assign note = site.note | sort: "date" | reverse %}
 
 <ul>
-{% for post in site.note limit: %}
+{% for post in notes %}
  <li style="margin-bottom:6px;">
   <span style="color:#8b949e; font-size:13px;">
     {{ post.date | date: "%Y-%m-%d" }}
