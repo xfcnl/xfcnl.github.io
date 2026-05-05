@@ -8,7 +8,7 @@ permalink: /note/
 
 共有 {{ site.note | size }} 文章
 
-{% assign note = site.note | sort: "date" | reverse %}
+{% assign notes = site.note | sort: "date" | reverse %}
 
 <ul>
 {% for post in notes %}
