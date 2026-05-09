@@ -4,7 +4,7 @@ title: 友链
 permalink: /feed-link/
 ---
 
-{% for link in site.data.feed-link %}
+{% for link in site.data.link %}
 <img src="{{ link.avatar }}" alt="{{ link.name }}的头像" width="32" height="32">
 [{{ link.name }}]({{ link.url }})
 
