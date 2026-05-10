@@ -1,0 +1,101 @@
+<div id="search-container">
+  <input type="text" id="search-input" placeholder="搜索文章..." />
+  <div id="search-results"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
+<script>
+(function() {
+  let searchData = null;
+  let fuse = null;
+
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+
+  function highlightMatch(text, query) {
+    if (!query || !text) return text;
+    const regex = new RegExp('(' + query + ')', 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+  }
+
+  function stripHtml(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+
+  function excerpt(content, query) {
+    const plain = stripHtml(content);
+    const lowerPlain = plain.toLowerCase();
+    const lowerQuery = query.toLowerCase();
+    const idx = lowerPlain.indexOf(lowerQuery);
+
+    if (idx === -1) {
+      return plain.slice(0, 100) + (plain.length > 100 ? '...' : '');
+    }
+
+    const start = Math.max(0, idx - 40);
+    const end = Math.min(plain.length, idx + query.length + 60);
+    let result = (start > 0 ? '...' : '') + plain.slice(start, end) + (end < plain.length ? '...' : '');
+
+    return highlightMatch(result, query);
+  }
+
+  searchInput.addEventListener('input', function(e) {
+    const query = e.target.value.trim();
+
+    if (!query) {
+      searchResults.innerHTML = '';
+      return;
+    }
+
+    if (!fuse) {
+      fetch('/search.json')
+        .then(response => response.json())
+        .then(data => {
+          fuse = new Fuse(data, {
+            keys: ['title', 'content'],
+            includeMatches: true,
+            threshold: 0.3,
+            ignoreLocation: true
+          });
+          performSearch(query);
+        });
+    } else {
+      performSearch(query);
+    }
+  });
+
+  function performSearch(query) {
+    const results = fuse.search(query);
+
+    if (results.length === 0) {
+      searchResults.innerHTML = '<p style="padding:10px;color:#666;">未找到相关内容</p>';
+      return;
+    }
+
+    const html = results.slice(0, 10).map(result => {
+      const item = result.item;
+      const title = highlightMatch(item.title, query);
+      const content = excerpt(item.content, query);
+
+      return `<div class="search-result">
+        <a href="${item.url}"><h4>${title}</h4></a>
+        <p>${content}</p>
+      </div>`;
+    }).join('');
+
+    searchResults.innerHTML = html;
+  }
+
+  searchInput.addEventListener('blur', function() {
+    setTimeout(() => searchResults.style.display = 'none', 200);
+  });
+
+  searchInput.addEventListener('focus', function() {
+    if (searchResults.innerHTML) {
+      searchResults.style.display = 'block';
+    }
+  });
+})();
+</script>
