@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 友链
-permalink: /feed-link/
+permalink: /link/
 ---
 
 {% for link in site.data.link %}

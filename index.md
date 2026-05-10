@@ -3,7 +3,8 @@ layout: home
 title: xf_blog
 permalink: /
 ---
-### [xf_blog](/)&emsp;[副站](https://mikufans1.dpdns.org)&emsp;[友链](/feed-link/)&emsp;[归档](/archive/)&emsp;[标签](/tag/)&emsp;[分类](/classify/)&emsp;[关于](/about/)
+
+### [xf_blog](/)&emsp;[副站](https://mikufans1.dpdns.org)&emsp;[友链](/link/)&emsp;[归档](/archive/)&emsp;[标签](/tag/)&emsp;[分类](/classify/)&emsp;[关于](/about/)
 
 # Hi, I am xiaofen
 
@@ -12,6 +13,7 @@ permalink: /
 > 这里记录我在 **开发 / 生活** 方面的内容
 
 ---
+
 ## 近期更新
 
 <ul>
@@ -58,9 +60,9 @@ permalink: /
 {% assign tags = "" | split: "" %}
 
 {% for post in all_posts %}
-  {% if post.tags %}
-    {% assign tags = tags | concat: post.tags %}
-  {% endif %}
+{% if post.tags %}
+{% assign tags = tags | concat: post.tags %}
+{% endif %}
 {% endfor %}
 
 {% assign sorted_tags = tags | uniq | sort %}
@@ -79,4 +81,5 @@ permalink: /
 [bilibili](https://space.bilibili.com/3494372658121066)&ensp;[Email](mailto:G114514g@yeah.net)&ensp;[YouTube](https://youtube.com/@lm-xiao-fen)&ensp;[rss](/feed.xml)
 
 ## 全站访问量
+
 ![全站访问量的图片](https://count.getloli.com/@xf_blog?name=xf_blog&theme=miku&padding=10&offset=0&align=top&scale=1&pixelated=1&darkmode=1)
