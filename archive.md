@@ -9,7 +9,7 @@ permalink: /archive/
 <form action="/search/" method="get" style="margin-bottom:20px;">
   <input type="text" name="q" placeholder="搜索文章..." 
   style="width:70%;padding:8px;">
-  <button type="submit" style="padding:8px 16px;">搜索</button>
+  <button type="submit" style="padding:8px 16px;background:#161b22;color:#c9d1d9;border:1px solid rgba(148,163,184,0.2);border-radius:6px;cursor:pointer;">搜索</button>
 </form>
 
 {% assign tech_posts = site.posts | where_exp:"post","post.path contains '_posts/'" %}

@@ -8,7 +8,7 @@ permalink: /search/
 
 <input id="searchInput" type="text" placeholder="输入关键词搜索..."
 style="width:70%;padding:8px;margin-bottom:20px;">
-<button onclick="doSearch()" style="padding:8px 16px;">搜索</button>
+<button onclick="doSearch()" style="padding:8px 16px;background:#161b22;color:#c9d1d9;border:1px solid rgba(148,163,184,0.2);border-radius:6px;cursor:pointer;">搜索</button>
 
 <div id="searchResults"></div>
 
