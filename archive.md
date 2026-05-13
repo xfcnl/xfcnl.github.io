@@ -6,8 +6,11 @@ permalink: /archive/
 
 # 归档
 
-<input id="searchInput" type="text" placeholder="搜索文章..." 
-style="width:100%;padding:8px;margin-bottom:20px;">
+<form action="/search/" method="get" style="margin-bottom:20px;">
+  <input type="text" name="q" placeholder="搜索文章..." 
+  style="width:70%;padding:8px;">
+  <button type="submit" style="padding:8px 16px;">搜索</button>
+</form>
 
 {% assign tech_posts = site.posts | where_exp:"post","post.path contains '_posts/'" %}
 {% assign all_posts = tech_posts | concat: site.note | sort:"date" | reverse %}
@@ -21,7 +24,7 @@ style="width:100%;padding:8px;margin-bottom:20px;">
 
 <ul>
 {% for post in month.items %}
-<li class="post-item">
+<li>
   <span style="color:gray;">
     {{ post.date | date: "%Y-%m-%d" }}
   </span>
@@ -33,17 +36,3 @@ style="width:100%;padding:8px;margin-bottom:20px;">
 {% endfor %}
 
 </div>
-
-<script>
-const input = document.getElementById("searchInput");
-const items = document.querySelectorAll(".post-item");
-
-input.addEventListener("keyup", function() {
-  const keyword = input.value.toLowerCase();
-
-  items.forEach(item => {
-    const text = item.innerText.toLowerCase();
-    item.style.display = text.includes(keyword) ? "" : "none";
-  });
-});
-</script>
