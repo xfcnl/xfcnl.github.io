@@ -35,6 +35,7 @@ jobs:
         env:
           JEKYLL_ENV: production
           JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JEKYLL_GITHUB_METADATA_SKIP_SITE_GITHUB: true
       - name: Upload artifactt
         uses: actions/upload-pages-artifact@v3
 
