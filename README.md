@@ -1,6 +1,6 @@
 # xf_blog
 
-[github 线路](https://lm-xiao-fen.github.io)　[cloudflare 线路](https://husd.cc.cd)　[edgeone 线路](https://blog.sfvg.de5.net)
+[github 线路](https://xfcnl.github.io)　[cloudflare 线路](https://husd.cc.cd)　[edgeone 线路](https://blog.sfvg.de5.net)
 
 ## 一点点介绍
 

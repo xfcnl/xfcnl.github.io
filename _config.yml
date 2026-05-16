@@ -2,9 +2,7 @@ title: "xf_blog"
 description: "jekyll blog"
 
 baseurl: ""
-url: "https://lm-xiao-fen.github.io"
-
-repository: lm-xiao-fen/lm-xiao-fen.github.io
+url: "https://xfcnl.github.io"
 
 remote_theme: pages-themes/primer@v0.6.0
 plugins:

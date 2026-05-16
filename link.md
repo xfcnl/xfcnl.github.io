@@ -21,22 +21,11 @@ _{{ link.desc }}_
 
 {% include link.html %}
 
-## 友链申请
-
-- 请想申请友链的站长按照一下格式，将模板中的内容改成自己网站的信息
-
-```markdown
-- name: xf_blog
-  url: https://lm-xiao-fen.github.io
-  avatar: https://github.com/lm-xiao-fen/lm-xiao-fen.github.io/blob/main/image/MEITU_20260128_220225596.jpg?raw=true
-  desc: 立志用 cloudflare workers，GitHub pages 和 vercel 做出整个互联网的up（虽然不会成功
-```
-
 ## 本站信息
 
 - 名称：xf_blog
-- 链接：https://lm-xiao-fen.github.io
-- 头像：https://github.com/lm-xiao-fen/lm-xiao-fen.github.io/blob/main/image/MEITU_20260128_220225596.jpg?raw=true
+- 链接：https://github.com/xfcnl/xfcnl.github.io
+- 头像：https://github.com/xfcnl/xfcnl.github.io/blob/main/image/MEITU_20260128_220225596.jpg?raw=true
 - 签名：立志用 cloudflare workers，GitHub pages 和 vercel 做出整个互联网的up（虽然不会成功
 
 ---
