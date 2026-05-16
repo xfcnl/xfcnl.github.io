@@ -33,14 +33,14 @@ _{{ link.desc }}_
 ### 留言墙
 
 <script src="https://giscus.app/client.js"
-        data-repo="lm-xiao-fen/lm-xiao-fen.github.io"
+        data-repo="xfcnl/xfcnl.github.io"
         data-repo-id="R_kgDORKpEPA"
         data-category="General"
         data-category-id="DIC_kwDORKpEPM4C3Lg_"
         data-mapping="pathname"
         data-strict="0"
         data-reactions-enabled="1"
-        data-emit-metadata="1"
+        data-emit-metadata="0"
         data-input-position="top"
         data-theme="dark"
         data-lang="zh-CN"
