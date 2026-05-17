@@ -24,7 +24,7 @@ _{{ link.desc }}_
 ## 本站信息
 
 - 名称：xf_blog
-- 链接：https://github.com/xfcnl/xfcnl.github.io
+- 链接：https://xfcnl.github.io
 - 头像：https://github.com/xfcnl/xfcnl.github.io/blob/main/image/MEITU_20260128_220225596.jpg?raw=true
 - 签名：立志用 cloudflare workers，GitHub pages 和 vercel 做出整个互联网的up（虽然不会成功
 
