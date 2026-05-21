@@ -11,28 +11,27 @@
     {% include head-custom.html %}
   </head>
   <body>
+    {% if site.title and site.title != page.title %}
+    <nav class="navbar">
+      <div class="nav-header">
+        <a href="/" class="nav-logo">xf_blog</a>
+        <button class="nav-toggle" id="navToggle" aria-label="菜单">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="https://mikufans1.dpdns.org">副站</a></li>
+        <li><a href="/link/">友链</a></li>
+        <li><a href="/archive/">归档</a></li>
+        <li><a href="/tag/">标签</a></li>
+        <li><a href="/classify/">分类</a></li>
+        <li><a href="/about/">关于</a></li>
+      </ul>
+    </nav>
+    {% endif %}
     <div class="container-lg px-3 my-5 markdown-body">
-      {% if site.title and site.title != page.title %}
-      <nav class="navbar">
-        <div class="nav-header">
-          <a href="/" class="nav-logo">xf_blog</a>
-          <button class="nav-toggle" id="navToggle" aria-label="菜单">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </button>
-        </div>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="https://mikufans1.dpdns.org">副站</a></li>
-          <li><a href="/link/">友链</a></li>
-          <li><a href="/archive/">归档</a></li>
-          <li><a href="/tag/">标签</a></li>
-          <li><a href="/classify/">分类</a></li>
-          <li><a href="/about/">关于</a></li>
-        </ul>
-      </nav>
-      {% endif %}
-      
       {{ content }}
 
     </div>

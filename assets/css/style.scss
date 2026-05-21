@@ -290,6 +290,8 @@ a[style*="background"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
   padding: 0.75rem 1rem;
 }
 
@@ -333,8 +335,9 @@ a[style*="background"] {
 .nav-links {
   display: flex;
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0 1rem 0.75rem;
+  max-width: 900px;
   gap: 1.5rem;
   flex-wrap: wrap;
 }
