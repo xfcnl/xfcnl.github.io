@@ -15,8 +15,15 @@ permalink: /
 
 ## 近期更新
 
+{% assign all_posts = site.posts | concat: site.note | sort: "date" | reverse %}
+
 <ul>
-{% for post in site.posts limit:2 %}
+{% for post in all_posts limit:4 %}
+  {% if post.path contains '_posts/' %}
+    {% assign category = "tech" %}
+  {% else %}
+    {% assign category = "note" %}
+  {% endif %}
   <li style="margin-bottom:6px;">
     <span style="color:#8b949e; font-size:13px;">
       {{ post.date | date: "%Y-%m-%d" }}
@@ -25,27 +32,9 @@ permalink: /
       {{ post.title }}
     </a>
     <span>
-      tech
+      {{ category }}
     </span>
   </li>
-{% endfor %}
-</ul>
-
-{% assign notes = site.note | sort: "date" | reverse %}
-
-<ul>
-{% for post in notes limit:2 %}
- <li style="margin-bottom:6px;">
-  <span style="color:#8b949e; font-size:13px;">
-    {{ post.date | date: "%Y-%m-%d" }}
-  </span>
-  <a href="{{ post.url }}" style="margin-left:6px;">
-    {{ post.title }}
-  </a>
-  <span>
-    note
-  </span>
-</li>
 {% endfor %}
 </ul>
 
