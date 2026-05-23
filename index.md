@@ -4,7 +4,6 @@ title: xf_blog
 permalink: /
 ---
 
-
 # Hi, I am xiaofen
 
 > 欢迎来到我的个人主页
