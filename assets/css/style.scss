@@ -291,11 +291,12 @@ a[style*="background"] {
 
 .nav-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 900px;
   margin: 0 auto;
   padding: 0.75rem 1rem;
+  position: relative;
 }
 
 .nav-logo {
@@ -307,6 +308,8 @@ a[style*="background"] {
 
 .nav-toggle {
   display: none;
+  position: absolute;
+  left: 1rem;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
