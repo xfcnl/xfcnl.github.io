@@ -21,7 +21,7 @@
         </button>
       </div>
       <ul class="nav-links" id="navLinks">
-        <li><a href="https://mikufans1.dpdns.org">副站</a></li>
+        <li><a href="https://mikufans1.dpdns.org" target="_blank" rel="noopener noreferrer">副站</a></li>
         <li><a href="/link/">友链</a></li>
         <li><a href="/archive/">归档</a></li>
         <li><a href="/tag/">标签</a></li>
@@ -42,10 +42,10 @@
 
     {% if site.github.private != true and site.github.license %}
     <div class="footer border-top border-gray-light mt-5 pt-3 text-gray" style="display:flex; justify-content:space-around; align-items:center;">
-        <div><a href="https://mikufans.qzz.io">VICP-T6JGPJNE</a></div>
+        <div><a href="https://mikufans.qzz.io" target="_blank" rel="noopener noreferrer">VICP-T6JGPJNE</a></div>
         <div>© 2025 - {{ "now" | date: "%Y" }} lm-xiao-fen</div>
-        <div>文章内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 协议，源码遵循 <a href="https://opensource.org/licenses/MIT">MIT</a> 协议</div>
-        <div><a href="https://github.com/xfcnl/xfcnl.github.io">源码</a> 在GitHub开源</div>
+        <div>文章内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a> 协议，源码遵循 <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT</a> 协议</div>
+        <div><a href="https://github.com/xfcnl/xfcnl.github.io" target="_blank" rel="noopener noreferrer">源码</a> 在GitHub开源</div>
         <div><a href="feed.xml">RSS</a>&emsp;<a href="sitemap.xml">网站地图</a></div>
     </div>
       {% endif %}
@@ -89,6 +89,15 @@
           });
         }
       });
+    </script>
+    <script>
+      document.addEventListener('click', function(e) {
+        var link = e.target.closest ? e.target.closest('a') : null;
+        if (link && link.hostname && link.hostname !== window.location.hostname && !link.target) {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        }
+      }, true);
     </script>
   </body>
 </html>

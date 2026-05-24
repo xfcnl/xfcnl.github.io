@@ -6,7 +6,7 @@ permalink: /link/
 
 {% for link in site.data.link %}
 <img src="{{ link.avatar }}" alt="{{ link.name }}的头像" width="32" height="32">
-[{{ link.name }}]({{ link.url }})
+<a href="{{link.url}}" target="_blank">{{link.name}}</a>
 
 _{{ link.desc }}_
 
