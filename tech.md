@@ -9,7 +9,7 @@ permalink: /tech/
 <p>共有 {{ site.posts | size }} 篇</p>
 
 <ul>
-{% for post in site.posts limit %}
+{% for post in site.posts %}
   <li style="margin-bottom:6px;">
     <span style="color:#8b949e; font-size:13px;">
       {{ post.date | date: "%Y-%m-%d" }}
