@@ -18,11 +18,15 @@ style="width:70%;padding:8px;margin-bottom:20px;">
 <script>
 var POSTS = [
   {% for post in all_posts %}
+  {% assign teaser = post.excerpt | strip_html | truncatewords:50 %}
+  {% if teaser == "" %}
+  {% assign teaser = post.content | strip_html | truncatewords:50 %}
+  {% endif %}
   {
     title: {{ post.title | jsonify }},
     url: "{{ post.url | relative_url }}",
     date: "{{ post.date | date: '%Y-%m-%d' }}",
-    content: {{ post.content | strip_html | truncatewords: 200 | jsonify }},
+    content: {{ (post.title | append: " - " ) | append: teaser | jsonify }},
     type: "{% if post.path contains '_posts/' %}tech{% else %}note{% endif %}"
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
