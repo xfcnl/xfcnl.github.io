@@ -27,7 +27,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # 其他可选忽略（根据需要添加）
-TODO.md
 # .env
 # *.log
 # /assets/js/*.min.js
