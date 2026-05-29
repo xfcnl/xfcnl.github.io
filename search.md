@@ -22,11 +22,12 @@ var POSTS = [
   {% if teaser == "" %}
   {% assign teaser = post.content | strip_html | truncatewords:50 %}
   {% endif %}
+  {% capture content_str %}{{ post.title }} - {{ teaser }}{% endcapture %}
   {
     title: {{ post.title | jsonify }},
     url: "{{ post.url | relative_url }}",
     date: "{{ post.date | date: '%Y-%m-%d' }}",
-    content: {{ (post.title | append: " - " ) | append: teaser | jsonify }},
+    content: {{ content_str | jsonify }},
     type: "{% if post.path contains '_posts/' %}tech{% else %}note{% endif %}"
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
