@@ -207,12 +207,16 @@ jobs:
 
 文件内容来自 [部署 VitePress 站点 │ VitePress](https://vitepress.dev/zh/guide/deploy#github-pages)
 
-### 其他平台
+### cloudflare pages
+
+预设框架
+
+_无_
 
 构建命令
 
 ```npm
-  npm install vitepress && npx vitepress build
+npm install vitepress && npx vitepress build
 ```
 
 输出目录
@@ -221,4 +225,58 @@ jobs:
 .vitepress/dist
 ```
 
-其他的你就不需要动了
+### edgeone pages
+
+预设框架
+
+_Vite_
+
+根目录
+
+```text
+./
+```
+
+输出目录
+
+```text
+.vitepress/dist
+```
+
+编译命令
+
+```npm
+npx vitepress build
+```
+
+安装命令
+
+```npm
+npm install vitepress
+```
+
+### netlify
+
+基础目录
+
+_无_
+
+包目录
+
+_无_
+
+构建命令
+
+```npm
+npm install vitepress && npx vitepress build
+```
+
+发布目录
+
+```text
+.vitepress/dist
+```
+
+函数目录
+
+_默认_
