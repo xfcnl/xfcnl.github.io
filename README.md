@@ -53,3 +53,20 @@ tags: [tag, tags]
 ### 网站样式
 
 **assets/css** 文件夹下为我对原主题作的深色模式但没做切换（也就是说只有深色模式），可以删除或修改
+
+## 本地预览
+
+确保已安装 Ruby 和 Bundler，然后在项目根目录运行：
+
+```bash
+bundle install
+bundle exec jekyll serve
+```
+
+浏览器打开 `http://localhost:4000` 即可预览。
+
+```bash
+bundle exec jekyll serve --livereload
+```
+
+使用这条命令可以在本地启动一个具有实时预览功能的本地服务器
