@@ -11,7 +11,6 @@ _site/
 vendor/
 
 # Gemfile.lock（GitHub Pages 专用推荐）
-# 因为 GitHub Pages 会使用它自己的 pages-gem 版本，本地 Gemfile.lock 可能导致不一致
 Gemfile.lock
 
 # 临时文件和系统文件
@@ -28,6 +27,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # 其他可选忽略（根据需要添加）
+TODO.md
 # .env
 # *.log
 # /assets/js/*.min.js
