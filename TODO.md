@@ -35,6 +35,7 @@
 - **状态**: 已修复 — 邮箱已用 HTML 实体编码 + JS 字符串拼接，不再明文暴露。
 
 ### ~~导航栏缺少 `aria-expanded`~~ ✅
+
 - **文件**: `_layouts/default.html:17`
 - **问题**: 汉堡菜单按钮切换 `open` 类但没有同步 `aria-expanded` 属性。
 - **方案**: JS 中 toggle 时同步 `toggle.setAttribute('aria-expanded', ...)`。
@@ -51,69 +52,79 @@
 - **方案**: 删掉一组。
 - **状态**: 已修复 — 已删除重复的 `@media (min-width: 769px)` 代码块。
 
-### `!important` 滥用
+### ~~`!important` 滥用~~ ✅
 
 - **文件**: `assets/css/style.scss`，遍布几十处
 - **问题**: 表格、代码块、列表 hover 等大量使用 `!important`。上游 theme 升级版本或引入新组件时极易冲突，难以排查。
 - **方案**: 逐步用更高特异性选择器替换 `!important`。
+- **状态**: 已修复 — 搜索确认没有找到任何 `!important` 使用。
 
-### 行内样式分散在各页面
+### 行内样式分散在各页面 ❌
 
 - **文件**: `index.md`, `archive.md`, `tag.md`, `note.md`, `tech.md`, `search.md`, `link.md`
 - **问题**: 大量 `style="color:#8b949e; font-size:13px;"` 等行内样式，样式分散、难以统一维护。
 - **方案**: 抽取为 CSS 类（如 `.post-meta`、`.post-item`、`.tag-link` 等），在 `style.scss` 中统一定义。
+- **状态**: 未解决 — 检查发现大量行内样式存在，需要抽取为CSS类。
 
-### 多个 `<script>` 块未合并
+### 多个 `<script>` 块未合并 ❌
 
 - **文件**: `_layouts/default.html:54-101`
 - **问题**: copy-button、nav-toggle、external-link 分为 3 个独立的 `<script>` 块。
 - **方案**: 合并为 1 个 `DOMContentLoaded` 回调，或提取为独立 `assets/js/main.js`。
+- **状态**: 未解决 — 检查发现3个独立script块未合并。
 
-### 文件名拼写错误
+### 文件名拼写错误 ✅
 
 - **文件**: `_includes/head-custon-clarity-analytics.html`
 - **问题**: `custon` → 应为 `custom`。
 - **方案**: 重命名。
+- **状态**: 已修复 — 确认文件名正确，没有拼写错误的文件。
 
-### 相关文章不包含 note
+### 相关文章不包含 note ❌
 
 - **文件**: `_layouts/post.html:40`
 - **问题**: 相关文章只从 `site.posts`（tech 类）查找，`site.note` 永远不会出现在相关文章里。
 - **方案**: 改为 `site.posts | concat: site.note`。
+- **状态**: 未解决 — 检查发现相关文章只使用 `site.posts`，未包含 `site.note`。
 
 ---
 
 ## 🔵 P3 - 可维护性/架构
 
 ### ~~Jekyll 3.10.0 陈旧~~ 🟦 保留
+
 - **文件**: `Gemfile.lock`（由 `Gemfile` 中 `github-pages ~> 232` 锁定）
 - **问题**: GitHub Pages 强制锁定 Jekyll 3.10 生态，缺乏 4.x 的性能优化和功能。
 - **方案**: 可考虑迁移到独立 Actions 构建流程使用 Jekyll 4.x，或接受现状（短期影响小）。
 - **状态**: 保留不修 — 使用 Jekyll 3.10.0 是为了与 GitHub Pages 兼容。
 
-### 社交链接在 4 个文件中硬编码
+### 社交链接在 4 个文件中硬编码 ❌
 
 - **文件**: `index.md:68`, `_layouts/post.html:52-62`, `_layouts/page.html:13-23`, `about.md:23-25`
 - **问题**: B站 / YouTube / Email 链接在 4 个地方各写一遍，改一个社交链接要改 4 处。
 - **方案**: 将社交链接抽到 `_data/social.yaml`，通过 Liquid 遍历渲染。
+- **状态**: 未解决 — 检查确认社交链接在多个文件中硬编码。
 
-### Liquid 逻辑重复
+### Liquid 逻辑重复 ❌
 
-- **文件**: `index.md`, `tag.md`, `archive.md`, `search.md`
+- **文件**: `index.md`, `archive.md`, `tag.md`, `search.md`
 - **问题**: 合并 `site.posts` 和 `site.note` 的 Liquid 逻辑在多个文件中重复。
 - **方案**: 抽取为 `_includes/` 或通过 Jekyll 插件封装。
+- **状态**: 未解决 — 检查确认合并 `site.posts | concat: site.note` 的逻辑在4个文件中重复。
 
-### 没有设置 `site.lang`
+### 没有设置 `site.lang` ❌
 
 - **文件**: `_config.yml`
 - **问题**: 未设置 `lang`，页面 fallback 到 `en-US`。中文博客的 lang 应该是 `zh-CN`。
 - **方案**: 在 `_config.yml` 中添加 `lang: zh-CN`。
+- **状态**: 未解决 — 检查确认没有设置 `lang: zh-CN`。
 
-### 硬编码副站 URL
+### 硬编码副站 URL ❌
 
 - **文件**: `_layouts/default.html:24`（导航栏 `副站`），`:45`（footer VICP 链接）
 - **问题**: 子站点 URL 和 VICP 代理 URL 硬编码在 layout 中。
 - **方案**: 抽取到 `_config.yml`。
+- **状态**: 未解决 — 检查确认副站URL硬编码在layout中。
 
 ---
 

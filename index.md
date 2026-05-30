@@ -23,11 +23,11 @@ permalink: /
   {% else %}
     {% assign category = "note" %}
   {% endif %}
-  <li style="margin-bottom:6px;">
-    <span style="color:#8b949e; font-size:13px;">
+  <li class="list-item">
+    <span class="meta">
       {{ post.date | date: "%Y-%m-%d" }}
     </span>
-    <a href="{{ post.url }}" style="margin-left:6px;">
+    <a href="{{ post.url }}" class="post-link">
       {{ post.title }}
     </a>
     <span>
@@ -54,10 +54,9 @@ permalink: /
 
 {% assign sorted_tags = tags | uniq | sort %}
 
-<div style="margin-bottom:20px;">
+<div class="tag-cloud">
 {% for tag in sorted_tags limit:5 %}
-  <a href="/tag/#{{ tag }}" 
-     style="margin-right:10px;padding:4px 8px;background:#f2f2f2;border-radius:5px;">
+  <a href="/tag/#{{ tag }}" class="tag-pill">
      {{ tag }}
   </a>
 {% endfor %}

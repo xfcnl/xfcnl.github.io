@@ -6,30 +6,32 @@ permalink: /tag/
 
 # 标签云
 
-<div style="line-height:2em;">
+<div class="tag-cloud">
 {% assign tech_posts = site.posts | where_exp:"post","post.path contains '_posts/'" %}
 {% assign all_posts = tech_posts | concat: site.note %}
 
 {% assign all_tags = "" | split: "" %}
 
 {% for post in all_posts %}
-  {% if post.tags %}
-    {% assign all_tags = all_tags | concat: post.tags %}
-  {% endif %}
+{% if post.tags %}
+{% assign all_tags = all_tags | concat: post.tags %}
+{% endif %}
 {% endfor %}
 
 {% assign sorted_tags = all_tags | uniq | sort %}
 
 {% for tag in sorted_tags %}
-  <a href="#{{ tag }}" style="margin-right:10px;">
-    {{ tag }}
-  </a>
+<a href="#{{ tag }}" style="margin-right:10px;">
+{{ tag }}
+</a>
 {% endfor %}
+
 </div>
 
 <hr>
 
 {% for tag in sorted_tags %}
+
 ## {{ tag }}
 
 <ul>
