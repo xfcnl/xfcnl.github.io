@@ -64,7 +64,7 @@ permalink: /
 
 ## 社交的
 
-[bilibili](https://space.bilibili.com/3494372658121066)&ensp;[Email](/mailto/)&ensp;[YouTube](https://youtube.com/@lm-xiao-fen)
+{% include social-links.html %}
 
 ## 全站访问量
 

@@ -73,7 +73,7 @@
 - **方案**: 合并为 1 个 `DOMContentLoaded` 回调，或提取为独立 `assets/js/main.js`。
 - **状态**: 未解决 — 检查发现3个独立script块未合并。
 
-### 文件名拼写错误 ✅
+### ~~~文件名拼写错误~~ ✅
 
 - **文件**: `_includes/head-custon-clarity-analytics.html`
 - **问题**: `custon` → 应为 `custom`。
@@ -98,12 +98,12 @@
 - **方案**: 可考虑迁移到独立 Actions 构建流程使用 Jekyll 4.x，或接受现状（短期影响小）。
 - **状态**: 保留不修 — 使用 Jekyll 3.10.0 是为了与 GitHub Pages 兼容。
 
-### 社交链接在 4 个文件中硬编码 ❌
+### ~~社交链接在 4 个文件中硬编码~~ ✅
 
 - **文件**: `index.md:68`, `_layouts/post.html:52-62`, `_layouts/page.html:13-23`, `about.md:23-25`
 - **问题**: B站 / YouTube / Email 链接在 4 个地方各写一遍，改一个社交链接要改 4 处。
 - **方案**: 将社交链接抽到 `_data/social.yaml`，通过 Liquid 遍历渲染。
-- **状态**: 未解决 — 检查确认社交链接在多个文件中硬编码。
+- **状态**: 已修复 — 抽到 `_data/social.yml` + `_includes/social-links.html`，4 个页面统一调用。
 
 ### Liquid 逻辑重复 ❌
 
@@ -119,12 +119,12 @@
 - **方案**: 在 `_config.yml` 中添加 `lang: zh-CN`。
 - **状态**: 未解决 — 检查确认没有设置 `lang: zh-CN`。
 
-### 硬编码副站 URL ❌
+### ~~硬编码副站 URL~~ 🟦 保留
 
 - **文件**: `_layouts/default.html:24`（导航栏 `副站`），`:45`（footer VICP 链接）
 - **问题**: 子站点 URL 和 VICP 代理 URL 硬编码在 layout 中。
 - **方案**: 抽取到 `_config.yml`。
-- **状态**: 未解决 — 检查确认副站URL硬编码在layout中。
+- **状态**: 一般来说，这些内容是不可能一直在变动的，而是很长时间都是那样，所以抽取到 `_config.yml` 意义不大
 
 ---
 
@@ -142,6 +142,7 @@
 
 - 静态站风险有限，但增加 CSP 是好的安全实践。
 
-### 友链表单没有后端
+### ~~友链表单没有后端~~ 🟦 保留
 
 - 表单只在前端生成 YAML 代码让人手动复制，没有提交到任何地方。
+- **状态**: 静态网站提交到哪

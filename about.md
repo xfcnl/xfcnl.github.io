@@ -19,9 +19,11 @@ permalink: /about/
 总之,希望你能多多支持我
 
 
+{% assign bilibili = site.data.social | where: "key", "bilibili" | first %}
+{% assign youtube = site.data.social | where: "key", "youtube" | first %}
 ## 支持站长
-在b站上关注 [lm_xiao-fen](https://space.bilibili.com/3494372658121066)
+在b站上关注 [{{ bilibili.about_display }}]({{ bilibili.url }})
 
-在YouTube上关注 [@lm-xiao-fen](https://www.youtube.com/channel/UCWaSHZOf6ibgNbkGYDZOfhw)
+在YouTube上关注 [{{ youtube.about_display }}]({{ youtube.about_url }})
 
 <!-- 在推特上关注 []() -->
