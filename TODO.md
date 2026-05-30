@@ -20,33 +20,36 @@
 
 ## 🟠 P1 - 重要（应尽快修复）
 
-### 没有 404 页面
+### ~~没有 404 页面~~ ✅
 
 - **文件**: 缺少 `404.md` 或 `404.html`
 - **问题**: 访问不存在路径时显示 GitHub Pages 默认 404，体验差。
 - **方案**: 添加一个 `404.md`，带返回首页链接和简单样式。
+- **状态**: 已修复 — `404.md` 已存在，含返回首页链接。
 
-### 邮箱明文暴露
+### ~~邮箱明文暴露~~ ✅
 
 - **文件**: `mailto.md:14`
 - **问题**: `G114514g@yeah.net` 直接写在页面中，爬虫可轻松抓取。
 - **方案**: 用 JS 拼合字符串或 `&#` HTML 实体编码，或者用 Cloudflare 的 Email Obfuscation。
+- **状态**: 已修复 — 邮箱已用 HTML 实体编码 + JS 字符串拼接，不再明文暴露。
 
-### 导航栏缺少 `aria-expanded`
-
+### ~~导航栏缺少 `aria-expanded`~~ ✅
 - **文件**: `_layouts/default.html:17`
 - **问题**: 汉堡菜单按钮切换 `open` 类但没有同步 `aria-expanded` 属性。
 - **方案**: JS 中 toggle 时同步 `toggle.setAttribute('aria-expanded', ...)`。
+- **状态**: 已修复 — 按钮已设 `aria-expanded="false"`，JS 切换时同步更新。
 
 ---
 
 ## 🟡 P2 - 代码质量（积攒技术债）
 
-### CSS 重复代码
+### ~~CSS 重复代码~~ ✅
 
 - **文件**: `assets/css/style.scss:62-74`
 - **问题**: `@media (min-width: 769px) { .footer { ... } }` 完全重复写了两次。
 - **方案**: 删掉一组。
+- **状态**: 已修复 — 已删除重复的 `@media (min-width: 769px)` 代码块。
 
 ### `!important` 滥用
 
@@ -82,11 +85,11 @@
 
 ## 🔵 P3 - 可维护性/架构
 
-### Jekyll 3.10.0 陈旧
-
+### ~~Jekyll 3.10.0 陈旧~~ 🟦 保留
 - **文件**: `Gemfile.lock`（由 `Gemfile` 中 `github-pages ~> 232` 锁定）
 - **问题**: GitHub Pages 强制锁定 Jekyll 3.10 生态，缺乏 4.x 的性能优化和功能。
 - **方案**: 可考虑迁移到独立 Actions 构建流程使用 Jekyll 4.x，或接受现状（短期影响小）。
+- **状态**: 保留不修 — 使用 Jekyll 3.10.0 是为了与 GitHub Pages 兼容。
 
 ### 社交链接在 4 个文件中硬编码
 
