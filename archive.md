@@ -8,7 +8,7 @@ permalink: /archive/
 
 <form action="/search/" method="get" class="search-form">
   <input type="text" name="q" placeholder="搜索文章..." class="search-input">
-  <button type="submit" class="btn">搜索</button>
+  <button type="submit" class="search-btn">搜索</button>
 </form>
 
 {% assign tech_posts = site.posts | where_exp:"post","post.path contains '_posts/'" %}

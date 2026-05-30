@@ -141,6 +141,32 @@ input {
   padding: 6px;
 }
 
+/* ===== 搜索页 / 归档页搜索条 ===== */
+
+.search-form {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 70%;
+  padding: 8px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.search-btn {
+  padding: 8px 16px;
+  background: #161b22;
+  color: #c9d1d9;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  background: #21262d;
+}
+
 /* ===== 代码块 ===== */
 
 /* GitHub Dark 语法高亮样式（强制优先级） */
