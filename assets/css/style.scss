@@ -32,6 +32,9 @@ body {
   right: 0;
   background-color: #0d1117;
   padding: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   z-index: 1000;
   border-top: 1px solid rgba(148, 163, 184, 0.2);
 }
@@ -39,29 +42,29 @@ body {
 /* ===== 移动端 Footer 优化 ===== */
 
 @media (max-width: 768px) {
-  .footer {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
-    padding: 0.5rem !important;
+  div.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem;
   }
 
-  .footer div {
-    margin-bottom: 0.5rem !important;
+  div.footer > div {
+    margin-bottom: 0.5rem;
   }
 
-  .footer div:last-child {
-    margin-bottom: 0 !important;
+  div.footer > div:last-child {
+    margin-bottom: 0;
   }
 }
 
 /* ===== PC端 Footer 优化 ===== */
 
 @media (min-width: 769px) {
-  .footer {
-    justify-content: space-around !important;
+  div.footer {
+    justify-content: space-around;
   }
 }
 
@@ -97,7 +100,7 @@ a:hover {
 .border-top,
 .border-bottom,
 .border-gray-light {
-  border-color: rgba(148, 163, 184, 0.2) !important;
+  border-color: rgba(148, 163, 184, 0.2);
 }
 
 /* 分割线 */
@@ -141,86 +144,86 @@ input {
 /* ===== 代码块 ===== */
 
 /* GitHub Dark 语法高亮样式（强制优先级） */
-.markdown-body pre,
-.markdown-body code,
-pre,
-code,
-.highlight pre {
-  background-color: #161b22 !important;
-  color: #c9d1d9 !important;
-  border: 1px solid rgba(148, 163, 184, 0.2) !important;
-  border-radius: 6px !important;
+.container-lg .markdown-body pre,
+.container-lg .markdown-body code,
+.container-lg pre,
+.container-lg code,
+.container-lg .highlight pre {
+  background-color: #161b22;
+  color: #c9d1d9;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 6px;
 }
 
-pre {
-  padding: 16px !important;
-  overflow-x: auto !important;
+.container-lg pre {
+  padding: 16px;
+  overflow-x: auto;
 }
 
-code {
-  background-color: transparent !important;
-  border-radius: 3px !important;
+.container-lg code {
+  background-color: transparent;
+  border-radius: 3px;
 }
 
 /* 高亮语法颜色（贴近 GitHub Dark） */
-.markdown-body .hljs-keyword,
-.markdown-body .hljs-selector-tag,
-.markdown-body .hljs-subst {
-  color: #f85149 !important;
+.container-lg .markdown-body .hljs-keyword,
+.container-lg .markdown-body .hljs-selector-tag,
+.container-lg .markdown-body .hljs-subst {
+  color: #f85149;
 }
 
-.markdown-body .hljs-string,
-.markdown-body .hljs-title,
-.markdown-body .hljs-name,
-.markdown-body .hljs-type,
-.markdown-body .hljs-selector-id,
-.markdown-body .hljs-selector-class,
-.markdown-body .hljs-attribute,
-.markdown-body .hljs-literal,
-.markdown-body .hljs-built_in,
-.markdown-body .hljs-builtin-name,
-.markdown-body .hljs-bullet {
-  color: #a5d6ff !important;
+.container-lg .markdown-body .hljs-string,
+.container-lg .markdown-body .hljs-title,
+.container-lg .markdown-body .hljs-name,
+.container-lg .markdown-body .hljs-type,
+.container-lg .markdown-body .hljs-selector-id,
+.container-lg .markdown-body .hljs-selector-class,
+.container-lg .markdown-body .hljs-attribute,
+.container-lg .markdown-body .hljs-literal,
+.container-lg .markdown-body .hljs-built_in,
+.container-lg .markdown-body .hljs-builtin-name,
+.container-lg .markdown-body .hljs-bullet {
+  color: #a5d6ff;
 }
 
-.markdown-body .hljs-comment,
-.markdown-body .hljs-quote,
-.markdown-body .hljs-deletion {
-  color: #8b949e !important;
+.container-lg .markdown-body .hljs-comment,
+.container-lg .markdown-body .hljs-quote,
+.container-lg .markdown-body .hljs-deletion {
+  color: #8b949e;
 }
 
 /* ===== 表格 ===== */
 
 /* GitHub Dark 表格样式 */
-.markdown-body table,
-table {
-  background-color: #0d1117 !important;
-  border: 1px solid rgba(148, 163, 184, 0.2) !important;
-  border-collapse: collapse !important;
-  border-radius: 6px !important;
-  overflow: hidden !important;
+.container-lg .markdown-body table,
+.container-lg table {
+  background-color: #0d1117;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-collapse: collapse;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
-.markdown-body table th,
-.markdown-body table td,
-table th,
-table td {
-  border: 1px solid rgba(148, 163, 184, 0.2) !important;
-  padding: 6px 13px !important;
-  background-color: #0d1117 !important;
-  color: #c9d1d9 !important;
+.container-lg .markdown-body table th,
+.container-lg .markdown-body table td,
+.container-lg table th,
+.container-lg table td {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 6px 13px;
+  background-color: #0d1117;
+  color: #c9d1d9;
 }
 
-.markdown-body table th,
-table th {
-  background-color: #161b22 !important;
-  font-weight: 600 !important;
-  text-align: left !important;
+.container-lg .markdown-body table th,
+.container-lg table th {
+  background-color: #161b22;
+  font-weight: 600;
+  text-align: left;
 }
 
-.markdown-body table tr:hover,
-table tr:hover {
-  background-color: #161b22 !important;
+.container-lg .markdown-body table tr:hover,
+.container-lg table tr:hover {
+  background-color: #161b22;
 }
 
 /* ===== 可复制代码块 ===== */
@@ -254,10 +257,10 @@ table tr:hover {
 
 /* ===== 标签（tag 云 / 首页标签） ===== */
 
-a[style*="background"] {
-  background: #21262d !important;
-  border: 1px solid rgba(148, 163, 184, 0.2) !important;
-  color: #c9d1d9 !important;
+.container-lg a[style*="background"] {
+  background: #21262d;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #c9d1d9;
   border-radius: 6px;
 }
 
@@ -296,11 +299,11 @@ a[style*="background"] {
   padding: 0.75rem 1rem;
 }
 
-.nav-logo {
+.nav-header .nav-logo {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #e6edf3 !important;
-  text-decoration: none !important;
+  color: #e6edf3;
+  text-decoration: none;
 }
 
 .nav-toggle {
@@ -347,15 +350,15 @@ a[style*="background"] {
   margin: 0;
 }
 
-.nav-links a {
-  color: #8b949e !important;
+.nav-links li a {
+  color: #8b949e;
   font-size: 0.95rem;
-  text-decoration: none !important;
+  text-decoration: none;
   transition: color 0.2s;
 }
 
-.nav-links a:hover {
-  color: #58a6ff !important;
+.nav-links li a:hover {
+  color: #58a6ff;
 }
 
 @media (max-width: 768px) {
