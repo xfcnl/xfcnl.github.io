@@ -1,6 +1,8 @@
 title: "xf_blog"
 description: "jekyll blog"
 
+lang: zh-CN
+
 baseurl: ""
 url: "https://xfcnl.github.io"
 
