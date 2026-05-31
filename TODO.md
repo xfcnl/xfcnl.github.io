@@ -66,12 +66,12 @@
 - **方案**: 抽取为 CSS 类（如 `.post-meta`、`.post-item`、`.tag-link` 等），在 `style.scss` 中统一定义。
 - **状态**: 未解决 — 检查发现大量行内样式存在，需要抽取为CSS类。
 
-### 多个 `<script>` 块未合并 ❌
+### ~~多个 `<script>` 块未合并~~ ✅
 
-- **文件**: `_layouts/default.html:54-101`
+- **文件**: `_layouts/default.html:53-55`
 - **问题**: copy-button、nav-toggle、external-link 分为 3 个独立的 `<script>` 块。
 - **方案**: 合并为 1 个 `DOMContentLoaded` 回调，或提取为独立 `assets/js/main.js`。
-- **状态**: 未解决 — 检查发现3个独立script块未合并。
+- **状态**: 已修复 — 已合并到 `assets/js/xf-blog.js` 单个 `DOMContentLoaded` 回调中。
 
 ### ~~~文件名拼写错误~~ ✅
 
@@ -80,12 +80,12 @@
 - **方案**: 重命名。
 - **状态**: 已修复 — 确认文件名正确，没有拼写错误的文件。
 
-### 相关文章不包含 note ❌
+### ~~相关文章不包含 note~~ ✅
 
 - **文件**: `_layouts/post.html:40`
 - **问题**: 相关文章只从 `site.posts`（tech 类）查找，`site.note` 永远不会出现在相关文章里。
 - **方案**: 改为 `site.posts | concat: site.note`。
-- **状态**: 未解决 — 检查发现相关文章只使用 `site.posts`，未包含 `site.note`。
+- **状态**: 已修复 — 已改用 `site.posts | concat: site.note` 合并查询。
 
 ---
 
@@ -112,12 +112,12 @@
 - **方案**: 抽取为 `_includes/` 或通过 Jekyll 插件封装。
 - **状态**: 未解决 — 检查确认合并 `site.posts | concat: site.note` 的逻辑在4个文件中重复。
 
-### 没有设置 `site.lang` ❌
+### ~~没有设置 `site.lang`~~ ✅
 
 - **文件**: `_config.yml`
 - **问题**: 未设置 `lang`，页面 fallback 到 `en-US`。中文博客的 lang 应该是 `zh-CN`。
 - **方案**: 在 `_config.yml` 中添加 `lang: zh-CN`。
-- **状态**: 未解决 — 检查确认没有设置 `lang: zh-CN`。
+- **状态**: 已修复 — `_config.yml` 中已设置 `lang: zh-CN`。
 
 ### ~~硬编码副站 URL~~ 🟦 保留
 
