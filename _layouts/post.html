@@ -37,7 +37,7 @@ endunless %} {% endfor %}
 <div>
   <h3>相关文章</h3>
   <ul>
-    {% assign related_posts = site.posts | where_exp: "post", "post != page" %}
+    {% assign related_posts = site.posts | concat: site.note | where_exp: "post", "post != page" %}
     {% for post in related_posts %} {% assign intersection = post.tags |
     intersect: page.tags %} {% if intersection.size > 0 %}
     <li><a href="{{ post.url }}">{{ post.title }}</a></li>

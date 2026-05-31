@@ -11,6 +11,7 @@
     {% include head-custom.html %}
   </head>
   <body>
+    <div class="offline-banner" id="offlineBanner">你已处于离线状态，显示的是缓存的页面内容</div>
     <nav class="navbar">
       <div class="nav-header">
         <a href="/" class="nav-logo">xf_blog</a>
@@ -46,60 +47,11 @@
         <div>© 2025 - {{ "now" | date: "%Y" }} lm-xiao-fen</div>
         <div>文章内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a> 协议，源码遵循 <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT</a> 协议</div>
         <div><a href="https://github.com/xfcnl/xfcnl.github.io" target="_blank" rel="noopener noreferrer">源码</a> 在GitHub开源</div>
-        <div><a href="feed.xml">RSS</a>&emsp;<a href="sitemap.xml">网站地图</a></div>
+        <div><a href="/feed.xml">RSS</a>&emsp;<a href="/sitemap.xml">网站地图</a></div>
     </div>
       {% endif %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
     <script>anchors.add();</script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const codeBlocks = document.querySelectorAll('pre');
-        codeBlocks.forEach(function(pre) {
-          const container = document.createElement('div');
-          container.className = 'code-block-container';
-          pre.parentNode.insertBefore(container, pre);
-          container.appendChild(pre);
-          
-          const button = document.createElement('button');
-          button.className = 'copy-button';
-          button.textContent = '复制';
-          button.addEventListener('click', function() {
-            const code = pre.querySelector('code') ? pre.querySelector('code').textContent : pre.textContent;
-            navigator.clipboard.writeText(code).then(function() {
-              button.textContent = '已复制';
-              button.classList.add('copied');
-              setTimeout(function() {
-                button.textContent = '复制';
-                button.classList.remove('copied');
-              }, 2000);
-            });
-          });
-          container.appendChild(button);
-        });
-      });
-    </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const toggle = document.getElementById('navToggle');
-        const links = document.getElementById('navLinks');
-        if (toggle && links) {
-          toggle.addEventListener('click', function () {
-            this.classList.toggle('active');
-            links.classList.toggle('open');
-            const expanded = this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true';
-            this.setAttribute('aria-expanded', expanded);
-          });
-        }
-      });
-    </script>
-    <script>
-      document.addEventListener('click', function(e) {
-        var link = e.target.closest ? e.target.closest('a') : null;
-        if (link && link.hostname && link.hostname !== window.location.hostname && !link.target) {
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-        }
-      }, true);
-    </script>
+    <script src="/assets/js/xf-blog.js"></script>
   </body>
 </html>

@@ -290,6 +290,60 @@ input {
   border-radius: 6px;
 }
 
+/* ===== 离线提示条 ===== */
+
+.offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #da3633;
+  color: #fff;
+  text-align: center;
+  padding: 6px 12px;
+  font-size: 14px;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+}
+
+.offline-banner.show {
+  transform: translateY(0);
+}
+
+/* ===== 缓存提示 Toast ===== */
+
+.cache-tip {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #238636;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.4s, transform 0.4s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.cache-tip.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 768px) {
+  .cache-tip {
+    white-space: normal;
+    max-width: 90%;
+    text-align: center;
+    bottom: 170px;
+  }
+}
+
 /* ===== 滚动条 ===== */
 
 ::-webkit-scrollbar {
