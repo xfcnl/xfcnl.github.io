@@ -1,4 +1,5 @@
 ---
+permalink: /sw.js
 ---
 
 var CACHE_NAME = 'xf-blog-v1'
