@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 {% seo %}
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' https://u.mikufans1.dpdns.org https://cdnjs.cloudflare.com https://giscus.app;
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' https://count.getloli.com data:;
+      connect-src 'self' https://u.mikufans1.dpdns.org https://giscus.app https://api.github.com wss://giscus.app;
+      frame-src https://giscus.app;
+      font-src 'self' data:;
+      form-action 'self';
+    ">
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     <link rel="icon" type="image/jpeg" href="/image/MEITU_20260128_220225596.jpg">
     {% include head-custom.html %}
@@ -51,7 +61,6 @@
     </div>
       {% endif %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
-    <script>anchors.add();</script>
     <script src="/assets/js/xf-blog.js"></script>
   </body>
 </html>

@@ -3,9 +3,9 @@
 
 /* ============================================
    xf_blog — 主脚本
-   依赖: sw.js (Service Worker)
-   ============================================ */
+============================================ */
 
+/* sw.js (Service Worker)规则 */
 var PRECACHE_URLS = [
   '/',
   '/archive/',
@@ -102,6 +102,11 @@ var PRECACHE_URLS = [
       })
       container.appendChild(button)
     })
+
+    /* ---- 标题锚点（AnchorJS） ---- */
+    if (typeof anchors !== 'undefined') {
+      anchors.add()
+    }
 
     /* ---- 导航汉堡菜单 ---- */
     var toggle = document.getElementById('navToggle')
