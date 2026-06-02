@@ -2,6 +2,7 @@
 permalink: /sw.js
 ---
 
+/* build: {{ site.time | date_to_xmlschema }} */
 var CACHE_NAME = 'xf-blog-v1'
 
 self.addEventListener('install', function() {
@@ -56,12 +57,19 @@ self.addEventListener('fetch', function(event) {
 })
 
 function networkFirst(request) {
-  return fetch(request).then(function(resp) {
-    return caches.open(CACHE_NAME).then(function(cache) {
-      cache.put(request, resp.clone())
-      return resp
+  var timeout = 3000
+
+  return Promise.race([
+    fetch(request).then(function(resp) {
+      return caches.open(CACHE_NAME).then(function(cache) {
+        cache.put(request, resp.clone())
+        return resp
+      })
+    }),
+    new Promise(function(_, reject) {
+      setTimeout(function() { reject(new Error('timeout')) }, timeout)
     })
-  }).catch(function() {
+  ]).catch(function() {
     return caches.match(request)
   })
 }
