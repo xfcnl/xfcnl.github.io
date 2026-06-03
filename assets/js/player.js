@@ -31,7 +31,7 @@ function adjustPlayerPosition() {
   container.style.position = "fixed";
   container.style.left = "16px";
   container.style.top = "120px";
-  container.style.zIndex = "998";
+  container.style.zIndex = "2000";
 
   // 强制设置播放器为 static，避免内部 position: fixed 冲突
   player.style.position = "static";
