@@ -6,6 +6,35 @@
     top: 120px;
     z-index: 2000;
     max-width: 320px;
+    transition: transform 0.25s ease, width 0.25s ease, left 0.25s ease;
+    -webkit-transition: transform 0.25s ease, width 0.25s ease, left 0.25s ease;
+  }
+
+  /* ===== 吸附（docked）状态 ===== */
+  #music-player-container.docked {
+    width: 56px !important;
+    max-width: 56px !important;
+    transform: translateX(-40px);
+    overflow: visible;
+  }
+
+  #music-player-container.docked .aplayer {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 8px !important;
+  }
+
+  #music-player-container.docked .aplayer .aplayer-info,
+  #music-player-container.docked .aplayer .aplayer-control,
+  #music-player-container.docked .aplayer .aplayer-list {
+    display: none !important;
+  }
+
+  #music-player-container.docked .aplayer .aplayer-pic {
+    width: 48px !important;
+    height: 48px !important;
+    margin: 4px !important;
+    border-radius: 6px !important;
   }
 
   #music-player-container .aplayer {
