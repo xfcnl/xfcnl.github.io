@@ -99,5 +99,52 @@
     flex: 1 1 auto !important;
     min-width: 0 !important;
   }
+
+/* Strong overrides for compact fixed APlayer */
+.aplayer.aplayer-fixed .aplayer-body {
+  width: auto !important;
+  min-width: 320px !important;
+  max-width: 420px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 8px !important;
+  box-sizing: border-box !important;
+}
+.aplayer.aplayer-fixed .aplayer-info {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+.aplayer.aplayer-fixed .aplayer-music {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+.aplayer.aplayer-fixed .aplayer-icon {
+  width: 40px !important;
+  height: 40px !important;
+  flex: 0 0 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 4px !important;
+}
+.aplayer.aplayer-fixed .aplayer-list {
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 0 !important;
+  right: auto !important;
+  max-height: 250px !important;
+  overflow: auto !important;
+  z-index: 10005 !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45) !important;
+}
+.aplayer.aplayer-fixed .aplayer-miniswitcher {
+  position: fixed !important;
+  z-index: 10003 !important;
+}
 </style>
 {% endif %}
