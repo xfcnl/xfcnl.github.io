@@ -3,12 +3,14 @@
   if (!footer) return;
 
   function adjust() {
-    var h = footer.offsetHeight;
     var p = document.querySelector(".aplayer.aplayer-fixed");
     if (!p) return false;
-    // Lift player further above footer to avoid overlap on some layouts
-    p.style.bottom = h + 16 + "px";
-    // Ensure it's above the footer and other fixed elements
+    // Position player at top-left with a safe offset
+    p.style.top = "16px";
+    p.style.left = "16px";
+    p.style.right = "auto";
+    p.style.bottom = "auto";
+    // Ensure it's above other fixed elements
     p.style.zIndex = 10002;
     return true;
   }
