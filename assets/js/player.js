@@ -1,74 +1,84 @@
-(function () {
-  var footer = document.querySelector(".footer");
-  if (!footer) return;
+// ===== APlayer 位置和交互微调 =====
 
-  function adjust() {
-    var p = document.querySelector('.aplayer.aplayer-fixed');
-    if (!p) return false;
-    // Ensure main container is fixed at top-left
-    p.style.position = 'fixed';
-    p.style.top = '16px';
-    p.style.left = '16px';
-    p.style.right = 'auto';
-    p.style.bottom = 'auto';
-    p.style.zIndex = 10002;
+document.addEventListener("DOMContentLoaded", function () {
+  // 等待 MetingJS 初始化完成
+  setTimeout(function () {
+    adjustPlayerPosition();
+    adjustPlayerIcons();
+  }, 500);
+});
 
-    // Normalize body/layout to a compact horizontal layout
-    var body = p.querySelector('.aplayer-body');
-    if (body) {
-      body.style.width = 'auto';
-      body.style.minWidth = '320px';
-      body.style.maxWidth = '420px';
-      body.style.display = 'flex';
-      body.style.alignItems = 'center';
-      body.style.gap = '10px';
-      body.style.padding = '8px';
-      body.style.boxSizing = 'border-box';
-    }
+// 初始化完成后再调整一次
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    adjustPlayerPosition();
+    adjustPlayerIcons();
+  }, 1000);
+});
 
-    // Force info area to behave as a flex container (prevents stacking below)
-    var info = p.querySelector('.aplayer-info');
-    if (info) {
-      info.style.display = 'flex';
-      info.style.alignItems = 'center';
-      info.style.gap = '10px';
-      info.style.flex = '1 1 auto';
-      info.style.minWidth = '0';
-    }
+/**
+ * 强制锁定播放器位置
+ * 解决 MetingJS 异步初始化后可能覆盖位置的问题
+ */
+function adjustPlayerPosition() {
+  const container = document.getElementById("music-player-container");
+  if (!container) return;
 
-    // Reposition miniswitcher relative to main player (to the right)
-    var minis = document.querySelectorAll('.aplayer-miniswitcher');
-    minis.forEach(function(m){
-      try {
-        m.style.position = 'fixed';
-        var rect = p.getBoundingClientRect();
-        var mW = m.offsetWidth || 40;
-        var mH = m.offsetHeight || 40;
-        var top = rect.top + (rect.height - mH) / 2;
-        var left = rect.left + rect.width + 8;
-        // Avoid overflowing viewport
-        if (left + mW > window.innerWidth) left = Math.max(8, rect.left + rect.width - mW);
-        if (top < 8) top = 8;
-        m.style.top = top + 'px';
-        m.style.left = left + 'px';
-        m.style.right = 'auto';
-        m.style.bottom = 'auto';
-        m.style.zIndex = 10003;
-      } catch(e){}
-    });
+  const player = container.querySelector(".aplayer");
+  if (!player) return;
 
-    return true;
-  }
+  // 强制设置容器位置
+  container.style.position = "fixed";
+  container.style.left = "16px";
+  container.style.top = "120px";
+  container.style.zIndex = "998";
 
-  if (adjust()) return;
+  // 强制设置播放器为 static，避免内部 position: fixed 冲突
+  player.style.position = "static";
+  player.style.bottom = "auto";
+  player.style.right = "auto";
+  player.style.left = "auto";
+  player.style.top = "auto";
+}
 
-  var timer = setInterval(function () {
-    if (adjust()) clearInterval(timer);
-  }, 200);
+/**
+ * 调整播放器图标大小
+ * 解决 APlayer 中控制栏小图标被放大的问题
+ * 通过区分播放按钮和控制栏按钮
+ */
+function adjustPlayerIcons() {
+  const player = document.querySelector("#music-player-container .aplayer");
+  if (!player) return;
 
-  window.addEventListener("load", function () {
-    if (!document.querySelector(".aplayer.aplayer-fixed")) return;
-    adjust();
+  // 缩小控制栏按钮
+  const controlButtons = player.querySelectorAll(
+    ".aplayer-control .aplayer-button",
+  );
+  controlButtons.forEach((btn) => {
+    btn.style.fontSize = "14px";
+    btn.style.width = "32px";
+    btn.style.height = "32px";
+    btn.style.lineHeight = "32px";
+    btn.style.textAlign = "center";
   });
-  window.addEventListener("resize", adjust);
-})();
+
+  // 保持播放列表按钮合理大小
+  const listBtn = player.querySelector(".aplayer-control .aplayer-list-button");
+  if (listBtn) {
+    listBtn.style.fontSize = "14px";
+  }
+}
+
+// 监听窗口 resize，确保位置正确
+window.addEventListener("resize", function () {
+  adjustPlayerPosition();
+});
+
+// 监听播放器模式切换（mini ↔ full）
+document.addEventListener("aplayer-mini", function () {
+  adjustPlayerPosition();
+});
+
+document.addEventListener("aplayer-full", function () {
+  adjustPlayerPosition();
+});
