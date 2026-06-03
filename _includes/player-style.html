@@ -1,0 +1,103 @@
+{% if site.netease_player.enable %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css"
+/>
+<style>
+  .aplayer {
+    background: #161b22 !important;
+    color: #c9d1d9 !important;
+  }
+  .aplayer .aplayer-info .aplayer-music .aplayer-title {
+    color: #e6edf3 !important;
+  }
+  .aplayer .aplayer-info .aplayer-music .aplayer-author {
+    color: #8b949e !important;
+  }
+  .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar {
+    background: #30363d !important;
+  }
+  .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded {
+    background: #21262d !important;
+  }
+  .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+    background: {{ site.netease_player.theme | default: '#e74c3e' }} !important;
+  }
+  .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played .aplayer-thumb {
+    background: {{ site.netease_player.theme | default: '#e74c3e' }} !important;
+  }
+  .aplayer .aplayer-info .aplayer-controller .aplayer-time {
+    color: #8b949e !important;
+  }
+  .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon path {
+    fill: #c9d1d9 !important;
+  }
+  .aplayer .aplayer-list {
+    background: #161b22 !important;
+    border-color: rgba(148,163,184,0.2) !important;
+  }
+  .aplayer .aplayer-list ol li {
+    color: #c9d1d9 !important;
+    border-color: rgba(148,163,184,0.2) !important;
+  }
+  .aplayer .aplayer-list ol li:hover {
+    background: #21262d !important;
+  }
+  .aplayer .aplayer-list ol li.aplayer-list-light {
+    background: #21262d !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-body {
+    background: #161b22 !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    background: #161b22 !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc p {
+    color: #c9d1d9 !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc p.aplayer-lrc-current {
+    color: #e6edf3 !important;
+  }
+  .aplayer .aplayer-miniswitcher {
+    background: #21262d !important;
+  }
+  .aplayer .aplayer-miniswitcher .aplayer-icon path {
+    fill: #c9d1d9 !important;
+  }
+  /* Overrides for fixed player when positioned at top-left */
+  .aplayer.aplayer-fixed {
+    width: 360px !important;
+    max-width: 90vw !important;
+    overflow: visible !important;
+    box-sizing: border-box;
+  }
+  .aplayer.aplayer-fixed .aplayer-body {
+    background: #161b22 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 8px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-info {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-info .aplayer-music {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-icon {
+    width: 48px !important;
+    height: 48px !important;
+    flex: 0 0 48px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-controller {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+</style>
+{% endif %}
