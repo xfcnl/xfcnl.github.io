@@ -14,6 +14,15 @@ plugins:
 
 permalink: /tech/:name/
 
+netease_player:
+  enable: true
+  playlist_id: "8285330087"
+  fixed: true
+  mini: true
+  theme: "#e74c3e"
+  volume: 0.5
+  order: "list"
+
 collections:
   note:
     output: true
