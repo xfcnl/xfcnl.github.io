@@ -11,8 +11,8 @@ permalink: /archive/
   <button type="submit" class="search-btn">搜索</button>
 </form>
 
-{% assign tech_posts = site.posts | where_exp:"post","post.path contains '_posts/'" %}
-{% assign all_posts = tech_posts | concat: site.note | sort:"date" | reverse %}
+{% include merged-posts.html %}
+{% assign all_posts = all_posts | sort:"date" | reverse %}
 
 {% assign months = all_posts | group_by_exp:"post","post.date | date: '%Y-%m'" %}
 

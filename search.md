@@ -11,8 +11,8 @@ permalink: /search/
 
 <div id="searchResults"></div>
 
-{% assign tech_posts = site.posts | where_exp:"post","post.path contains '_posts/'" %}
-{% assign all_posts = tech_posts | concat: site.note | sort:"date" | reverse %}
+{% include merged-posts.html %}
+{% assign all_posts = all_posts | sort:"date" | reverse %}
 
 <script>
 var POSTS = [

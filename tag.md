@@ -7,8 +7,7 @@ permalink: /tag/
 # 标签云
 
 <div class="tag-cloud">
-{% assign tech_posts = site.posts | where_exp:"post","post.path contains '_posts/'" %}
-{% assign all_posts = tech_posts | concat: site.note %}
+{% include merged-posts.html %}
 
 {% assign all_tags = "" | split: "" %}
 

@@ -14,10 +14,11 @@ permalink: /
 
 ## 近期更新
 
-{% assign all_posts = site.posts | concat: site.note | sort: "date" | reverse %}
+{% include merged-posts.html %}
+{% assign recent_posts = all_posts | sort: "date" | reverse %}
 
 <ul>
-{% for post in all_posts limit:4 %}
+{% for post in recent_posts limit:4 %}
   {% if post.path contains '_posts/' %}
     {% assign category = "tech" %}
   {% else %}
@@ -40,9 +41,6 @@ permalink: /
 ---
 
 ## 热门标签
-
-{% assign tech_posts = site.posts | where_exp:"post","post.path contains '_posts/'" %}
-{% assign all_posts = tech_posts | concat: site.note %}
 
 {% assign tags = "" | split: "" %}
 
