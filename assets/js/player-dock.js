@@ -1,9 +1,10 @@
 (function () {
-  const IDLE_MS = 1000;
+  const IDLE_MS = 10000; // 10 seconds
   const container = document.getElementById("music-player-container");
   if (!container) return;
   let idleTimer = null;
-  let docked = false;
+  // Reflect initial DOM state: container may start with class "docked"
+  let docked = container.classList.contains('docked');
 
   function dock() {
     if (docked) return;
