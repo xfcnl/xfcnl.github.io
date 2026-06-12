@@ -4,9 +4,7 @@
 
 ## 一点点介绍
 
-[上游主题仓库](https://github.com/pages-themes/primer)
-
-这是我拿 github 官方主题 primer 改的，这个主题本身是给项目仓做库介绍网页做的，但我改成了博客
+这是我拿 github 官方主题 [primer](https://github.com/pages-themes/primer) 改的，这个主题本身是给项目仓做库介绍网页做的，但我改成了博客
 
 所以我称它为……
 
