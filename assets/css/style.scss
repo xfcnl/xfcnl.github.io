@@ -325,7 +325,9 @@ input {
   font-size: 14px;
   z-index: 9999;
   opacity: 0;
-  transition: opacity 0.4s, transform 0.4s;
+  transition:
+    opacity 0.4s,
+    transform 0.4s;
   pointer-events: none;
   white-space: nowrap;
 }
@@ -456,4 +458,16 @@ input {
   .nav-links.open {
     display: flex;
   }
+}
+
+/* ===== YouTube & Bilibili 嵌入自动缩放 ===== */
+
+iframe[src*="youtube.com"],
+iframe[src*="bilibili.com"] {
+  max-width: 800px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  display: block;
+  margin: 0 auto;
 }
