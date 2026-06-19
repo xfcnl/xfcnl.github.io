@@ -460,9 +460,10 @@ input {
   }
 }
 
-/* ===== YouTube 嵌入自动缩放 ===== */
+/* ===== 视频嵌入自动缩放 ===== */
 
-iframe[src*="youtube.com"]{
+iframe[src*="youtube.com"],
+iframe[src*="bilibili.com"]{
   max-width: 800px;
   width: 100%;
   height: auto;
