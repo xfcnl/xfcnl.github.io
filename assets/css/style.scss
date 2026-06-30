@@ -1,7 +1,7 @@
 ---
 ---
 
-@import "{{ site.theme }}";
+@import "jekyll-theme-primer";
 
 /* ===== 全局深色模式（Primer Dark 风格） ===== */
 
@@ -470,4 +470,103 @@ iframe[src*="bilibili.com"]{
   aspect-ratio: 16 / 9;
   display: block;
   margin: 0 auto;
+}
+
+/* ===== Primer 主题深色覆写（vendor 本地化后） ===== */
+
+/* .markdown-body hr — 浅色背景条 → 深色分隔线 */
+.markdown-body hr {
+  height: auto;
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+/* .markdown-body h1/h2 — 浅色下边框 */
+.markdown-body h1,
+.markdown-body h2 {
+  border-bottom-color: rgba(148, 163, 184, 0.2);
+}
+
+/* .markdown-body blockquote — 浅色左边框 */
+.markdown-body blockquote {
+  color: #8b949e;
+  border-left-color: rgba(148, 163, 184, 0.2);
+}
+
+/* .markdown-body img — 白色背景 → 透明 */
+.markdown-body img {
+  background-color: transparent;
+}
+
+/* .markdown-body span.frame > span — 浅色边框 */
+.markdown-body span.frame > span {
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+/* .markdown-body span.frame span span — 浅色文字 */
+.markdown-body span.frame span span {
+  color: #c9d1d9;
+}
+
+/* .markdown-body table tr — 白色行背景 */
+.markdown-body table tr {
+  background-color: transparent;
+  border-top-color: rgba(148, 163, 184, 0.2);
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* .markdown-body h6 — 浅色文字 */
+.markdown-body h6 {
+  color: #8b949e;
+}
+
+/* .markdown-body kbd — 浅色 → 深色 */
+.markdown-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #c9d1d9;
+  vertical-align: middle;
+  background-color: #161b22;
+  border: solid 1px rgba(148, 163, 184, 0.2);
+  border-bottom-color: rgba(148, 163, 184, 0.4);
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 rgba(148, 163, 184, 0.2);
+}
+
+/* .markdown-body .csv-data */
+.markdown-body .csv-data .blob-num {
+  background: #161b22;
+}
+
+.markdown-body .csv-data th {
+  background: #161b22;
+}
+
+/* Primer link utilities → 深色 */
+.link-gray,
+.link-gray-dark,
+.muted-link {
+  color: #8b949e !important;
+}
+
+.link-gray:hover,
+.link-gray-dark:hover,
+.muted-link:hover {
+  color: #58a6ff !important;
+  text-decoration: none;
+}
+
+/* Primer text/pending utilities */
+.text-pending {
+  color: #d29922 !important;
+}
+
+.bg-pending {
+  color: #d29922 !important;
 }
