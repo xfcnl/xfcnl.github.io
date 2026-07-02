@@ -1,1 +1,7 @@
-{% for link in site.data.social %}{% if link.external %}<a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.name }}</a>{% else %}<a href="{{ link.url }}">{{ link.name }}</a>{% endif %}{% unless forloop.last %}&ensp;{% endunless %}{% endfor %}
+{% for link in site.data.social %}{% if link.external %}<a
+  href="{{ link.url }}"
+  target="_blank"
+  rel="noopener noreferrer"
+  >{{ link.name }}</a
+>{% else %}<a href="{{ link.url }}">{{ link.name }}</a>{% endif %}{% unless
+forloop.last %}&ensp;{% endunless %}{% endfor %}
