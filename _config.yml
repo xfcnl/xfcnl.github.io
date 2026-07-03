@@ -22,6 +22,8 @@ netease_player:
   volume: 0.5
   order: "list"
 
+github: [metadata]
+
 collections:
   note:
     output: true
