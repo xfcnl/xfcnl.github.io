@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Security-Policy" content="
       default-src 'self';
       script-src 'self' https://u.mikufans1.dpdns.org https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://giscus.app;
-      style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;
+      style-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;
       img-src 'self' https://count.getloli.com https://*.music.126.net https://*.hdslb.com https: data:;
       connect-src 'self' https://u.mikufans1.dpdns.org https://giscus.app https://api.github.com https://api.i-meto.com https://*.music.126.net wss://giscus.app;
       frame-src https://giscus.app https://www.youtube.com https://player.bilibili.com https://www.bilibili.com https://*.bilibili.com;
@@ -53,7 +53,7 @@
       {% unless page.url == "/" %}
     <img src="https://count.getloli.com/@xf_blog?name=xf_blog&theme=miku&padding=10&offset=0&align=top&scale=1&pixelated=1&darkmode=1"
          alt=""
-         style="display:none;width:0;height:0;visibility:hidden;" />
+         class="counter-img" />
       {% endunless %}
 
     <div class="footer border-top border-gray-light mt-5 pt-3 text-gray">
@@ -67,6 +67,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
     <script src="/assets/js/xf-blog.js"></script>
     <script src="/assets/js/pjax.js"></script>
+    <script src="/assets/js/search.js"></script>
     {% include player.html %}
   </body>
 </html>

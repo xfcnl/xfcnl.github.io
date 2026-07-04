@@ -3,7 +3,7 @@
   <p>如果你想与本博客交换友链，请在下方填写你的博客信息，我会尽快添加</p>
   <p><strong>请确保你也添加了本博客的链接后再申请</strong></p>
 
-  <form class="link-form" onsubmit="submitLink(event)">
+  <form class="link-form">
     <div class="form-group">
       <label for="link-name">博客名称</label>
       <input
@@ -50,100 +50,4 @@
   <div id="link-result"></div>
 </section>
 
-<script>
-  function submitLink(e) {
-    e.preventDefault();
-    const name = document.getElementById("link-name").value;
-    const url = document.getElementById("link-url").value;
-    const avatar = document.getElementById("link-avatar").value;
-    const desc = document.getElementById("link-desc").value;
-
-    const yamlCode = `\`\`\`yaml
-- name: ${name}
-  url: ${url}
-  avatar: ${avatar}
-  desc: ${desc}
-\`\`\``;
-
-    const resultHtml = `
-    <div class="link-result">
-      <p>请复制以下代码添加到你的友链文件中：</p>
-      <div class="code-block">
-        <pre><code>${escapeHtml(yamlCode)}</code></pre>
-        <button class="copy-btn" onclick="copyCode(this)">复制</button>
-      </div>
-      <p class="tip">添加后请在评论区或通过其他方式告知，我会尽快审核并添加你的友链</p>
-    </div>
-  `;
-
-    document.getElementById("link-result").innerHTML = resultHtml;
-  }
-
-  function escapeHtml(text) {
-    const div = document.createElement("div");
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-  function copyCode(btn) {
-    const code = btn.previousElementSibling.querySelector("code").textContent;
-    navigator.clipboard.writeText(code).then(() => {
-      btn.textContent = "已复制";
-      setTimeout(() => (btn.textContent = "复制"), 2000);
-    });
-  }
-</script>
-
-<style>
-  .link-form .form-group {
-    margin-bottom: 1rem;
-  }
-  .link-form label {
-    display: block;
-    margin-bottom: 0.3rem;
-    font-weight: bold;
-  }
-  .link-form input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  .link-form button {
-    padding: 0.5rem 1rem;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .link-form button:hover {
-    background: #0056b3;
-  }
-  .code-block-container {
-    position: relative;
-  }
-
-  .copy-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #30363d;
-    color: #c9d1d9;
-    border: none;
-    border-radius: 4px;
-    padding: 4px 8px;
-    font-size: 12px;
-    cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-  }
-
-  .copy-button:hover {
-    opacity: 1;
-  }
-
-  .copy-button.copied {
-    background: #238636;
-  }
-</style>
+<script src="/assets/js/link.js"></script>

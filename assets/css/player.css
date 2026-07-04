@@ -1,0 +1,204 @@
+/* ===== APlayer 播放器容器 ===== */
+#music-player-container {
+  position: fixed;
+  left: 16px;
+  top: 120px;
+  z-index: 2000;
+  max-width: 320px;
+  transition:
+    transform 0.25s ease,
+    width 0.25s ease,
+    left 0.25s ease;
+  -webkit-transition:
+    transform 0.25s ease,
+    width 0.25s ease,
+    left 0.25s ease;
+}
+
+/* ===== 吸附（docked）状态 ===== */
+#music-player-container.docked {
+  width: 56px;
+  max-width: 56px;
+  transform: translateX(-40px);
+  overflow: visible;
+}
+
+#music-player-container.docked .aplayer {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+}
+
+#music-player-container.docked .aplayer .aplayer-info,
+#music-player-container.docked .aplayer .aplayer-control,
+#music-player-container.docked .aplayer .aplayer-list {
+  display: none;
+}
+
+#music-player-container.docked .aplayer .aplayer-pic {
+  width: 48px;
+  height: 48px;
+  margin: 4px;
+  border-radius: 6px;
+}
+
+#music-player-container .aplayer {
+  position: static;
+  bottom: auto;
+  right: auto;
+  background-color: #161b22;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica,
+    Arial, sans-serif;
+}
+
+/* ===== 播放器内部颜色 ===== */
+#music-player-container .aplayer .aplayer-info {
+  background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+}
+
+#music-player-container .aplayer .aplayer-control {
+  background-color: #161b22;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+#music-player-container .aplayer .aplayer-bar-wrap .aplayer-bar {
+  background-color: rgba(88, 166, 255, 0.2);
+}
+
+#music-player-container .aplayer .aplayer-bar-wrap .aplayer-played {
+  background-color: #58a6ff;
+}
+
+#music-player-container
+  .aplayer
+  .aplayer-volume-wrap
+  .aplayer-volume-bar-wrap
+  .aplayer-volume-bar {
+  background-color: rgba(88, 166, 255, 0.2);
+}
+
+#music-player-container
+  .aplayer
+  .aplayer-volume-wrap
+  .aplayer-volume-bar-wrap
+  .aplayer-volume-fill {
+  background-color: #58a6ff;
+}
+
+/* ===== 播放器文字颜色 ===== */
+#music-player-container .aplayer .aplayer-info .aplayer-music .aplayer-title {
+  color: #e6edf3;
+}
+
+#music-player-container
+  .aplayer
+  .aplayer-info
+  .aplayer-music
+  .aplayer-author {
+  color: #8b949e;
+}
+
+#music-player-container .aplayer .aplayer-info .aplayer-lrc p {
+  color: #8b949e;
+}
+
+#music-player-container
+  .aplayer
+  .aplayer-info
+  .aplayer-lrc
+  .aplayer-lrc-current {
+  color: #58a6ff;
+}
+
+/* ===== 播放器图标颜色 ===== */
+#music-player-container .aplayer .aplayer-control .aplayer-button {
+  color: #8b949e;
+}
+
+#music-player-container .aplayer .aplayer-control .aplayer-button:hover {
+  color: #58a6ff;
+}
+
+#music-player-container .aplayer .aplayer-control .aplayer-time {
+  color: #8b949e;
+}
+
+/* ===== 播放列表菜单 ===== */
+#music-player-container .aplayer .aplayer-list {
+  background-color: #0d1117;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+#music-player-container .aplayer .aplayer-list li {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #8b949e;
+  transition: all 0.3s ease;
+}
+
+#music-player-container .aplayer .aplayer-list li:hover {
+  background-color: #161b22;
+  color: #58a6ff;
+}
+
+#music-player-container .aplayer .aplayer-list li.aplayer-list-light {
+  background-color: #161b22;
+  color: #58a6ff;
+}
+
+#music-player-container .aplayer .aplayer-list li .aplayer-list-cur {
+  color: #58a6ff;
+}
+
+/* ===== 迷你模式 ===== */
+#music-player-container .aplayer.aplayer-mini {
+  width: 320px;
+  height: 60px;
+}
+
+#music-player-container .aplayer.aplayer-mini .aplayer-info {
+  display: none;
+}
+
+#music-player-container .aplayer.aplayer-mini .aplayer-control {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+
+#music-player-container .aplayer.aplayer-mini .aplayer-button {
+  margin: 0 4px;
+}
+
+/* ===== 响应式设计 ===== */
+@media (max-width: 1200px) {
+  #music-player-container {
+    left: 8px;
+    right: auto;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  #music-player-container {
+    position: fixed;
+    bottom: 80px;
+    left: auto;
+    right: 8px;
+    top: auto;
+    max-width: 280px;
+  }
+
+  #music-player-container .aplayer {
+    max-width: 280px;
+  }
+
+  #music-player-container .aplayer.aplayer-mini {
+    width: 280px;
+  }
+}

@@ -20,7 +20,7 @@ permalink: /tag/
 {% assign sorted_tags = all_tags | uniq | sort %}
 
 {% for tag in sorted_tags %}
-<a href="#{{ tag }}" style="margin-right:10px;">
+<a href="#{{ tag }}" class="tag-link">
 {{ tag }}
 </a>
 {% endfor %}
@@ -37,7 +37,7 @@ permalink: /tag/
 {% for post in all_posts %}
   {% if post.tags contains tag %}
   <li>
-    <span style="color:gray">{{ post.date | date:"%Y-%m-%d" }}</span>
+    <span class="tag-date">{{ post.date | date:"%Y-%m-%d" }}</span>
     <a href="{{ post.url }}">{{ post.title }}</a>
   </li>
   {% endif %}
