@@ -15,29 +15,7 @@ permalink: /
 {% endfor %}
 {% assign sorted_tags = tags | uniq | sort %}
 
-<div class="home-grid">
-
-  <div class="home-left">
-    <div class="profile-card">
-      <img src="/image/MEITU_20260128_220225596.jpg" alt="avatar" class="avatar">
-      <h1>Hi, I am xiaofen</h1>
-      <p class="bio">初二生 · 折腾开发/生活 · AI 辅助型选手</p>
-      <div class="profile-stats">
-        <span>{{ all_posts | size }} 篇文章</span>
-        <span>{{ sorted_tags | size }} 个标签</span>
-      </div>
-      <div class="profile-social">
-        {::nomarkdown}
-        {% include social-links.html %}
-        {:/nomarkdown}
-      </div>
-      <div class="profile-counter">
-        <img src="https://count.getloli.com/@xf_blog?name=xf_blog&theme=miku&padding=10&offset=0&align=top&scale=1&pixelated=1&darkmode=1" alt="visitor count">
-      </div>
-    </div>
-  </div>
-
-  <div class="home-right">
+<div class="home-right">
     <h2>近期更新</h2>
     <div class="post-card-list">
     {% for post in recent_posts limit:6 %}
@@ -62,8 +40,6 @@ permalink: /
     </div>
     <a href="/archive/" class="view-all">查看全部文章 →</a>
   </div>
-
-</div>
 
 <div class="home-tags">
   <h2>热门标签</h2>

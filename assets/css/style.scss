@@ -465,7 +465,7 @@ input {
 /* ===== 视频嵌入自动缩放 ===== */
 
 iframe[src*="youtube.com"],
-iframe[src*="bilibili.com"]{
+iframe[src*="bilibili.com"] {
   max-width: 800px;
   width: 100%;
   height: auto;
@@ -668,10 +668,26 @@ giscus-widget {
   opacity: 0.85;
 }
 
-.share-btn.qzone { background: #1e5a7a; color: #fff; border-color: #1e5a7a; }
-.share-btn.qq    { background: #1a8ce8; color: #fff; border-color: #1a8ce8; }
-.share-btn.facebook { background: #1877f2; color: #fff; border-color: #1877f2; }
-.share-btn.x     { background: #1d1d1d; color: #fff; border-color: #333; }
+.share-btn.qzone {
+  background: #1e5a7a;
+  color: #fff;
+  border-color: #1e5a7a;
+}
+.share-btn.qq {
+  background: #1a8ce8;
+  color: #fff;
+  border-color: #1a8ce8;
+}
+.share-btn.facebook {
+  background: #1877f2;
+  color: #fff;
+  border-color: #1877f2;
+}
+.share-btn.x {
+  background: #1d1d1d;
+  color: #fff;
+  border-color: #333;
+}
 
 /* ===== 首页两栏布局 ===== */
 
@@ -1042,4 +1058,36 @@ giscus-widget {
   border-color: #58a6ff;
   color: #58a6ff;
   text-decoration: none;
+}
+
+/* ===== 全局侧边栏布局（桌面端所有页面可见，移动端仅首页） ===== */
+
+.page-with-sidebar {
+  max-width: 900px;
+  margin-left: max(16px, calc((100% - 900px) * 0.3));
+}
+
+@media (min-width: 769px) {
+  .page-with-sidebar {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .page-sidebar {
+    position: sticky;
+    top: 16px;
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-sidebar {
+    display: none;
+  }
+
+  .page-sidebar.show-on-mobile {
+    display: block;
+  }
 }

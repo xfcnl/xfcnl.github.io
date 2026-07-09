@@ -43,10 +43,41 @@
     </nav>
     <div id="barba-wrapper" data-barba="wrapper">
       <div data-barba="container" data-barba-namespace="{{ page.url | slugify }}">
-        <div class="container-lg px-3 my-5 markdown-body">
-          {{ content }}
 
+{% include merged-posts.html %}
+{% assign tags = "" | split: "" %}
+{% for post in all_posts %}
+{% if post.tags %}
+{% assign tags = tags | concat: post.tags %}
+{% endif %}
+{% endfor %}
+{% assign sorted_tags = tags | uniq | sort %}
+
+        <div class="page-with-sidebar">
+          <aside class="page-sidebar{% if page.url == '/' %} show-on-mobile{% endif %}">
+            <div class="profile-card">
+              <img src="/image/MEITU_20260128_220225596.jpg" alt="avatar" class="avatar">
+              <h1>Hi, I am xiaofen</h1>
+              <p class="bio">初二生 · 折腾开发/生活 · AI 辅助型选手</p>
+              <div class="profile-stats">
+                <span>{{ all_posts | size }} 篇文章</span>
+                <span>{{ sorted_tags | size }} 个标签</span>
+              </div>
+              <div class="profile-social">
+                {% include social-links.html %}
+              </div>
+              <div class="profile-counter">
+                <img src="https://count.getloli.com/@xf_blog?name=xf_blog&theme=miku&padding=10&offset=0&align=top&scale=1&pixelated=1&darkmode=1" alt="visitor count">
+              </div>
+            </div>
+          </aside>
+          <main class="page-main">
+            <div class="px-3 my-5 markdown-body">
+              {{ content }}
+            </div>
+          </main>
         </div>
+
       </div>
     </div>
 
