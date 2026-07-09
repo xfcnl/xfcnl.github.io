@@ -4,7 +4,7 @@ title: 归档
 permalink: /archive/
 ---
 
-# 归档
+<h1>归档</h1>
 
 <form action="/search/" method="get" class="search-form">
   <input type="text" name="q" placeholder="搜索文章..." class="search-input">
@@ -17,22 +17,17 @@ permalink: /archive/
 {% assign months = all_posts | group_by_exp:"post","post.date | date: '%Y-%m'" %}
 
 <div id="archiveList">
-
 {% for month in months %}
-
-<h2>{{ month.name }} ({{ month.items.size }})</h2>
-
-<ul>
+<h2 class="archive-month">{{ month.name }} ({{ month.items.size }})</h2>
+<div class="card-list">
 {% for post in month.items %}
-<li>
-  <span class="date-muted">
-    {{ post.date | date: "%Y-%m-%d" }}
-  </span>
-  <a href="{{ post.url }}">{{ post.title }}</a>
-</li>
+  <div class="card">
+    <div class="card-meta">
+      <span>{{ post.date | date: "%Y-%m-%d" }}</span>
+    </div>
+    <a href="{{ post.url }}" class="card-title">{{ post.title }}</a>
+  </div>
 {% endfor %}
-</ul>
-
+</div>
 {% endfor %}
-
 </div>

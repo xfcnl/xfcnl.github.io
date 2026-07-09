@@ -50,15 +50,19 @@
       return;
     }
 
-    var html = '<p>共找到 ' + results.length + ' 篇相关文章</p><ul>';
+    var html = '<p>共找到 ' + results.length + ' 篇相关文章</p><div class="card-list">';
     results.forEach(function(post) {
-      html += '<li>' +
-        '<span class="search-date">' + post.date + '</span> ' +
-        '<a href="' + post.url + '">' + post.title + '</a> ' +
-        '<span class="search-type">[' + post.type + ']</span>' +
-      '</li>';
+      var typeLabel = post.type === 'tech' ? '技术' : '随笔';
+      var typeClass = post.type === 'tech' ? 'category-tech' : 'category-note';
+      html += '<div class="card">' +
+        '<div class="card-meta">' +
+          '<span class="category-pill ' + typeClass + '">' + typeLabel + '</span>' +
+          '<span>' + post.date + '</span>' +
+        '</div>' +
+        '<a href="' + post.url + '" class="card-title">' + post.title + '</a>' +
+      '</div>';
     });
-    html += '</ul>';
+    html += '</div>';
     container.innerHTML = html;
   }
 

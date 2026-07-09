@@ -4,44 +4,38 @@ title: 标签
 permalink: /tag/
 ---
 
-# 标签云
+<h1>标签云</h1>
 
-<div class="tag-cloud">
 {% include merged-posts.html %}
 
 {% assign all_tags = "" | split: "" %}
-
 {% for post in all_posts %}
 {% if post.tags %}
 {% assign all_tags = all_tags | concat: post.tags %}
 {% endif %}
 {% endfor %}
-
 {% assign sorted_tags = all_tags | uniq | sort %}
 
+<div class="tag-cloud">
 {% for tag in sorted_tags %}
-<a href="#{{ tag }}" class="tag-link">
-{{ tag }}
-</a>
+<a href="#{{ tag }}" class="tag-link">{{ tag }}</a>
 {% endfor %}
-
 </div>
 
 <hr>
 
 {% for tag in sorted_tags %}
-
-## {{ tag }}
-
-<ul>
+<h2>{{ tag }}</h2>
+<div class="card-list">
 {% for post in all_posts %}
   {% if post.tags contains tag %}
-  <li>
-    <span class="tag-date">{{ post.date | date:"%Y-%m-%d" }}</span>
-    <a href="{{ post.url }}">{{ post.title }}</a>
-  </li>
+  <div class="card">
+    <div class="card-meta">
+      <span>{{ post.date | date:"%Y-%m-%d" }}</span>
+    </div>
+    <a href="{{ post.url }}" class="card-title">{{ post.title }}</a>
+  </div>
   {% endif %}
 {% endfor %}
-</ul>
-
+</div>
 {% endfor %}

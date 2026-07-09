@@ -65,6 +65,8 @@ body {
 @media (min-width: 769px) {
   div.footer {
     justify-content: space-around;
+    width: 60%;
+    left: 20%;
   }
 }
 
@@ -619,6 +621,13 @@ iframe[src*="bilibili.com"]{
   border-radius: 6px;
 }
 
+/* ===== Giscus 评论区宽度 ===== */
+
+giscus-widget {
+  display: block;
+  width: 100%;
+}
+
 /* ===== 计数器图片（隐藏） ===== */
 
 .counter-img {
@@ -663,3 +672,374 @@ iframe[src*="bilibili.com"]{
 .share-btn.qq    { background: #1a8ce8; color: #fff; border-color: #1a8ce8; }
 .share-btn.facebook { background: #1877f2; color: #fff; border-color: #1877f2; }
 .share-btn.x     { background: #1d1d1d; color: #fff; border-color: #333; }
+
+/* ===== 首页两栏布局 ===== */
+
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 769px) {
+  .home-grid {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+/* ===== 左侧个人资料卡 ===== */
+
+.profile-card {
+  background: #161b22;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.profile-card .avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 3px solid #30363d;
+  margin-bottom: 1rem;
+}
+
+.profile-card h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-card .bio {
+  color: #8b949e;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: #8b949e;
+  margin-bottom: 1rem;
+}
+
+.profile-social {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.profile-counter img {
+  max-width: 100%;
+}
+
+/* ===== 右侧文章卡片列表 ===== */
+
+.post-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.post-card {
+  background: #161b22;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: border-color 0.2s;
+}
+
+.post-card:hover {
+  border-color: #58a6ff;
+}
+
+.category-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.category-tech {
+  background: rgba(88, 166, 255, 0.15);
+  color: #58a6ff;
+  border: 1px solid rgba(88, 166, 255, 0.3);
+}
+
+.category-note {
+  background: rgba(63, 185, 80, 0.15);
+  color: #3fb950;
+  border: 1px solid rgba(63, 185, 80, 0.3);
+}
+
+.post-card-title {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #e6edf3;
+  margin-bottom: 0.35rem;
+  line-height: 1.4;
+}
+
+.post-card-title:hover {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.post-card-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: #8b949e;
+}
+
+.post-card-meta span + span::before {
+  content: "· ";
+}
+
+.view-all {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #58a6ff;
+  font-size: 0.9rem;
+}
+
+.view-all:hover {
+  text-decoration: none;
+  color: #79c0ff;
+}
+
+/* ===== 首页标签云 ===== */
+
+.home-tags {
+  margin-top: 2rem;
+}
+
+.home-tags .tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.home-tags .tag-pill {
+  display: inline-block;
+  padding: 4px 14px;
+  background: #21262d;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 20px;
+  color: #c9d1d9;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.home-tags .tag-pill:hover {
+  border-color: #58a6ff;
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+/* ===== 通用卡片（所有列表页复用） ===== */
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card {
+  background: #161b22;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: #58a6ff;
+}
+
+.card-title {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #e6edf3;
+  line-height: 1.4;
+}
+
+.card-title:hover {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: #8b949e;
+  margin-bottom: 0.35rem;
+}
+
+/* ===== 页面顶部文章计数 ===== */
+
+.page-counter {
+  color: #8b949e;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* ===== 归档页 ===== */
+
+.archive-month {
+  color: #e6edf3;
+  font-size: 1.25rem;
+  margin: 1.5rem 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.archive-month:first-of-type {
+  margin-top: 0;
+}
+
+/* ===== 友链卡片网格 ===== */
+
+.link-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .link-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #161b22;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: border-color 0.2s;
+}
+
+.link-card:hover {
+  border-color: #58a6ff;
+}
+
+.link-card img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.link-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.link-card-body a {
+  font-weight: 600;
+  color: #e6edf3;
+  font-size: 1rem;
+}
+
+.link-card-body a:hover {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.link-card-body .link-desc {
+  color: #8b949e;
+  font-size: 0.8rem;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-card-body .link-note {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: #d29922;
+  background: rgba(210, 153, 34, 0.15);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* ===== 分类卡片 ===== */
+
+.classify-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 400px;
+}
+
+.classify-card {
+  display: block;
+  text-align: center;
+  background: #161b22;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  padding: 2rem 1rem;
+  color: #e6edf3;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.classify-card:hover {
+  border-color: #58a6ff;
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+/* ===== 搜索页结果 ===== */
+
+#searchResults ul {
+  list-style: none;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+#searchResults ul li {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+#searchResults ul li:hover {
+  background: transparent;
+}
+
+/* ===== 标签云页标签 pill 化 ===== */
+
+.tag-link {
+  display: inline-block;
+  padding: 4px 14px;
+  margin: 0.25rem;
+  background: #21262d;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 20px;
+  color: #c9d1d9;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.tag-link:hover {
+  border-color: #58a6ff;
+  color: #58a6ff;
+  text-decoration: none;
+}
