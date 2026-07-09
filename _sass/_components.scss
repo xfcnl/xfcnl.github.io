@@ -1,0 +1,242 @@
+input {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.markdown-body pre,
+.markdown-body code,
+.highlight pre {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.markdown-body pre {
+  padding: 16px;
+  overflow-x: auto;
+}
+
+.markdown-body code {
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+.markdown-body .hljs-keyword,
+.markdown-body .hljs-selector-tag,
+.markdown-body .hljs-subst {
+  color: #f85149;
+}
+
+.markdown-body .hljs-string,
+.markdown-body .hljs-title,
+.markdown-body .hljs-name,
+.markdown-body .hljs-type,
+.markdown-body .hljs-selector-id,
+.markdown-body .hljs-selector-class,
+.markdown-body .hljs-attribute,
+.markdown-body .hljs-literal,
+.markdown-body .hljs-built_in,
+.markdown-body .hljs-builtin-name,
+.markdown-body .hljs-bullet {
+  color: #a5d6ff;
+}
+
+.markdown-body .hljs-comment,
+.markdown-body .hljs-quote,
+.markdown-body .hljs-deletion {
+  color: var(--text-secondary);
+}
+
+.markdown-body table {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-collapse: collapse;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  border: 1px solid var(--border-color);
+  padding: 6px 13px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.markdown-body table th {
+  background-color: var(--bg-secondary);
+  font-weight: 600;
+  text-align: left;
+}
+
+.markdown-body table tr:hover {
+  background-color: var(--bg-secondary);
+}
+
+.code-block-container {
+  position: relative;
+}
+
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.copy-button:hover {
+  opacity: 1;
+}
+
+.copy-button.copied {
+  background: #238636;
+}
+
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 1rem 0;
+}
+
+.share-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-right: 4px;
+}
+
+.share-btn {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid var(--border-color);
+}
+
+.share-btn:hover {
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.share-btn.qzone {
+  background: #1e5a7a;
+  color: var(--color-white);
+  border-color: #1e5a7a;
+}
+
+.share-btn.qq {
+  background: #1a8ce8;
+  color: var(--color-white);
+  border-color: #1a8ce8;
+}
+
+.share-btn.facebook {
+  background: #1877f2;
+  color: var(--color-white);
+  border-color: #1877f2;
+}
+
+.share-btn.x {
+  background: #1d1d1d;
+  color: var(--color-white);
+  border-color: #333;
+}
+
+.copy-email-btn {
+  cursor: pointer;
+  font-size: inherit;
+  border: 1px solid #4a9eff;
+  background: #e8f4ff;
+  color: #1a1a2e;
+  padding: 6px 16px;
+  border-radius: 6px;
+}
+
+.offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #da3633;
+  color: var(--color-white);
+  text-align: center;
+  padding: 6px 12px;
+  font-size: 14px;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+}
+
+.offline-banner.show {
+  transform: translateY(0);
+}
+
+.cache-tip {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #238636;
+  color: var(--color-white);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 9999;
+  opacity: 0;
+  transition:
+    opacity 0.4s,
+    transform 0.4s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.cache-tip.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 768px) {
+  .cache-tip {
+    white-space: normal;
+    max-width: 90%;
+    text-align: center;
+    bottom: 170px;
+  }
+}
+
+giscus-widget {
+  display: block;
+  width: 100%;
+}
+
+.counter-img {
+  display: none;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+iframe[src*="youtube.com"],
+iframe[src*="bilibili.com"] {
+  max-width: 800px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  display: block;
+  margin: 0 auto;
+}
