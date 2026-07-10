@@ -4,7 +4,7 @@
 
 ## 一点点介绍
 
-这是我拿 github 官方主题 [primer](https://github.com/pages-themes/primer) 改的，这个主题本身是给项目仓做库介绍网页做的，但我改成了博客
+从 [primer](https://github.com/pages-themes/primer) 发展为独立的博客主题
 
 所以我称它为……
 
@@ -12,7 +12,26 @@
 
 ###### 好中二啊
 
-## 怎么使用
+## 环境安装
+
+[点击此处安装ruby环境](https://rubygems.org)
+
+## 本地预览
+
+```bash
+bundle install
+bundle exec jekyll serve
+```
+
+浏览器打开 `http://localhost:4000` 即可预览。
+
+```bash
+bundle exec jekyll serve --livereload
+```
+
+使用这条命令可以在本地启动一个具有实时预览功能的本地服务器
+
+<!-- ## 怎么使用
 
 在 **\_posts** 和 **\_note** 下新建格式为 **YYYY-MM-DD-title.md** 的文件
 
@@ -52,21 +71,4 @@ tags: [tag, tags]
 
 ### 网站样式
 
-**assets/css** 文件夹下为我对原主题作的深色模式但没做切换（也就是说只有深色模式），可以删除或修改
-
-## 本地预览
-
-确保已安装 Ruby 和 Bundler，然后在项目根目录运行：
-
-```bash
-bundle install
-bundle exec jekyll serve
-```
-
-浏览器打开 `http://localhost:4000` 即可预览。
-
-```bash
-bundle exec jekyll serve --livereload
-```
-
-使用这条命令可以在本地启动一个具有实时预览功能的本地服务器
+**assets/css** 文件夹下为我对原主题作的深色模式但没做切换（也就是说只有深色模式），可以删除或修改 -->
