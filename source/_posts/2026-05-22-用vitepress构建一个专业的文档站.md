@@ -2,6 +2,7 @@
 layout: post
 title: "用vitepress构建一个专业的文档站"
 date: 2026-05-22
+categories: [tech]
 tags: [vitepress, 文档站]
 ---
 

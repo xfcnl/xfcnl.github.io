@@ -2,6 +2,7 @@
 layout: post
 title: "vercl升级？在vercel沙箱中运行docker容器"
 date: 2026-06-06
+categories: [tech]
 tags: [vercel, web, blog, deploy, 分享]
 ---
 
