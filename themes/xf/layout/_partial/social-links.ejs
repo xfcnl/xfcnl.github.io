@@ -1,0 +1,10 @@
+<% if (site.data.social) { %>
+  <% site.data.social.forEach(function(link, idx) { %>
+    <% if (link.external) { %>
+      <a href="<%= link.url %>" target="_blank" rel="noopener noreferrer"><%= link.name %></a>
+    <% } else { %>
+      <a href="<%= link.url %>"><%= link.name %></a>
+    <% } %>
+    <% if (idx < site.data.social.length - 1) { %>&ensp;<% } %>
+  <% }) %>
+<% } %>

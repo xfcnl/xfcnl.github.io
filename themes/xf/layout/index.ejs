@@ -1,0 +1,42 @@
+<%
+var allPosts = site.posts.toArray();
+var recentPosts = allPosts.sort(function(a, b) { return b.date - a.date; }).slice(0, 6);
+var allTags = [];
+allPosts.forEach(function(post) {
+  if (post.tags) {
+    post.tags.forEach(function(tag) {
+      if (allTags.indexOf(tag.name) === -1) allTags.push(tag.name);
+    });
+  }
+});
+allTags.sort();
+var hotTags = allTags.slice(0, 8);
+%>
+<div class="home-right">
+  <h2>近期更新</h2>
+  <div class="post-card-list">
+  <% recentPosts.forEach(function(post) { %>
+    <% var category = post.categories && post.categories.length > 0 ? post.categories.first().name : 'tech'; %>
+    <% var categoryLabel = category === 'tech' ? '技术' : '随笔'; %>
+    <% var words = post.content.replace(/<[^>]*>/g, '').split(/\s+/).length; %>
+    <% var readTime = Math.max(1, Math.ceil(words / 200)); %>
+    <div class="post-card">
+      <span class="category-pill category-<%= category %>"><%= categoryLabel %></span>
+      <a href="<%= url_for(post.path) %>" class="post-card-title"><%= post.title %></a>
+      <div class="post-card-meta">
+        <span><%= date(post.date, 'YYYY-MM-DD') %></span>
+        <span><%= readTime %> 分钟</span>
+      </div>
+    </div>
+  <% }) %>
+  </div>
+  <a href="<%= url_for('/archive/') %>" class="view-all">查看全部文章 →</a>
+</div>
+<div class="home-tags">
+  <h2>热门标签</h2>
+  <div class="tag-cloud">
+  <% hotTags.forEach(function(tag) { %>
+    <a href="<%= url_for('/tag/') %>#<%= tag %>" class="tag-pill"><%= tag %></a>
+  <% }) %>
+  </div>
+</div>

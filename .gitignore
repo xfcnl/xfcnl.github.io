@@ -1,34 +1,11 @@
-# Jekyll 生成的静态网站目录（最重要）
-_site/
-
-# 缓存目录
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
-
-# Bundler 相关（推荐忽略）
-.bundle/
-vendor/
-
-# Gemfile.lock（GitHub Pages 专用推荐）
-Gemfile.lock
-
-# 临时文件和系统文件
 .DS_Store
 Thumbs.db
-*.swp
-*.swo
-*~
-
-# Node.js（如果使用了 webpack、gulp 等前端构建工具）
+db.json
+*.log
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+public/
+.deploy*/
+_multiconfig.yml
 
-# 其他可选忽略（根据需要添加）
-# .env
-# *.log
-# /assets/js/*.min.js
-
+# 其他
 AGENTS.md

@@ -1,0 +1,11 @@
+<% if (page.tag) { %>
+<h1><%= page.tag %></h1>
+<div class="card-list">
+<% page.posts.each(function(post) { %>
+  <div class="card">
+    <div class="card-meta"><span><%= date(post.date, 'YYYY-MM-DD') %></span></div>
+    <a href="<%= url_for(post.path) %>" class="card-title"><%= post.title %></a>
+  </div>
+<% }); %>
+</div>
+<% } %>

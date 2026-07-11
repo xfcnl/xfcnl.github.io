@@ -1,0 +1,27 @@
+<%
+var allPosts = page.posts ? page.posts.toArray() : site.posts.toArray();
+var months = {};
+allPosts.forEach(function(post) {
+  var key = date(post.date, 'YYYY-MM');
+  if (!months[key]) months[key] = [];
+  months[key].push(post);
+});
+%>
+<h1>归档</h1>
+<form action="/search/" method="get" class="search-form">
+  <input type="text" name="q" placeholder="搜索文章..." class="search-input">
+  <button type="submit" class="search-btn">搜索</button>
+</form>
+<div id="archiveList">
+<% Object.keys(months).sort().reverse().forEach(function(month) { %>
+<h2 class="archive-month"><%= month %> (<%= months[month].length %>)</h2>
+<div class="card-list">
+<% months[month].forEach(function(post) { %>
+  <div class="card">
+    <div class="card-meta"><span><%= date(post.date, 'YYYY-MM-DD') %></span></div>
+    <a href="<%= url_for(post.path) %>" class="card-title"><%= post.title %></a>
+  </div>
+<% }) %>
+</div>
+<% }) %>
+</div>

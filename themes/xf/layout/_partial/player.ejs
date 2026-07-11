@@ -1,0 +1,26 @@
+<% if (config.netease_player && config.netease_player.enable) { %>
+<!-- APlayer & MetingJS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+
+<div id="music-player-container" class="docked">
+  <meting-js
+    server="netease"
+    type="playlist"
+    id="<%= config.netease_player.playlist_id %>"
+    fixed="false"
+    mini="false"
+    autoplay="false"
+    theme="<%= config.netease_player.theme %>"
+    loop="all"
+    order="<%= config.netease_player.order %>"
+    volume="<%= config.netease_player.volume %>"
+  ></meting-js>
+</div>
+
+<link rel="stylesheet" href="/css/player.css" />
+<script src="/js/player.js"></script>
+<script src="/js/player-dock.js"></script>
+<% } %>

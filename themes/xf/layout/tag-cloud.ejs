@@ -1,0 +1,36 @@
+<%
+var allPosts = site.posts.toArray();
+var allTags = [];
+allPosts.forEach(function(post) {
+  if (post.tags) {
+    post.tags.forEach(function(tag) {
+      if (!allTags.find(function(t) { return t.name === tag.name; })) {
+        allTags.push({ name: tag.name, count: 1 });
+      } else {
+        allTags.find(function(t) { return t.name === tag.name; }).count++;
+      }
+    });
+  }
+});
+allTags.sort(function(a, b) { return a.name.localeCompare(b.name); });
+%>
+<h1>标签云</h1>
+<div class="tag-cloud">
+<% allTags.forEach(function(tag) { %>
+<a href="<%= url_for('/tag/' + tag.name + '/') %>" class="tag-link"><%= tag.name %></a>
+<% }) %>
+</div>
+<hr>
+<% allTags.forEach(function(tag) { %>
+<h2><%= tag.name %></h2>
+<div class="card-list">
+<% allPosts.forEach(function(post) {
+  if (post.tags && post.tags.find(function(t) { return t.name === tag.name; })) {
+%>
+  <div class="card">
+    <div class="card-meta"><span><%= date(post.date, 'YYYY-MM-DD') %></span></div>
+    <a href="<%= url_for(post.path) %>" class="card-title"><%= post.title %></a>
+  </div>
+<% } }); %>
+</div>
+<% }); %>

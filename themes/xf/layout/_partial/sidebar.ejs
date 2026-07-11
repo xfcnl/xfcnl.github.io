@@ -1,0 +1,29 @@
+<%
+var allPosts = site.posts.toArray();
+var allTags = [];
+allPosts.forEach(function(post) {
+  if (post.tags) {
+    post.tags.forEach(function(tag) {
+      if (allTags.indexOf(tag.name) === -1) allTags.push(tag.name);
+    });
+  }
+});
+var isHome = page.path === 'index.html' || page.path === '';
+%>
+<aside class="page-sidebar<%= isHome ? ' show-on-mobile' : '' %>">
+  <div class="profile-card">
+    <img src="/image/MEITU_20260128_220225596.jpg" alt="avatar" class="avatar">
+    <h1>Hi, I am xiaofen</h1>
+    <p class="bio">初二生 · 折腾开发/生活 · AI 辅助型选手</p>
+    <div class="profile-stats">
+      <span><%= allPosts.length %> 篇文章</span>
+      <span><%= allTags.length %> 个标签</span>
+    </div>
+    <div class="profile-social">
+      <%- partial('_partial/social-links') %>
+    </div>
+    <div class="profile-counter">
+      <img src="https://count.getloli.com/@xf_blog?name=xf_blog&theme=miku&padding=10&offset=0&align=top&scale=1&pixelated=1&darkmode=1" alt="visitor count">
+    </div>
+  </div>
+</aside>

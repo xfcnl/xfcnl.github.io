@@ -1,0 +1,22 @@
+<%
+var categoryName = page.category;
+var posts = page.posts.toArray();
+var categoryLabel = categoryName === 'tech' ? '技术博客' : '随记';
+var pageCounter = posts.length;
+%>
+<h1><%= categoryLabel %></h1>
+<p class="page-counter"><%= pageCounter %> 篇</p>
+<div class="card-list">
+<% posts.forEach(function(post) { %>
+  <% var words = post.content.replace(/<[^>]*>/g, '').split(/\s+/).length; %>
+  <% var readTime = Math.max(1, Math.ceil(words / 200)); %>
+  <div class="card">
+    <div class="card-meta">
+      <span class="category-pill category-<%= categoryName %>"><%= categoryLabel === '技术博客' ? '技术' : '随笔' %></span>
+      <span><%= date(post.date, 'YYYY-MM-DD') %></span>
+      <span><%= readTime %> 分钟</span>
+    </div>
+    <a href="<%= url_for(post.path) %>" class="card-title"><%= post.title %></a>
+  </div>
+<% }) %>
+</div>
