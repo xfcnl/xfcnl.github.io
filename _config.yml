@@ -9,7 +9,7 @@ timezone: Asia/Shanghai
 
 # URL
 url: https://xfcnl.github.io
-permalink: :category/:title/
+permalink: :category/:year-:month-:day-:title/
 permalink_defaults:
   category: tech
 pretty_urls:
