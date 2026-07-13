@@ -92,7 +92,7 @@ deploy:
 feed:
   type: atom
   path: feed.xml
-  limit: 30
+  limit: 0
 
 # Sitemap
 sitemap:
@@ -107,3 +107,7 @@ netease_player:
   theme: "#e74c3e"
   volume: 0.5
   order: "list"
+
+# Avatar & Favicon
+avatar: /image/MEITU_20260128_220225596.jpg
+favicon: /image/MEITU_20260128_220225596.jpg
