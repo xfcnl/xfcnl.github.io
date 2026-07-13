@@ -8,6 +8,8 @@ allPosts.forEach(function(post) {
     });
   }
 });
+allTags.sort();
+var hotTags = allTags.slice(0, 8);
 var isHome = page.path === 'index.html' || page.path === '';
 %>
 <aside class="page-sidebar<%= isHome ? ' show-on-mobile' : '' %>">
@@ -24,6 +26,14 @@ var isHome = page.path === 'index.html' || page.path === '';
     </div>
     <div class="profile-counter">
       <img src="https://count.getloli.com/@xf_blog?name=xf_blog&theme=miku&padding=10&offset=0&align=top&scale=1&pixelated=1&darkmode=1" alt="visitor count">
+    </div>
+  </div>
+  <div class="home-tags">
+    <h2>热门标签</h2>
+    <div class="tag-cloud">
+    <% hotTags.forEach(function(tag) { %>
+      <a href="<%= url_for('/tag/') %>#<%= tag %>" class="tag-pill"><%= tag %></a>
+    <% }) %>
     </div>
   </div>
 </aside>

@@ -1,16 +1,6 @@
 <%
 var allPosts = site.posts.toArray();
 var recentPosts = allPosts.sort(function(a, b) { return b.date - a.date; }).slice(0, 6);
-var allTags = [];
-allPosts.forEach(function(post) {
-  if (post.tags) {
-    post.tags.forEach(function(tag) {
-      if (allTags.indexOf(tag.name) === -1) allTags.push(tag.name);
-    });
-  }
-});
-allTags.sort();
-var hotTags = allTags.slice(0, 8);
 %>
 <div class="home-right">
   <h2>近期更新</h2>
@@ -32,11 +22,4 @@ var hotTags = allTags.slice(0, 8);
   </div>
   <a href="<%= url_for('/archive/') %>" class="view-all">查看全部文章 →</a>
 </div>
-<div class="home-tags">
-  <h2>热门标签</h2>
-  <div class="tag-cloud">
-  <% hotTags.forEach(function(tag) { %>
-    <a href="<%= url_for('/tag/') %>#<%= tag %>" class="tag-pill"><%= tag %></a>
-  <% }) %>
-  </div>
-</div>
+

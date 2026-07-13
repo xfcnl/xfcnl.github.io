@@ -7264,7 +7264,16 @@ header,
 }
 
 .home-tags {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+}
+
+.home-tags h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.85rem;
 }
 
 .home-tags .tag-cloud {
