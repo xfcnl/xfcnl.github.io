@@ -28,17 +28,6 @@
     // Re-run AnchorJS
     if (typeof anchors !== 'undefined' && anchors.add) anchors.add();
 
-    // Re-init nav toggle
-    var toggle = document.getElementById('navToggle');
-    var links = document.getElementById('navLinks');
-    if (toggle && links) {
-      toggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-        links.classList.toggle('open');
-        var expanded = this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true';
-        this.setAttribute('aria-expanded', expanded);
-      });
-    }
   }
 
   barba.hooks.afterEnter(function() {
