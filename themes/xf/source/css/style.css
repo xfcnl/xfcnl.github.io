@@ -312,7 +312,7 @@
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(27, 31, 35, 0.05);
+  background-color: rgba(240, 246, 252, 0.1);
   border-radius: 3px;
 }
 .markdown-body code br,
@@ -347,7 +347,7 @@
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
-  background-color: #f6f8fa;
+  background-color: var(--bg-secondary);
   border-radius: 3px;
 }
 .markdown-body pre code,
@@ -660,7 +660,7 @@
 }
 
 .highlight {
-  background-color: #f8f8f8;
+  background-color: var(--bg-secondary);
 }
 
 :root {
@@ -1393,23 +1393,70 @@ input {
 }
 
 .markdown-body .hljs-string,
+.markdown-body .hljs-doctag {
+  color: #a5d6ff;
+}
+
 .markdown-body .hljs-title,
-.markdown-body .hljs-name,
+.markdown-body .hljs-title.class_,
+.markdown-body .hljs-title.class_.inherited__,
+.markdown-body .hljs-title.function_ {
+  color: #d2a8ff;
+}
+
+.markdown-body .hljs-number,
+.markdown-body .hljs-literal {
+  color: #79c0ff;
+}
+
+.markdown-body .hljs-built_in,
+.markdown-body .hljs-builtin-name {
+  color: #ffa657;
+}
+
 .markdown-body .hljs-type,
 .markdown-body .hljs-selector-id,
 .markdown-body .hljs-selector-class,
 .markdown-body .hljs-attribute,
-.markdown-body .hljs-literal,
-.markdown-body .hljs-built_in,
-.markdown-body .hljs-builtin-name,
-.markdown-body .hljs-bullet {
-  color: #a5d6ff;
+.markdown-body .hljs-meta {
+  color: #ffa657;
+}
+
+.markdown-body .hljs-name,
+.markdown-body .hljs-selector-pseudo,
+.markdown-body .hljs-selector-tag {
+  color: #7ee787;
+}
+
+.markdown-body .hljs-variable,
+.markdown-body .hljs-params {
+  color: #ffa657;
+}
+
+.markdown-body .hljs-bullet,
+.markdown-body .hljs-symbol,
+.markdown-body .hljs-link {
+  color: #79c0ff;
 }
 
 .markdown-body .hljs-comment,
 .markdown-body .hljs-quote,
 .markdown-body .hljs-deletion {
   color: var(--text-secondary);
+}
+
+.markdown-body .hljs-regexp,
+.markdown-body .hljs-addition {
+  color: #a5d6ff;
+}
+
+.markdown-body .hljs-section,
+.markdown-body .hljs-strong {
+  font-weight: 600;
+}
+
+.markdown-body .hljs-emphasis {
+  font-style: italic;
 }
 
 .markdown-body table {
