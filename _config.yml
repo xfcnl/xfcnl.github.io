@@ -115,5 +115,5 @@ netease_player:
   order: "list"
 
 # Avatar & Favicon
-avatar: /image/MEITU_20260128_220225596.jpg
-favicon: /image/MEITU_20260128_220225596.jpg
+avatar: https://cdn.jsdelivr.net/gh/xfcnl/xfcnl.github.io@main/image/MEITU_20260128_220225596.jpg
+favicon: https://cdn.jsdelivr.net/gh/xfcnl/xfcnl.github.io@main/image/MEITU_20260128_220225596.jpg
