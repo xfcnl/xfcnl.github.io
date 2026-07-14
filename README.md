@@ -1,4 +1,4 @@
-# xf
+# XF
 
 [github 线路](https://xfcnl.github.io)　[cloudflare 线路](https://husd.cc.cd)　[edgeone 线路](https://blog.sfvg.de5.net)
 
