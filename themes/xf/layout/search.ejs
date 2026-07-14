@@ -1,0 +1,77 @@
+<%- page.content %>
+<hr />
+<div>
+  <h3>社交的</h3>
+  <p><%- partial('_partial/social-links') %></p>
+</div>
+
+<script>
+<% 
+var postsData = [];
+site.posts.toArray().forEach(function(post) {
+  postsData.push({
+    title: post.title,
+    content: post.content,
+    url: url_for(post.path),
+    date: date(post.date, 'YYYY-MM-DD'),
+    type: post.categories && post.categories.length > 0 ? post.categories.first().name : 'tech'
+  });
+});
+%>
+//<![CDATA[
+(function() {
+  var POSTS = <%- JSON.stringify(postsData) %>;
+  var input = document.getElementById('searchInput');
+  if (!input) return;
+
+  function doSearch() {
+    var keyword = input.value.trim().toLowerCase();
+    var container = document.getElementById('searchResults');
+    if (!keyword) {
+      container.innerHTML = '';
+      return;
+    }
+
+    var results = POSTS.filter(function(post) {
+      return post.title.toLowerCase().indexOf(keyword) !== -1 ||
+             post.content.toLowerCase().indexOf(keyword) !== -1;
+    });
+
+    if (results.length === 0) {
+      container.innerHTML = '<p>未找到相关文章</p>';
+      return;
+    }
+
+    var html = '<p>共找到 ' + results.length + ' 篇相关文章</p><div class="card-list">';
+    results.forEach(function(post) {
+      var typeLabel = post.type === 'tech' ? '技术' : '随笔';
+      var typeClass = post.type === 'tech' ? 'category-tech' : 'category-note';
+      html += '<div class="card">' +
+        '<div class="card-meta">' +
+          '<span class="category-pill ' + typeClass + '">' + typeLabel + '</span>' +
+          '<span>' + post.date + '</span>' +
+        '</div>' +
+        '<a href="' + post.url + '" class="card-title">' + post.title + '</a>' +
+      '</div>';
+    });
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  var urlParams = new URLSearchParams(window.location.search);
+  var query = urlParams.get('q');
+  if (query) {
+    input.value = query;
+    doSearch();
+  }
+
+  input.addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('search-btn')) doSearch();
+  });
+})();
+//]]>
+</script>

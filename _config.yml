@@ -84,9 +84,15 @@ ignore:
 # Extensions
 theme: xf
 
-# Deployment
-deploy:
-  type: ""
+# Deployment (handled by GitHub Actions, see .github/workflows/deploy.yml)
+
+# Analytics
+umami_url: https://u.mikufans1.dpdns.org/script.js
+umami_website_id: "f2148f54-d080-4031-a8c9-e2a65e202bda"
+
+# External links
+sub_site_url: https://mikufans1.dpdns.org
+vicp_url: https://mikufans.qzz.io
 
 # Feed
 feed:

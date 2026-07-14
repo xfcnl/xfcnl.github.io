@@ -1,7 +1,7 @@
 <nav class="navbar">
   <a href="<%= url_for('/') %>" class="nav-logo">xf_blog</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="https://mikufans1.dpdns.org" target="_blank" rel="noopener noreferrer">副站</a></li>
+    <li><a href="<%= config.sub_site_url %>" target="_blank" rel="noopener noreferrer">副站</a></li>
     <li><a href="<%= url_for('/link/') %>">友链</a></li>
     <li><a href="<%= url_for('/archive/') %>">归档</a></li>
     <li><a href="<%= url_for('/tag/') %>">标签</a></li>

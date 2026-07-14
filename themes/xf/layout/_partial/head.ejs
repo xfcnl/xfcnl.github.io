@@ -1,2 +1,4 @@
+<% if (config.umami_website_id) { %>
 <!-- Analytics -->
-<script async src="https://u.mikufans1.dpdns.org/script.js" data-website-id="<%= config.umami_website_id || '' %>"></script>
+<script async src="<%= config.umami_url %>" data-website-id="<%= config.umami_website_id %>"></script>
+<% } %>

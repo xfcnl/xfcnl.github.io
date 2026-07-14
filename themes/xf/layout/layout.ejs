@@ -17,6 +17,7 @@
     font-src 'self' data:;
     form-action 'self';
   ">
+  <link rel="stylesheet" href="<%= url_for('/css/primer.css') %>">
   <link rel="stylesheet" href="<%= url_for('/css/style.css') %>">
   <link rel="icon" type="image/jpeg" href="<%= url_for(config.favicon) %>">
   <%- partial('_partial/head') %>
@@ -40,11 +41,18 @@
   <img src="https://count.getloli.com/@xf_blog?name=xf_blog&theme=miku&padding=10&offset=0&align=top&scale=1&pixelated=1&darkmode=1" alt="" class="counter-img" />
   <% } %>
   <%- partial('_partial/footer') %>
+  <script>
+  var SW_CACHE_URLS = [
+    '/', '/archive/', '/tag/', '/classify/', '/link/', '/about/', '/search/',
+    <% site.posts.each(function(post) { %>
+    '<%= url_for(post.path) %>',
+    <% }); %>
+  ];
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
   <script src="<%= url_for('/js/xf-blog.js') %>"></script>
   <script src="<%= url_for('/js/pjax.js') %>"></script>
-  <script src="<%= url_for('/js/search.js') %>"></script>
   <%- partial('_partial/player') %>
 </body>
 </html>

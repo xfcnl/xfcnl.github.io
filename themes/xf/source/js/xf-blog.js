@@ -7,14 +7,14 @@
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').then(function(reg) {
       if (reg.active) {
-        reg.active.postMessage({ type: 'CACHE_URLS', urls: ['/', '/archive/', '/tag/', '/classify/', '/link/', '/about/'] })
+        reg.active.postMessage({ type: 'CACHE_URLS', urls: window.SW_CACHE_URLS || ['/', '/archive/', '/tag/', '/classify/', '/link/', '/about/', '/search/'] })
       } else {
         reg.addEventListener('updatefound', function() {
           var sw = reg.installing || reg.waiting
           if (sw) {
             sw.addEventListener('statechange', function() {
               if (this.state === 'activated') {
-                reg.active.postMessage({ type: 'CACHE_URLS', urls: ['/', '/archive/', '/tag/', '/classify/', '/link/', '/about/'] })
+        reg.active.postMessage({ type: 'CACHE_URLS', urls: window.SW_CACHE_URLS || ['/', '/archive/', '/tag/', '/classify/', '/link/', '/about/', '/search/'] })
               }
             })
           }
