@@ -1,4 +1,4 @@
-/* ===== APlayer 播放器容器 ===== */
+/* ===== 播放器容器 ===== */
 #music-player-container {
   position: fixed;
   left: 16px;
@@ -15,7 +15,7 @@
     left 0.25s ease;
 }
 
-/* ===== 吸附（docked）状态 ===== */
+/* ===== 吸附状态 ===== */
 #music-player-container.docked {
   width: 56px;
   max-width: 56px;
@@ -127,7 +127,7 @@
   color: #8b949e;
 }
 
-/* ===== 播放列表菜单 ===== */
+/* ===== 播放列表 ===== */
 #music-player-container .aplayer .aplayer-list {
   background-color: #0d1117;
   border-top: 1px solid rgba(148, 163, 184, 0.2);
@@ -175,7 +175,7 @@
   margin: 0 4px;
 }
 
-/* ===== 响应式设计 ===== */
+/* ===== 响应式布局 ===== */
 @media (max-width: 1200px) {
   #music-player-container {
     left: 8px;

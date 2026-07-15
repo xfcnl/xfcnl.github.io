@@ -1,9 +1,9 @@
 /* ============================================
-   xf_blog — Service Worker (Hexo 移植版)
-   策略:
-     - 导航页面: network-first + 3 秒超时回退缓存
-     - 静态资源: cache-first（CSS / JS / 图片）
-     - 首次访问: 页面发送 URL 列表 → SW 逐个缓存全部文章
+   xf_blog — Service Worker（由 Hexo 移植）
+    策略:
+      - 导航页面: 网络优先 + 3 秒超时回退到缓存
+      - 静态资源: 缓存优先（CSS / JS / 图片）
+      - 首次访问: 页面发送 URL 列表 → SW 逐个缓存所有文章
    ============================================ */
 
 var CACHE_NAME = 'xf-blog-v1'

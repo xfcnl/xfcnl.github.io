@@ -1,4 +1,4 @@
-# Hexo Configuration
+# Hexo 配置
 title: "xf_blog"
 subtitle: ""
 description: "hexo blog"
@@ -7,7 +7,7 @@ author: xiaofen
 language: zh-CN
 timezone: Asia/Shanghai
 
-# URL
+# 网址
 url: https://xfcnl.github.io
 permalink: :category/:year-:month-:day-:title/
 permalink_defaults:
@@ -16,7 +16,7 @@ pretty_urls:
   trailing_index: false
   trailing_html: false
 
-# Directory
+# 目录
 source_dir: source
 public_dir: public
 tag_dir: tag
@@ -26,7 +26,7 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 
-# Writing
+# 写作
 new_post_name: :year-:month-:day-:title.md
 default_layout: post
 titlecase: false
@@ -51,60 +51,60 @@ prismjs:
   line_number: false
   tab_replace: ""
 
-# Home page setting
+# 首页设置
 index_generator:
   path: ""
   per_page: 0
   order_by: -date
 
-# Category & Tag
+# 分类与标签
 default_category: tech
 category_map:
   tech: tech
   note: note
 tag_map:
 
-# Metadata elements
+# 元数据元素
 meta_generator: true
 
-# Date / Time format
+# 日期/时间格式
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 updated_option: "mtime"
 
-# Pagination
+# 分页
 per_page: 0
 pagination_dir: page
 
-# Include / Exclude file(s)
+# 包含/排除文件
 include:
 exclude:
 ignore:
 
-# Extensions
+# 扩展
 theme: xf
 
-# Deployment (handled by GitHub Actions, see .github/workflows/deploy.yml)
+# 部署（由 GitHub Actions 处理，见 .github/workflows/deploy.yml）
 
-# Analytics
+# 统计
 umami_url: https://u.mikufans1.dpdns.org/script.js
 umami_website_id: "f2148f54-d080-4031-a8c9-e2a65e202bda"
 
-# External links
+# 外部链接
 sub_site_url: https://mikufans1.dpdns.org
 vicp_url: https://mikufans.qzz.io
 
-# Feed
+# 订阅
 feed:
   type: atom
   path: feed.xml
   limit: 0
 
-# Sitemap
+# 站点地图
 sitemap:
   path: sitemap.xml
 
-# Netease Music Player
+# 网易云音乐播放器
 netease_player:
   enable: true
   playlist_id: "8285330087"
@@ -114,6 +114,6 @@ netease_player:
   volume: 0.5
   order: "list"
 
-# Avatar & Favicon
+# 头像与网站图标
 avatar: https://cdn.jsdelivr.net/gh/xfcnl/xfcnl.github.io@main/image/MEITU_20260128_220225596.jpg
 favicon: https://cdn.jsdelivr.net/gh/xfcnl/xfcnl.github.io@main/image/MEITU_20260128_220225596.jpg

@@ -1,9 +1,9 @@
 /* ============================================
-   core.js — xf_blog 核心腳本 (合併版)
+   core.js — xf_blog 核心脚本（合并版）
    包含: xf-blog + pjax + search + link + mailto
    ============================================ */
 
-/* ---- xf-blog.js: 主腳本 ---- */
+/* ---- xf-blog.js: 主脚本 ---- */
 ;(function() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').then(function(reg) {
@@ -100,7 +100,7 @@
   })
 })()
 
-/* ---- pjax.js: Barba 導航 ---- */
+/* ---- pjax.js: Barba 导航 ---- */
 (function(){
   if (typeof barba === 'undefined') return;
 
@@ -148,7 +148,7 @@
   });
 })();
 
-/* ---- search.js: 搜索 ---- */
+/* ---- search.js: 搜索功能 ---- */
 (function() {
   var POSTS = [];
 
@@ -207,7 +207,7 @@
   });
 })();
 
-/* ---- link.js: 友鏈表單 ---- */
+/* ---- link.js: 友链表单 ---- */
 (function() {
   document.addEventListener('submit', function(e) {
     if (!e.target.classList.contains('link-form')) return;
@@ -249,7 +249,7 @@
   }
 })();
 
-/* ---- mailto.js: 郵件 ---- */
+/* ---- mailto.js: 邮件功能 ---- */
 (function() {
   document.addEventListener('click', function(e) {
     var btn = e.target.closest('.copy-email-btn');

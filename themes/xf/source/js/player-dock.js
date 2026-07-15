@@ -1,9 +1,9 @@
 (function () {
-  const IDLE_MS = 10000; // 10 seconds
+  const IDLE_MS = 10000; // 10 秒
   const container = document.getElementById("music-player-container");
   if (!container) return;
   let idleTimer = null;
-  // Reflect initial DOM state: container may start with class "docked"
+  // 反映初始 DOM 状态：容器可能以 "docked" 类开头
   let docked = container.classList.contains('docked');
 
   function dock() {
@@ -23,16 +23,16 @@
     idleTimer = setTimeout(() => dock(), IDLE_MS);
   }
 
-  // Start idle timer after load
+  // 加载完成后启动闲置计时器
   document.addEventListener("DOMContentLoaded", resetTimer);
   window.addEventListener("load", resetTimer);
 
-  // Interactions reset timer and undock
+  // 交互行为重置计时器并解除吸附
   ["mousemove", "keydown", "touchstart", "click"].forEach((ev) => {
     document.addEventListener(
       ev,
       function (e) {
-        // If interaction is inside container, undock immediately
+        // 如果交互发生在容器内，立即解除吸附
         if (container.contains(e.target)) {
           undock();
         }
@@ -42,7 +42,7 @@
     );
   });
 
-  // Hover behavior: expand on hover, start timer on leave
+  // 悬停行为：鼠标移入时展开，移出时启动计时器
   container.addEventListener("mouseenter", function () {
     undock();
     if (idleTimer) clearTimeout(idleTimer);
@@ -51,7 +51,7 @@
     resetTimer();
   });
 
-  // Keyboard focus
+  // 键盘焦点
   container.addEventListener("focusin", function () {
     undock();
     if (idleTimer) clearTimeout(idleTimer);
@@ -60,12 +60,12 @@
     resetTimer();
   });
 
-  // If user clicks play/pause inside container, treat as activity
+  // 用户在容器内点击播放/暂停也算活动
   container.addEventListener("click", function () {
     resetTimer();
   });
 
-  // Safety: if meting-js or aplayer emits init events, reset
+  // 安全措施：如果 meting-js 或 aplayer 触发了初始化事件，重置计时器
   document.addEventListener("aplayer-init", resetTimer);
   document.addEventListener("meting:loaded", resetTimer);
 })();
