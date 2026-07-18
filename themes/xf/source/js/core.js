@@ -272,3 +272,111 @@
     }, 3000);
   }
 })();
+
+/* ---- bilibili-dynamics.js: B站动态 ---- */
+(function() {
+  var DYNAMICS_CACHE_KEY = 'bili_dynamics_cache';
+  var DYNAMICS_CACHE_TTL = 5 * 60 * 1000;
+
+  function getCachedData() {
+    try {
+      var cached = sessionStorage.getItem(DYNAMICS_CACHE_KEY);
+      if (!cached) return null;
+      var parsed = JSON.parse(cached);
+      if (Date.now() - parsed.time > DYNAMICS_CACHE_TTL) return null;
+      return parsed.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setCachedData(data) {
+    try {
+      sessionStorage.setItem(DYNAMICS_CACHE_KEY, JSON.stringify({ time: Date.now(), data: data }));
+    } catch (e) {}
+  }
+
+  function formatDate(dateStr) {
+    try {
+      var d = new Date(dateStr);
+      var now = new Date();
+      var diff = now - d;
+      if (diff < 86400000) {
+        return '今天 ' + d.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+      } else if (diff < 172800000) {
+        return '昨天 ' + d.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+      }
+      return d.toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' });
+    } catch (e) {
+      return dateStr;
+    }
+  }
+
+  function getTypeIcon(item) {
+    var title = item.title || '';
+    if (title.indexOf('发布了视频') !== -1) return '<i class="fa-solid fa-video"></i>';
+    if (title.indexOf('转发') !== -1) return '<i class="fa-solid fa-retweet"></i>';
+    if (title.indexOf('投稿') !== -1) return '<i class="fa-solid fa-upload"></i>';
+    if (title.indexOf('专栏') !== -1) return '<i class="fa-solid fa-file-lines"></i>';
+    if (title.indexOf('音频') !== -1) return '<i class="fa-solid fa-music"></i>';
+    return '<i class="fa-solid fa-satellite-dish"></i>';
+  }
+
+  function loadDynamics() {
+    var containers = document.querySelectorAll('.bili-dynamics-list');
+    if (!containers.length) return;
+
+    var data = getCachedData();
+
+    function render(data) {
+      containers.forEach(function(container) {
+        var parent = container.closest('.bili-dynamics');
+        var limit = parent ? parseInt(parent.getAttribute('data-limit'), 10) || 0 : 0;
+        var items = data.items || [];
+        if (limit > 0) items = items.slice(0, limit);
+        if (!items.length) {
+          container.innerHTML = '<div class="bili-dynamics-empty">暂无动态</div>';
+          return;
+        }
+        var html = '';
+        items.forEach(function(item) {
+          var icon = getTypeIcon(item);
+          html += '<a href="' + (item.link || '#') + '" class="bili-dynamics-item" target="_blank" rel="noopener noreferrer">' +
+            '<span class="bili-dynamics-item-icon">' + icon + '</span>' +
+            '<span class="bili-dynamics-item-text">' +
+              '<span class="bili-dynamics-item-title">' + (item.title || '') + '</span>' +
+              '<span class="bili-dynamics-item-date">' + formatDate(item.pubDate || '') + '</span>' +
+            '</span>' +
+          '</a>';
+        });
+        container.innerHTML = html;
+      });
+    }
+
+    if (data) {
+      render(data);
+      return;
+    }
+
+    containers.forEach(function(container) {
+      container.innerHTML = '<div class="bili-dynamics-loading">加载中...</div>';
+    });
+
+    fetch('https://gff.ccwu.cc/bilibili/user/dynamic/3494372658121066?format=json')
+      .then(function(r) { return r.json(); })
+      .then(function(json) {
+        setCachedData(json);
+        render(json);
+      })
+      .catch(function() {
+        containers.forEach(function(container) {
+          container.innerHTML = '<div class="bili-dynamics-error">动态加载失败</div>';
+        });
+      });
+  }
+
+  document.addEventListener('DOMContentLoaded', loadDynamics);
+  if (typeof barba !== 'undefined') {
+    barba.hooks.afterEnter(loadDynamics);
+  }
+})();
