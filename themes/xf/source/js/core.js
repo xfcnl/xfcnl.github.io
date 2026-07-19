@@ -312,16 +312,6 @@
     }
   }
 
-  function getTypeIcon(item) {
-    var title = item.title || '';
-    if (title.indexOf('发布了视频') !== -1) return '<i class="fa-solid fa-video"></i>';
-    if (title.indexOf('转发') !== -1) return '<i class="fa-solid fa-retweet"></i>';
-    if (title.indexOf('投稿') !== -1) return '<i class="fa-solid fa-upload"></i>';
-    if (title.indexOf('专栏') !== -1) return '<i class="fa-solid fa-file-lines"></i>';
-    if (title.indexOf('音频') !== -1) return '<i class="fa-solid fa-music"></i>';
-    return '<i class="fa-solid fa-satellite-dish"></i>';
-  }
-
   function loadDynamics() {
     var containers = document.querySelectorAll('.bili-dynamics-list');
     if (!containers.length) return;
@@ -340,9 +330,7 @@
         }
         var html = '';
         items.forEach(function(item) {
-          var icon = getTypeIcon(item);
           html += '<a href="' + (item.link || '#') + '" class="bili-dynamics-item" target="_blank" rel="noopener noreferrer">' +
-            '<span class="bili-dynamics-item-icon">' + icon + '</span>' +
             '<span class="bili-dynamics-item-text">' +
               '<span class="bili-dynamics-item-title">' + (item.title || '') + '</span>' +
               '<span class="bili-dynamics-item-date">' + formatDate(item.pubDate || '') + '</span>' +
@@ -362,7 +350,7 @@
       container.innerHTML = '<div class="bili-dynamics-loading">加载中...</div>';
     });
 
-    fetch('https://gff.ccwu.cc/bilibili/user/dynamic/3494372658121066?format=json')
+    fetch((typeof RSSHUB_URL !== 'undefined' ? RSSHUB_URL : 'https://gff.ccwu.cc') + '/bilibili/user/dynamic/3494372658121066?format=json')
       .then(function(r) { return r.json(); })
       .then(function(json) {
         setCachedData(json);
