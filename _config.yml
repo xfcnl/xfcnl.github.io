@@ -93,7 +93,7 @@ umami_website_id: "f2148f54-d080-4031-a8c9-e2a65e202bda"
 # 外部链接
 sub_site_url: https://mikufans1.dpdns.org
 vicp_url: https://mikufans.qzz.io
-rsshub_url: https://gff.ccwu.cc
+# rsshub_url: https://gff.ccwu.cc
 # 订阅
 feed:
   type: atom
