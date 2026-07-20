@@ -1,0 +1,17 @@
+- key: bilibili
+  name: bilibili
+  url: https://space.bilibili.com/3494372658121066
+  external: true
+  about_display: lm_xiao-fen
+
+- key: email
+  name: email
+  url: /mailto/
+  external: false
+
+- key: youtube
+  name: YouTube
+  url: https://youtube.com/@lm-xiao-fen
+  external: true
+  about_url: https://www.youtube.com/channel/UCWaSHZOf6ibgNbkGYDZOfhw
+  about_display: '@lm-xiao-fen'
