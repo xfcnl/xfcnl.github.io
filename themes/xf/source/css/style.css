@@ -1646,6 +1646,143 @@ iframe[src*="bilibili.com"] {
   margin: 0 auto;
 }
 
+/* ---- 动态页 ---- */
+.dynamics-page h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+.dynamics-page h1 .fa-bilibili {
+  color: #fb7299;
+  margin-right: 8px;
+}
+.dynamics-desc {
+  color: var(--text-secondary, #8b949e);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.dynamics-desc a {
+  color: var(--link-color, #58a6ff);
+}
+.dynamics-loading {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--text-secondary, #8b949e);
+  font-size: 1.1rem;
+}
+.dynamics-error {
+  text-align: center;
+  padding: 3rem 0;
+  color: #f85149;
+}
+.dynamics-empty {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--text-secondary, #8b949e);
+}
+.dynamics-card {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: var(--card-bg, #161b22);
+  border: 1px solid var(--border-color, #30363d);
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+.dynamics-card:hover {
+  border-color: var(--link-color, #58a6ff);
+}
+.dynamics-card a {
+  text-decoration: none;
+  color: inherit;
+}
+.dynamics-card a:hover {
+  color: var(--link-color, #58a6ff);
+}
+.dynamics-card-body {
+  flex: 1;
+  min-width: 0;
+}
+.dynamics-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+}
+.dynamics-card-type {
+  font-size: 0.75rem;
+  padding: 1px 8px;
+  border-radius: 10px;
+  background: rgba(251, 114, 153, 0.15);
+  color: #fb7299;
+  margin-left: auto;
+}
+.dynamics-card-type.pinned {
+  background: rgba(255, 193, 7, 0.15);
+  color: #ffc107;
+}
+.dynamics-card-type.video {
+  background: rgba(0, 194, 143, 0.15);
+  color: #00c28f;
+}
+.dynamics-card-type.forward {
+  background: rgba(88, 166, 255, 0.15);
+  color: #58a6ff;
+}
+.dynamics-card-time {
+  color: var(--text-secondary, #8b949e);
+  font-size: 0.8rem;
+}
+.dynamics-card-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-primary, #c9d1d9);
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dynamics-card-footer {
+  margin-top: 8px;
+  font-size: 0.85rem;
+}
+.dynamics-card-footer a {
+  color: var(--link-color, #58a6ff);
+}
+.dynamics-footer {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem 0;
+  color: var(--text-secondary, #8b949e);
+  font-size: 0.8rem;
+}
+.dynamics-footer a {
+  color: var(--link-color, #58a6ff);
+}
+.dynamics-view-all {
+  text-align: center;
+  margin-top: 0.5rem;
+  padding: 1rem 0;
+}
+.dynamics-view-all a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  background: var(--card-bg, #161b22);
+  border: 1px solid var(--border-color, #30363d);
+  border-radius: 8px;
+  color: var(--text-primary, #c9d1d9);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.dynamics-view-all a:hover {
+  border-color: var(--link-color, #58a6ff);
+  color: var(--link-color, #58a6ff);
+}
 .pt-3 { padding-top: 16px !important; }
 .px-3 { padding-right: 16px !important; padding-left: 16px !important; }
 .mt-5 { margin-top: 32px !important; }
