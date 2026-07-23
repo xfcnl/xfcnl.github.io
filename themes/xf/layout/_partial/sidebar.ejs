@@ -36,4 +36,9 @@ var isHome = page.path === 'index.html' || page.path === '';
     <% }) %>
     </div>
   </div>
+  <div class="home-tags">
+    <h2><i class="fa-brands fa-bilibili"></i> B站动态</h2>
+    <div id="sidebar-dynamics-list" class="tag-cloud"></div>
+    <a href="<%= url_for('/dynamics/') %>" class="sidebar-dyn-more" style="margin: 0.25rem;font-size:0.85rem">查看更多</a>
+  </div>
 </aside>

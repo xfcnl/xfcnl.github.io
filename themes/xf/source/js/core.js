@@ -352,6 +352,44 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("dynamics:load", onDynamicsLoad);
 })();
 
+/* ---- 侧边栏 B站动态 ---- */
+(function () {
+  var container = document.getElementById("sidebar-dynamics-list");
+  if (!container) return;
+
+  var DATA_URL = "https://raw.gh.1s.fan/xfcnl/get-bilibili-dynamic-for-ci/main/dynamic.json";
+
+  function esc(text) {
+    var div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function renderItem(item) {
+    var iconMap = { "置顶": "fa-thumbtack", "视频": "fa-video", "转发": "fa-retweet", "动态": "fa-pen" };
+    var icon = iconMap[item.type] || "fa-pen";
+    return '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="sidebar-dyn-pill">' +
+      '<i class="fa-solid ' + icon + '"></i> ' + esc(item.content) + '</a>';
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.timeout = 10000;
+  xhr.open("GET", DATA_URL, true);
+  xhr.onload = function () {
+    if (xhr.status < 200 || xhr.status >= 300) return;
+    try {
+      var json = JSON.parse(xhr.responseText);
+      var items = json.dynamics || [];
+      var html = "";
+      for (var i = 0; i < Math.min(items.length, 2); i++) {
+        html += renderItem(items[i]);
+      }
+      container.innerHTML = html;
+    } catch (e) {}
+  };
+  xhr.send();
+})();
+
 /* ---- 邮件 ---- */
 (function () {
   const EMAIL = "G114514g" + "@" + "yeah.net";

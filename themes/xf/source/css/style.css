@@ -1783,6 +1783,51 @@ iframe[src*="bilibili.com"] {
   border-color: var(--link-color, #58a6ff);
   color: var(--link-color, #58a6ff);
 }
+.sidebar-dynamics {
+  margin-top: 1.5rem;
+}
+.sidebar-dynamics h2 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sidebar-dynamics h2 .fa-bilibili {
+  color: #fb7299;
+}
+.sidebar-dyn-pill {
+  display: inline-block;
+  padding: 4px 14px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  margin: 0.25rem;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+.sidebar-dyn-pill:hover {
+  border-color: var(--text-link);
+  color: var(--text-link);
+  text-decoration: none;
+}
+.sidebar-dyn-more {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--link-color, #58a6ff);
+  text-decoration: none;
+  margin-top: 4px;
+  margin-left: 0.25rem;
+}
+.sidebar-dyn-more:hover {
+  text-decoration: underline;
+}
 .pt-3 { padding-top: 16px !important; }
 .px-3 { padding-right: 16px !important; padding-left: 16px !important; }
 .mt-5 { margin-top: 32px !important; }
