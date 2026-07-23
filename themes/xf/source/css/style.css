@@ -684,12 +684,6 @@ body {
   color: var(--text-primary);
   padding-bottom: 80px;
 }
-
-@media (max-width: 768px) {
-  body {
-    padding-bottom: 160px;
-  }
-}
 h1,
 h2,
 h3,
@@ -755,6 +749,7 @@ li:hover {
   margin-left: auto;
   margin-right: auto;
   padding: 0.75rem 1rem;
+  border-radius: 8px;
 }
 
 .navbar .nav-logo {
@@ -849,17 +844,22 @@ li:hover {
   }
 }
 .footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-color: var(--bg-primary);
   padding: 1rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 1000;
   border-top: 1px solid var(--border-color);
+  max-width: 900px;
+  flex-shrink: 0;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
 }
 
 header,
@@ -870,7 +870,6 @@ header,
 
 @media (max-width: 768px) {
   div.footer {
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -884,13 +883,7 @@ header,
     margin-bottom: 0;
   }
 }
-@media (min-width: 769px) {
-  div.footer {
-    justify-content: space-around;
-    width: 60%;
-    left: 20%;
-  }
-}
+
 .markdown-body hr {
   height: auto;
   background-color: transparent;
@@ -1164,7 +1157,8 @@ div.bg-pending {
 
 .page-with-sidebar {
   max-width: 900px;
-  margin-left: max(16px, (100% - 900px) * 0.3);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (min-width: 769px) {
@@ -1253,9 +1247,8 @@ div.bg-pending {
   color: var(--text-secondary);
   font-size: 0.8rem;
   margin-top: 2px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  word-break: break-all;
+  max-width: 36ch;
 }
 
 .link-card-body .link-note {
@@ -1586,7 +1579,7 @@ input {
   text-align: center;
   padding: 6px 12px;
   font-size: 14px;
-  transform: translateY(-100%);
+  transform: translateY(calc(-100% - 2px));
   transition: transform 0.3s;
 }
 
