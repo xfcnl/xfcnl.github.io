@@ -1,46 +1,18 @@
-<h1><%= page.title %></h1>
-时间：<%= date(page.date, 'YYYY-MM-DD') %>&emsp;&emsp;&emsp;标签：
-<% if (page.tags && page.tags.length) { %>
-  <% page.tags.each(function(tag) { %>
-    <a href="<%= url_for('/tag/') %>#<%= tag.name %>"><%= tag.name %></a><% if (!tag._last) { %>, <% } %>
-  <% }) %>
-<% } %>
-<hr />
-<%- page.content %>
-<hr />
-<%- partial('_partial/share-buttons') %>
-<hr />
-<div>
-<script src="https://giscus.app/client.js"
-    data-repo="xfcnl/xfcnl.github.io"
-    data-repo-id="R_kgDORKpEPA"
-    data-category="General"
-    data-category-id="DIC_kwDORKpEPM4C3Lg_"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="dark"
-    data-lang="zh-CN"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async></script>
-</div>
-<div>
-  <h3>相关文章</h3>
-  <ul>
-    <% var relatedPosts = site.posts.toArray().filter(function(p) { return p._id !== page._id; }); %>
-    <% if (page.tags) { %>
-      <% page.tags.each(function(tag) { %>
-        <% relatedPosts.filter(function(p) { return p.tags && p.tags.find(function(t) { return t.name === tag.name; }); }).slice(0, 5).forEach(function(p) { %>
-          <li><a href="<%= url_for(p.path) %>"><%= p.title %></a></li>
-        <% }); %>
-      <% }); %>
-    <% } %>
-  </ul>
-</div>
-<div>
-  <h3>社交的</h3>
-  <p><%- partial('_partial/social-links') %></p>
-</div>
+<article itemscope itemtype="https://schema.org/Article">
+  <h1 itemprop="headline"><%= page.title %></h1>
+  <time datetime="<%= date(page.date, 'YYYY-MM-DD') %>" itemprop="datePublished">
+    时间：<%= date(page.date, 'YYYY-MM-DD') %>
+  </time>
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <meta itemprop="name" content="<%= config.author %>">
+  </span>
+  <% if (page.tags && page.tags.length) { %>&emsp;&emsp;&emsp;标签：
+    <% page.tags.each(function(tag) { %>
+      <a href="<%= url_for('/tag/') %>#<%= tag.name %>"><%= tag.name %></a><% if (!tag._last) { %>, <% } %>
+    <% }) %>
+  <% } %>
+  <hr />
+  <div itemprop="articleBody">
+    <%- page.content %>
+  </div>
+</article>

@@ -12,7 +12,7 @@ allTags.sort();
 var hotTags = allTags.slice(0, 8);
 var isHome = page.path === 'index.html' || page.path === '';
 %>
-<aside class="page-sidebar<%= isHome ? ' show-on-mobile' : '' %>">
+<aside class="page-sidebar<%= isHome ? ' show-on-mobile' : '' %>" role="complementary" aria-label="侧边栏">
   <div class="profile-card">
     <img src="<%= url_for(config.avatar) %>" alt="avatar" class="avatar">
     <h1>Hi, I am xiaofen</h1>
@@ -28,17 +28,21 @@ var isHome = page.path === 'index.html' || page.path === '';
       <img src="https://count.getloli.com/@xf_blog?name=xf_blog&theme=miku&padding=10&offset=0&align=top&scale=1&pixelated=1&darkmode=1" alt="visitor count">
     </div>
   </div>
-  <div class="home-tags">
-    <h2>热门标签</h2>
-    <div class="tag-cloud">
-    <% hotTags.forEach(function(tag) { %>
-      <a href="<%= url_for('/tag/') %>#<%= tag %>" class="tag-pill"><%= tag %></a>
-    <% }) %>
+  <nav aria-label="热门标签">
+    <div class="home-tags">
+      <h2>热门标签</h2>
+      <div class="tag-cloud">
+      <% hotTags.forEach(function(tag) { %>
+        <a href="<%= url_for('/tag/') %>#<%= tag %>" class="tag-pill"><%= tag %></a>
+      <% }) %>
+      </div>
     </div>
-  </div>
-  <div class="home-tags">
-    <h2><i class="fa-brands fa-bilibili"></i> B站动态</h2>
-    <div id="sidebar-dynamics-list" class="tag-cloud"></div>
-    <a href="<%= url_for('/dynamics/') %>" class="sidebar-dyn-more" style="margin: 0.25rem;font-size:0.85rem">查看更多</a>
-  </div>
+  </nav>
+  <section aria-label="B站动态">
+    <div class="home-tags">
+      <h2><i class="fa-brands fa-bilibili"></i> B站动态</h2>
+      <div id="sidebar-dynamics-list" class="tag-cloud"></div>
+      <a href="<%= url_for('/dynamics/') %>" class="sidebar-dyn-more" style="margin: 0.25rem;font-size:0.85rem">查看更多</a>
+    </div>
+  </section>
 </aside>

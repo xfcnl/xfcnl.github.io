@@ -1,0 +1,37 @@
+<hr />
+<%- partial('_partial/share-buttons') %>
+<hr />
+<div>
+<script src="https://giscus.app/client.js"
+    data-repo="xfcnl/xfcnl.github.io"
+    data-repo-id="R_kgDORKpEPA"
+    data-category="General"
+    data-category-id="DIC_kwDORKpEPM4C3Lg_"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark"
+    data-lang="zh-CN"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async></script>
+</div>
+<aside aria-label="相关文章">
+  <h3>相关文章</h3>
+  <ul>
+    <% var relatedPosts = site.posts.toArray().filter(function(p) { return p._id !== page._id; }); %>
+    <% if (page.tags) { %>
+      <% page.tags.each(function(tag) { %>
+        <% relatedPosts.filter(function(p) { return p.tags && p.tags.find(function(t) { return t.name === tag.name; }); }).slice(0, 5).forEach(function(p) { %>
+          <li><a href="<%= url_for(p.path) %>"><%= p.title %></a></li>
+        <% }); %>
+      <% }); %>
+    <% } %>
+  </ul>
+</aside>
+<aside aria-label="社交链接">
+  <h3>社交的</h3>
+  <p><%- partial('_partial/social-links') %></p>
+</aside>

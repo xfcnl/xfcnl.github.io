@@ -21,17 +21,38 @@
   <link rel="stylesheet" href="<%= url_for('/css/style.css') %>">
   <link rel="icon" type="image/jpeg" href="<%= url_for(config.favicon) %>">
   <%- partial('_partial/head') %>
+  <% if (page.layout === 'post') { %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "<%= page.title.replace(/"/g, '\\"') %>",
+    "datePublished": "<%= date(page.date, 'YYYY-MM-DD') %>",
+    "dateModified": "<%= date(page.updated, 'YYYY-MM-DD') %>",
+    "author": {
+      "@type": "Person",
+      "name": "<%= config.author %>"
+    },
+    "url": "<%= config.url %><%= url_for(page.path) %>"
+  }
+  </script>
+  <% } %>
 </head>
 <body>
   <div class="offline-banner" id="offlineBanner">你已处于离线状态，显示的是缓存的页面内容</div>
   <%- partial('_partial/header') %>
   <div class="page-with-sidebar">
-    <%- partial('_partial/sidebar') %>
-    <main class="page-main">
+    <main class="page-main" role="main">
       <div class="px-3 my-5 markdown-body">
         <%- body %>
       </div>
+      <% if (page.layout === 'post') { %>
+      <div class="post-extras">
+        <%- partial('_partial/post-footer') %>
+      </div>
+      <% } %>
     </main>
+    <%- partial('_partial/sidebar') %>
   </div>
   <% if (page.path !== 'index.html') { %>
   <img src="https://count.getloli.com/@xf_blog?name=xf_blog&theme=miku&padding=10&offset=0&align=top&scale=1&pixelated=1&darkmode=1" alt="" class="counter-img" />
