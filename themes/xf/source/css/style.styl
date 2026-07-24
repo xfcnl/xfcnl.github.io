@@ -1,0 +1,1734 @@
+// ============================================================
+// 重复颜色值变量
+// ============================================================
+$border-light  = rgb(223.1325301205, 225.9036144578, 229.3674698795)
+$border-medium = rgb(197.6939759036, 202.6771084337, 208.9060240964)
+$heading-border = rgb(233.6603773585, 235.7943396226, 238.6396226415)
+
+// ============================================================
+// Mixins
+// ============================================================
+card()
+  background var(--bg-secondary)
+  border 1px solid var(--border-color)
+  border-radius 8px
+  transition border-color 0.2s
+
+pill()
+  display inline-block
+  border 1px solid var(--border-color)
+  border-radius 20px
+  color var(--text-primary)
+  font-size 0.85rem
+  transition all 0.2s
+
+dynamics-link()
+  color var(--link-color, #58a6ff)
+
+// ============================================================
+// .markdown-body — GitHub Flavored Markdown (base, light theme)
+// ============================================================
+.markdown-body
+  font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+  font-size 16px
+  line-height 1.5
+  word-wrap break-word
+
+  &::before
+    display table
+    content ""
+
+  &::after
+    display table
+    clear both
+    content ""
+
+  > *:first-child
+    margin-top 0
+
+  > *:last-child
+    margin-bottom 0
+
+  a:not([href])
+    color inherit
+    text-decoration none
+
+  .absent
+    color #cb2431
+
+  .anchor
+    float left
+    padding-right 4px
+    margin-left -20px
+    line-height 1
+
+    &:focus
+      outline none
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table,
+  pre
+    margin-top 0
+    margin-bottom 16px
+
+  hr
+    height 0.25em
+    padding 0
+    margin 24px 0
+    background-color #e1e4e8
+    border 0
+
+  blockquote
+    padding 0 1em
+    color #6a737d
+    border-left 0.25em solid $border-light
+
+    > *:first-child
+      margin-top 0
+
+    > *:last-child
+      margin-bottom 0
+
+  kbd
+    display inline-block
+    padding 3px 5px
+    font-size 11px
+    line-height 10px
+    color #444d56
+    vertical-align middle
+    background-color #fafbfc
+    border solid 1px $border-medium
+    border-bottom-color #959da5
+    border-radius 3px
+    box-shadow inset 0 -1px 0 #959da5
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    margin-top 24px
+    margin-bottom 16px
+    font-weight 600
+    line-height 1.25
+
+    .octicon-link
+      color #1b1f23
+      vertical-align middle
+      visibility hidden
+
+    &:hover .anchor
+      text-decoration none
+
+      .octicon-link
+        visibility visible
+
+  h1 tt,
+  h1 code,
+  h2 tt,
+  h2 code,
+  h3 tt,
+  h3 code,
+  h4 tt,
+  h4 code,
+  h5 tt,
+  h5 code,
+  h6 tt,
+  h6 code
+    font-size inherit
+
+  h1
+    padding-bottom 0.3em
+    font-size 2em
+    border-bottom 1px solid $heading-border
+
+  h2
+    padding-bottom 0.3em
+    font-size 1.5em
+    border-bottom 1px solid $heading-border
+
+  h3
+    font-size 1.25em
+
+  h4
+    font-size 1em
+
+  h5
+    font-size 0.875em
+
+  h6
+    font-size 0.85em
+    color #6a737d
+
+  ul,
+  ol
+    padding-left 2em
+
+  ul.no-list,
+  ol.no-list
+    padding 0
+    list-style-type none
+
+  ul ul,
+  ul ol,
+  ol ol,
+  ol ul
+    margin-top 0
+    margin-bottom 0
+
+  li
+    word-wrap break-all
+
+    > p
+      margin-top 16px
+
+    + li
+      margin-top 0.25em
+
+  dl
+    padding 0
+
+    dt
+      padding 0
+      margin-top 16px
+      font-size 1em
+      font-style italic
+      font-weight 600
+
+    dd
+      padding 0 16px
+      margin-bottom 16px
+
+  table
+    display block
+    width 100%
+    overflow auto
+
+    th
+      font-weight 600
+
+    th,
+    td
+      padding 6px 13px
+      border 1px solid $border-light
+
+    tr
+      background-color #fff
+      border-top 1px solid $border-medium
+
+      &:nth-child(2n)
+        background-color #f6f8fa
+
+    img
+      background-color transparent
+
+  img
+    max-width 100%
+    box-sizing content-box
+    background-color #fff
+
+    &[align=right]
+      padding-left 20px
+
+    &[align=left]
+      padding-right 20px
+
+  .emoji
+    max-width none
+    vertical-align text-top
+    background-color transparent
+
+  span.frame
+    display block
+    overflow hidden
+
+    > span
+      display block
+      float left
+      width auto
+      padding 7px
+      margin 13px 0 0
+      overflow hidden
+      border 1px solid $border-light
+
+    span img
+      display block
+      float left
+
+    span span
+      display block
+      padding 5px 0 0
+      clear both
+      color #24292e
+
+  span.align-center
+    display block
+    overflow hidden
+    clear both
+
+    > span
+      display block
+      margin 13px auto 0
+      overflow hidden
+      text-align center
+
+    span img
+      margin 0 auto
+      text-align center
+
+  span.align-right
+    display block
+    overflow hidden
+    clear both
+
+    > span
+      display block
+      margin 13px 0 0
+      overflow hidden
+      text-align right
+
+    span img
+      margin 0
+      text-align right
+
+  span.float-left
+    display block
+    float left
+    margin-right 13px
+    overflow hidden
+
+    span
+      margin 13px 0 0
+
+  span.float-right
+    display block
+    float right
+    margin-left 13px
+    overflow hidden
+
+    > span
+      display block
+      margin 13px auto 0
+      overflow hidden
+      text-align right
+
+  code,
+  tt
+    padding 0.2em 0.4em
+    margin 0
+    font-size 85%
+    background-color rgba(240, 246, 252, 0.1)
+    border-radius 3px
+
+    br
+      display none
+
+  del code
+    text-decoration inherit
+
+  pre
+    word-wrap normal
+
+    > code
+      padding 0
+      margin 0
+      font-size 100%
+      word-break normal
+      white-space pre
+      background transparent
+      border 0
+
+  .highlight
+    margin-bottom 16px
+
+    pre
+      margin-bottom 0
+      word-break normal
+
+  .highlight pre,
+  pre
+    padding 16px
+    overflow auto
+    font-size 85%
+    line-height 1.45
+    background-color var(--bg-secondary)
+    border-radius 3px
+
+  pre code,
+  pre tt
+    display inline
+    max-width auto
+    padding 0
+    margin 0
+    overflow visible
+    line-height inherit
+    word-wrap normal
+    background-color transparent
+    border 0
+
+  .csv-data
+    td,
+    th
+      padding 5px
+      overflow hidden
+      font-size 12px
+      line-height 1
+      text-align left
+      white-space nowrap
+
+    .blob-num
+      padding 10px 8px 9px
+      text-align right
+      background #fff
+      border 0
+
+    tr
+      border-top 0
+
+    th
+      font-weight 600
+      background #f6f8fa
+      border-top 0
+
+// ============================================================
+// .highlight — Syntax highlighting
+// ============================================================
+.highlight
+  table td
+    padding 5px
+
+  table pre
+    margin 0
+
+  .cm
+    color #999988
+    font-style italic
+
+  .cp
+    color #999
+    font-weight bold
+
+  .c1
+    color #999988
+    font-style italic
+
+  .cs
+    color #999
+    font-weight bold
+    font-style italic
+
+  .c,
+  .cd
+    color #999988
+    font-style italic
+
+  .err
+    color #a61717
+    background-color #e3d2d2
+
+  .gd
+    color #000
+    background-color #ffdddd
+
+  .ge
+    color #000
+    font-style italic
+
+  .gr
+    color #aa0000
+
+  .gh
+    color #999
+
+  .gi
+    color #000
+    background-color #ddffdd
+
+  .go
+    color #888
+
+  .gp
+    color #555
+
+  .gs
+    font-weight bold
+
+  .gu
+    color #aaa
+
+  .gt
+    color #aa0000
+
+  .kc
+    color #000
+    font-weight bold
+
+  .kd
+    color #000
+    font-weight bold
+
+  .kn
+    color #000
+    font-weight bold
+
+  .kp
+    color #000
+    font-weight bold
+
+  .kr
+    color #000
+    font-weight bold
+
+  .kt
+    color #445588
+    font-weight bold
+
+  .k,
+  .kv
+    color #000
+    font-weight bold
+
+  .mf
+    color #009999
+
+  .mh
+    color #009999
+
+  .il
+    color #009999
+
+  .mi
+    color #009999
+
+  .mo
+    color #009999
+
+  .m,
+  .mb,
+  .mx
+    color #009999
+
+  .sb
+    color #d14
+
+  .sc
+    color #d14
+
+  .sd
+    color #d14
+
+  .s2
+    color #d14
+
+  .se
+    color #d14
+
+  .sh
+    color #d14
+
+  .si
+    color #d14
+
+  .sx
+    color #d14
+
+  .sr
+    color #009926
+
+  .s1
+    color #d14
+
+  .ss
+    color #990073
+
+  .s
+    color #d14
+
+  .na
+    color #008080
+
+  .bp
+    color #999
+
+  .nb
+    color #0086B3
+
+  .nc
+    color #445588
+    font-weight bold
+
+  .no
+    color #008080
+
+  .nd
+    color #3c5d5d
+    font-weight bold
+
+  .ni
+    color #800080
+
+  .ne
+    color #990000
+    font-weight bold
+
+  .nf
+    color #990000
+    font-weight bold
+
+  .nl
+    color #990000
+    font-weight bold
+
+  .nn
+    color #555
+
+  .nt
+    color #000080
+
+  .vc
+    color #008080
+
+  .vg
+    color #008080
+
+  .vi
+    color #008080
+
+  .nv
+    color #008080
+
+  .ow
+    color #000
+    font-weight bold
+
+  .o
+    color #000
+    font-weight bold
+
+  .w
+    color #bbb
+
+  background-color var(--bg-secondary)
+
+// ============================================================
+// :root — CSS Custom Properties (dark theme)
+// ============================================================
+:root
+  --bg-primary #0d1117
+  --bg-secondary #161b22
+  --bg-tertiary #21262d
+  --bg-hover #30363d
+  --text-primary #c9d1d9
+  --text-heading #e6edf3
+  --text-secondary #8b949e
+  --text-link #58a6ff
+  --text-link-hover #79c0ff
+  --text-accent #d29922
+  --border-color rgba(148, 163, 184, 0.2)
+  --border-hover rgba(148, 163, 184, 0.4)
+  --color-white #fff
+
+// ============================================================
+// 全局 / 标签样式
+// ============================================================
+body
+  background-color var(--bg-primary)
+  color var(--text-primary)
+  padding-bottom 80px
+
+h1,
+h2,
+h3,
+h4
+  color var(--text-heading)
+
+h1
+  font-size 2rem
+  margin-bottom 1rem
+
+a
+  color var(--text-link)
+  text-decoration none
+
+  &:hover
+    color var(--text-link-hover)
+    text-decoration underline
+
+.border,
+.border-top,
+.border-bottom,
+.border-gray-light
+  border-color var(--border-color)
+
+hr
+  border none
+  border-top 1px solid var(--border-color)
+
+li:hover
+  background-color var(--bg-secondary)
+
+::-webkit-scrollbar
+  width 8px
+
+::-webkit-scrollbar-thumb
+  background var(--bg-hover)
+  border-radius 4px
+
+::-webkit-scrollbar-track
+  background var(--bg-primary)
+
+// ============================================================
+// .navbar
+// ============================================================
+.navbar
+  position sticky
+  top 0
+  z-index 999
+  background var(--bg-primary)
+  border-bottom 1px solid var(--border-color)
+  margin-bottom 1rem
+  width 100%
+  padding 0
+
+  .navbar-content
+    width 70%
+    min-width 900px
+    max-width 90%
+    margin 0 auto
+    display flex
+    align-items center
+    justify-content space-between
+    padding 0.75rem 1rem
+    box-sizing border-box
+
+  .nav-logo
+    font-size 1.25rem
+    font-weight 700
+    color var(--text-heading)
+    text-decoration none
+    flex-shrink 0
+
+.nav-toggle
+  display none
+  flex-direction column
+  justify-content center
+  gap 5px
+  background none
+  border none
+  cursor pointer
+  padding 4px
+
+  .bar
+    display block
+    width 24px
+    height 2px
+    background var(--text-primary)
+    border-radius 2px
+    transition all 0.3s
+
+  &.active
+    .bar:nth-child(1)
+      transform translateY(7px) rotate(45deg)
+
+    .bar:nth-child(2)
+      opacity 0
+
+    .bar:nth-child(3)
+      transform translateY(-7px) rotate(-45deg)
+
+.nav-links
+  display flex
+  list-style none
+  margin 0
+  padding 0
+  gap 1.5rem
+  flex-wrap wrap
+
+  li
+    margin 0
+
+    a
+      color var(--text-secondary)
+      font-size 0.95rem
+      text-decoration none
+      transition color 0.2s
+
+      &:hover
+        color var(--text-link)
+
+@media (max-width: 768px)
+  .nav-toggle
+    display flex
+
+  .nav-links
+    display none
+    position absolute
+    top 100%
+    left 0
+    right 0
+    flex-direction column
+    align-items center
+    background var(--bg-primary)
+    border-bottom 1px solid var(--border-color)
+    padding 0.75rem 1rem
+    gap 0.75rem
+
+    li a
+      text-align center
+
+    &.open
+      display flex
+
+  .navbar
+    position relative
+
+    .navbar-content
+      width 100%
+      min-width 0
+      max-width 100%
+
+// ============================================================
+// .footer
+// ============================================================
+.footer
+  background-color var(--bg-primary)
+  border-top 1px solid var(--border-color)
+  flex-shrink 0
+  position fixed
+  bottom 0
+  z-index 100
+  left 0
+  width 100%
+  padding 0
+
+  .footer-content
+    width 70%
+    min-width 900px
+    max-width 90%
+    margin 0 auto
+    display flex
+    flex-wrap wrap
+    justify-content center
+    gap 0.5rem 1.5rem
+    padding 1rem
+    box-sizing border-box
+
+header,
+.footer
+  background-color var(--bg-primary)
+  color var(--text-secondary)
+
+@media (max-width: 768px)
+  .footer .footer-content
+    width 100%
+    min-width 0
+    max-width 100%
+    flex-direction column
+    justify-content center
+    align-items center
+    text-align center
+    padding 0.5rem
+    gap 0
+
+    > div
+      margin-bottom 0.5rem
+
+      &:last-child
+        margin-bottom 0
+
+// ============================================================
+// .markdown-body — 暗色主题覆盖
+// ============================================================
+.markdown-body
+  hr
+    height auto
+    background-color transparent
+    border none
+    border-top 1px solid var(--border-color)
+
+  h1,
+  h2
+    border-bottom-color var(--border-color)
+
+  blockquote
+    color var(--text-secondary)
+    border-left-color var(--border-color)
+
+  img
+    background-color transparent
+
+  span.frame > span
+    border-color var(--border-color)
+
+  span.frame span span
+    color var(--text-primary)
+
+  table tr
+    background-color transparent
+    border-top-color var(--border-color)
+
+    &:nth-child(2n)
+      background-color rgba(255, 255, 255, 0.03)
+
+  h6
+    color var(--text-secondary)
+
+  kbd
+    display inline-block
+    padding 3px 5px
+    font-size 11px
+    line-height 10px
+    color var(--text-primary)
+    vertical-align middle
+    background-color var(--bg-secondary)
+    border solid 1px var(--border-color)
+    border-bottom-color var(--border-hover)
+    border-radius 3px
+    box-shadow inset 0 -1px 0 var(--border-color)
+
+  .csv-data
+    .blob-num
+      background var(--bg-secondary)
+
+    th
+      background var(--bg-secondary)
+
+a.link-gray,
+a.link-gray-dark,
+a.muted-link
+  color var(--text-secondary)
+
+  &:hover
+    color var(--text-link)
+    text-decoration none
+
+span.text-pending
+  color var(--text-accent)
+
+div.bg-pending
+  background-color var(--text-accent)
+
+// ============================================================
+// .card
+// ============================================================
+.card-list
+  display flex
+  flex-direction column
+  gap 0.75rem
+
+.card
+  card()
+
+  &:hover
+    border-color var(--text-link)
+
+.card-title
+  display block
+  font-size 1.05rem
+  font-weight 600
+  color var(--text-heading)
+  line-height 1.4
+
+  &:hover
+    color var(--text-link)
+    text-decoration none
+
+.card-meta
+  display flex
+  align-items center
+  gap 0.75rem
+  font-size 0.8rem
+  color var(--text-secondary)
+  margin-bottom 0.35rem
+
+// ============================================================
+// .post-card
+// ============================================================
+.post-card-list
+  display flex
+  flex-direction column
+  gap 0.75rem
+
+.post-card
+  card()
+
+  &:hover
+    border-color var(--text-link)
+
+.category-pill
+  display inline-block
+  font-size 0.75rem
+  padding 2px 10px
+  border-radius 12px
+  margin-bottom 0.5rem
+  font-weight 500
+
+.category-tech
+  background rgba(88, 166, 255, 0.15)
+  color var(--text-link)
+  border 1px solid rgba(88, 166, 255, 0.3)
+
+.category-note
+  background rgba(63, 185, 80, 0.15)
+  color #3fb950
+  border 1px solid rgba(63, 185, 80, 0.3)
+
+.post-card-title
+  display block
+  font-size 1.05rem
+  font-weight 600
+  color var(--text-heading)
+  margin-bottom 0.35rem
+  line-height 1.4
+
+  &:hover
+    color var(--text-link)
+    text-decoration none
+
+.post-card-meta
+  display flex
+  gap 1rem
+  font-size 0.8rem
+  color var(--text-secondary)
+
+  span + span::before
+    content "·"
+
+.view-all
+  display inline-block
+  margin-top 1rem
+  color var(--text-link)
+  font-size 0.9rem
+
+  &:hover
+    text-decoration none
+    color var(--text-link-hover)
+
+.page-counter
+  color var(--text-secondary)
+  font-size 0.9rem
+  margin-bottom 1rem
+
+// ============================================================
+// .profile-card
+// ============================================================
+.profile-card
+  background var(--bg-secondary)
+  border 1px solid var(--border-color)
+  border-radius 10px
+  padding 1.5rem
+  text-align center
+
+  .avatar
+    width 96px
+    height 96px
+    border-radius 50%
+    border 3px solid var(--bg-hover)
+    margin-bottom 1rem
+
+  h1
+    font-size 1.5rem
+    margin-bottom 0.5rem
+
+  .bio
+    color var(--text-secondary)
+    font-size 0.9rem
+    margin-bottom 1rem
+
+.profile-stats
+  display flex
+  justify-content center
+  gap 1rem
+  font-size 0.85rem
+  color var(--text-secondary)
+  margin-bottom 1rem
+
+.profile-social
+  margin-bottom 1rem
+  font-size 0.9rem
+
+.profile-counter img
+  max-width 100%
+
+// ============================================================
+// .home-tags
+// ============================================================
+.home-tags
+  margin-top 1.5rem
+  background var(--bg-secondary)
+  border 1px solid var(--border-color)
+  border-radius 10px
+  padding 1.25rem 1.5rem
+
+  h2
+    font-size 1.1rem
+    margin-bottom 0.85rem
+
+  .tag-cloud
+    display flex
+    flex-wrap wrap
+    gap 0.5rem
+
+// ============================================================
+// .page-with-sidebar
+// ============================================================
+.page-with-sidebar
+  max-width 900px
+  margin-left auto
+  margin-right auto
+
+@media (min-width: 769px)
+  .page-with-sidebar
+    display grid
+    grid-template-columns 300px 1fr
+    gap 2rem
+    align-items start
+
+  .page-sidebar
+    position sticky
+    top 16px
+    margin-top 3rem
+
+@media (max-width: 768px)
+  .page-sidebar
+    display none
+
+    &.show-on-mobile
+      display block
+
+// ============================================================
+// .archive-month
+// ============================================================
+.archive-month
+  color var(--text-heading)
+  font-size 1.25rem
+  margin 1.5rem 0 0.75rem
+  padding-bottom 0.5rem
+  border-bottom 1px solid var(--border-color)
+
+  &:first-of-type
+    margin-top 0
+
+// ============================================================
+// .link-grid / .link-card
+// ============================================================
+.link-grid
+  display grid
+  grid-template-columns 1fr
+  gap 1rem
+
+@media (min-width: 600px)
+  .link-grid
+    grid-template-columns 1fr 1fr
+
+.link-card
+  display flex
+  align-items center
+  gap 1rem
+  card()
+  padding 1rem
+
+  &:hover
+    border-color var(--text-link)
+
+  img
+    width 48px
+    height 48px
+    border-radius 8px
+    flex-shrink 0
+
+.link-card-body
+  flex 1
+  min-width 0
+
+  a
+    font-weight 600
+    color var(--text-heading)
+    font-size 1rem
+
+    &:hover
+      color var(--text-link)
+      text-decoration none
+
+  .link-desc
+    color var(--text-secondary)
+    font-size 0.8rem
+    margin-top 2px
+    word-break break-all
+    max-width 36ch
+
+  .link-note
+    display inline-block
+    margin-top 4px
+    font-size 0.75rem
+    color var(--text-accent)
+    background rgba(210, 153, 34, 0.15)
+    padding 1px 6px
+    border-radius 4px
+
+// ============================================================
+// .classify-grid / .classify-card
+// ============================================================
+.classify-grid
+  display grid
+  grid-template-columns 1fr 1fr
+  gap 1rem
+  max-width 400px
+
+.classify-card
+  display block
+  text-align center
+  background var(--bg-secondary)
+  border 1px solid var(--border-color)
+  border-radius 8px
+  padding 2rem 1rem
+  color var(--text-heading)
+  font-size 1.1rem
+  font-weight 600
+  transition all 0.2s
+
+  &:hover
+    border-color var(--text-link)
+    color var(--text-link)
+    text-decoration none
+
+// ============================================================
+// #searchResults
+// ============================================================
+#searchResults ul
+  list-style none
+  margin-left 0
+  display flex
+  flex-direction column
+  gap 0.75rem
+
+  li
+    background transparent
+    padding 0
+    margin 0
+
+    &:hover
+      background transparent
+
+// ============================================================
+// .tag-pill / .tag-link
+// ============================================================
+.tag-pill,
+.tag-link
+  pill()
+
+.tag-pill
+  padding 4px 14px
+
+.tag-link
+  padding 4px 14px
+  margin 0.25rem
+
+.tag-pill:hover,
+.tag-link:hover
+  border-color var(--text-link)
+  color var(--text-link)
+  text-decoration none
+
+// ============================================================
+// .search-form / search input
+// ============================================================
+.search-form
+  margin-bottom 20px
+
+.search-input
+  width 70%
+  padding 8px
+  margin-bottom 20px
+  box-sizing border-box
+
+.search-btn
+  padding 8px 16px
+  background var(--bg-secondary)
+  color var(--text-primary)
+  border 1px solid var(--border-color)
+  border-radius 6px
+  cursor pointer
+
+  &:hover
+    background var(--bg-tertiary)
+
+input
+  background-color var(--bg-secondary)
+  color var(--text-primary)
+  border 1px solid var(--border-color)
+  border-radius 6px
+  padding 6px
+
+// ============================================================
+// code / pre / highlight
+// ============================================================
+.markdown-body pre,
+.markdown-body code,
+.highlight pre
+  background-color var(--bg-secondary)
+  color var(--text-primary)
+  border 1px solid var(--border-color)
+  border-radius 6px
+
+.markdown-body pre
+  padding 16px
+  overflow-x auto
+
+.markdown-body code
+  background-color transparent
+  border-radius 3px
+
+// ============================================================
+// hljs 主题色
+// ============================================================
+.markdown-body
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-subst
+    color #f85149
+
+  .hljs-string,
+  .hljs-doctag
+    color #a5d6ff
+
+  .hljs-title,
+  .hljs-title.class_,
+  .hljs-title.class_.inherited__,
+  .hljs-title.function_
+    color #d2a8ff
+
+  .hljs-number,
+  .hljs-literal
+    color #79c0ff
+
+  .hljs-built_in,
+  .hljs-builtin-name
+    color #ffa657
+
+  .hljs-type,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-attribute,
+  .hljs-meta
+    color #ffa657
+
+  .hljs-name,
+  .hljs-selector-pseudo,
+  .hljs-selector-tag
+    color #7ee787
+
+  .hljs-variable,
+  .hljs-params
+    color #ffa657
+
+  .hljs-bullet,
+  .hljs-symbol,
+  .hljs-link
+    color #79c0ff
+
+  .hljs-comment,
+  .hljs-quote,
+  .hljs-deletion
+    color var(--text-secondary)
+
+  .hljs-regexp,
+  .hljs-addition
+    color #a5d6ff
+
+  .hljs-section,
+  .hljs-strong
+    font-weight 600
+
+  .hljs-emphasis
+    font-style italic
+
+// ============================================================
+// .markdown-body table (dark theme)
+// ============================================================
+.markdown-body table
+  background-color var(--bg-primary)
+  border 1px solid var(--border-color)
+  border-collapse collapse
+  border-radius 6px
+  overflow hidden
+
+  th,
+  td
+    border 1px solid var(--border-color)
+    padding 6px 13px
+    background-color var(--bg-primary)
+    color var(--text-primary)
+
+  th
+    background-color var(--bg-secondary)
+    font-weight 600
+    text-align left
+
+  tr:hover
+    background-color var(--bg-secondary)
+
+// ============================================================
+// .code-block-container / .copy-button
+// ============================================================
+.code-block-container
+  position relative
+
+.copy-button
+  position absolute
+  top 10px
+  right 10px
+  background var(--bg-hover)
+  color var(--text-primary)
+  border none
+  border-radius 4px
+  padding 4px 8px
+  font-size 12px
+  cursor pointer
+  opacity 0.7
+  transition opacity 0.3s
+
+  &:hover
+    opacity 1
+
+  &.copied
+    background #238636
+
+// ============================================================
+// .share-buttons
+// ============================================================
+.share-buttons
+  display flex
+  flex-wrap wrap
+  align-items center
+  gap 8px
+  margin 1rem 0
+
+.share-label
+  color var(--text-secondary)
+  font-size 0.9rem
+  margin-right 4px
+
+.share-btn
+  display inline-block
+  padding 4px 12px
+  font-size 0.85rem
+  border-radius 6px
+  text-decoration none
+  transition all 0.2s
+  border 1px solid var(--border-color)
+
+  &:hover
+    text-decoration none
+    opacity 0.85
+
+  &.qzone
+    background #1e5a7a
+    color var(--color-white)
+    border-color #1e5a7a
+
+  &.qq
+    background #1a8ce8
+    color var(--color-white)
+    border-color #1a8ce8
+
+  &.facebook
+    background #1877f2
+    color var(--color-white)
+    border-color #1877f2
+
+  &.x
+    background #1d1d1d
+    color var(--color-white)
+    border-color #333
+
+// ============================================================
+// .copy-email-btn
+// ============================================================
+.copy-email-btn
+  cursor pointer
+  font-size inherit
+  border 1px solid #4a9eff
+  background #e8f4ff
+  color #1a1a2e
+  padding 6px 16px
+  border-radius 6px
+
+// ============================================================
+// .offline-banner
+// ============================================================
+.offline-banner
+  position fixed
+  top 0
+  left 0
+  right 0
+  z-index 9999
+  background #da3633
+  color var(--color-white)
+  text-align center
+  padding 6px 12px
+  font-size 14px
+  transform translateY(calc(-100% - 2px))
+  transition transform 0.3s
+
+  &.show
+    transform translateY(0)
+
+// ============================================================
+// .cache-tip
+// ============================================================
+.cache-tip
+  position fixed
+  bottom 80px
+  left 50%
+  transform translateX(-50%) translateY(20px)
+  background #238636
+  color var(--color-white)
+  padding 10px 20px
+  border-radius 8px
+  font-size 14px
+  z-index 9999
+  opacity 0
+  transition opacity 0.4s, transform 0.4s
+  pointer-events none
+  white-space nowrap
+
+  &.show
+    opacity 1
+    transform translateX(-50%) translateY(0)
+
+@media (max-width: 768px)
+  .cache-tip
+    white-space normal
+    max-width 90%
+    text-align center
+    bottom 170px
+
+// ============================================================
+// giscus-widget / counter-img / iframe
+// ============================================================
+giscus-widget
+  display block
+  width 100%
+
+.counter-img
+  display none
+  width 0
+  height 0
+  visibility hidden
+
+iframe[src*="youtube.com"],
+iframe[src*="bilibili.com"]
+  max-width 800px
+  width 100%
+  height auto
+  aspect-ratio 16 / 9
+  display block
+  margin 0 auto
+
+// ============================================================
+// 动态页 — .dynamics-page
+// ============================================================
+.dynamics-page
+  h1
+    font-size 1.6rem
+    margin-bottom 0.5rem
+
+    .fa-bilibili
+      color #fb7299
+      margin-right 8px
+
+.dynamics-desc
+  color var(--text-secondary, #8b949e)
+  margin-bottom 1.5rem
+  font-size 0.9rem
+
+  a
+    dynamics-link()
+
+.dynamics-loading
+  text-align center
+  padding 3rem 0
+  color var(--text-secondary, #8b949e)
+  font-size 1.1rem
+
+.dynamics-error
+  text-align center
+  padding 3rem 0
+  color #f85149
+
+.dynamics-empty
+  text-align center
+  padding 3rem 0
+  color var(--text-secondary, #8b949e)
+
+.dynamics-card
+  display flex
+  gap 14px
+  padding 16px
+  margin-bottom 12px
+  background var(--card-bg, #161b22)
+  border 1px solid var(--border-color, #30363d)
+  border-radius 8px
+  transition border-color 0.2s
+
+  &:hover
+    border-color var(--link-color, #58a6ff)
+
+  a
+    text-decoration none
+    color inherit
+
+    &:hover
+      dynamics-link()
+
+.dynamics-card-body
+  flex 1
+  min-width 0
+
+.dynamics-card-header
+  display flex
+  align-items center
+  gap 8px
+  margin-bottom 6px
+  font-size 0.85rem
+
+.dynamics-card-type
+  font-size 0.75rem
+  padding 1px 8px
+  border-radius 10px
+  background rgba(251, 114, 153, 0.15)
+  color #fb7299
+  margin-left auto
+
+  &.pinned
+    background rgba(255, 193, 7, 0.15)
+    color #ffc107
+
+  &.video
+    background rgba(0, 194, 143, 0.15)
+    color #00c28f
+
+  &.forward
+    background rgba(88, 166, 255, 0.15)
+    color #58a6ff
+
+.dynamics-card-time
+  color var(--text-secondary, #8b949e)
+  font-size 0.8rem
+
+.dynamics-card-content
+  font-size 0.95rem
+  line-height 1.6
+  color var(--text-primary, #c9d1d9)
+  word-break break-word
+  display -webkit-box
+  -webkit-line-clamp 3
+  -webkit-box-orient vertical
+  overflow hidden
+
+.dynamics-card-footer
+  margin-top 8px
+  font-size 0.85rem
+
+  a
+    dynamics-link()
+
+.dynamics-footer
+  text-align center
+  margin-top 1rem
+  padding 1rem 0
+  color var(--text-secondary, #8b949e)
+  font-size 0.8rem
+
+  a
+    dynamics-link()
+
+.dynamics-view-all
+  text-align center
+  margin-top 0.5rem
+  padding 1rem 0
+
+  a
+    display inline-flex
+    align-items center
+    gap 6px
+    padding 10px 24px
+    background var(--card-bg, #161b22)
+    border 1px solid var(--border-color, #30363d)
+    border-radius 8px
+    color var(--text-primary, #c9d1d9)
+    font-size 0.9rem
+    text-decoration none
+    transition border-color 0.2s
+
+    &:hover
+      border-color var(--link-color, #58a6ff)
+      color var(--link-color, #58a6ff)
+
+// ============================================================
+// .sidebar-dynamics
+// ============================================================
+.sidebar-dynamics
+  margin-top 1.5rem
+
+  h2
+    font-size 1rem
+    margin-bottom 0.75rem
+    display flex
+    align-items center
+    gap 6px
+
+    .fa-bilibili
+      color #fb7299
+
+.sidebar-dyn-pill
+  pill()
+  padding 4px 14px
+  margin 0.25rem
+  max-width 100%
+  overflow hidden
+  white-space nowrap
+  text-overflow ellipsis
+  vertical-align middle
+
+  &:hover
+    border-color var(--text-link)
+    color var(--text-link)
+    text-decoration none
+
+.sidebar-dyn-more
+  display block
+  font-size 0.8rem
+  color var(--link-color, #58a6ff)
+  text-decoration none
+  margin-top 4px
+  margin-left 0.25rem
+
+  &:hover
+    text-decoration underline
+
+// ============================================================
+// ユーティリティクラス
+// ============================================================
+.pt-3
+  padding-top 16px !important
+
+.px-3
+  padding-right 16px !important
+  padding-left 16px !important
+
+.mt-5
+  margin-top 32px !important
+
+.my-5
+  margin-top 32px !important
+  margin-bottom 32px !important
+
+.text-gray
+  color #586069 !important

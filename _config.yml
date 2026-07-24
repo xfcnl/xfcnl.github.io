@@ -117,3 +117,7 @@ netease_player:
 # 头像与网站图标
 avatar: https://raw.gh.1s.fan/xfcnl/xfcnl.github.io/refs/heads/main/image/MEITU_20260128_220225596.jpg
 favicon: https://raw.gh.1s.fan/xfcnl/xfcnl.github.io/refs/heads/main/image/MEITU_20260128_220225596.jpg
+
+# Stylus 压缩
+stylus:
+  compress: true
