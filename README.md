@@ -1,8 +1,8 @@
 # XF
 
-[github 线路](https://xfcnl.github.io)　[cloudflare 线路](https://husd.cc.cd)　[edgeone 线路](https://blog.sfvg.de5.net)
+[GitHub](https://xfcnl.github.io)　[Cloudflare](https://husd.cc.cd)　[EdgeOne](https://blog.sfvg.de5.net)
 
-基于 [Hexo](https://hexo.io) 构建的自用博客，主题是从 [Primer](https://github.com/pages-themes/primer) 改写为 Hexo 并发展为自制的 `xf`
+基于 [Hexo](https://hexo.io) 构建的自用博客，主题为自制的 `xf`。
 
 ## 本地预览
 
@@ -17,7 +17,7 @@ npx hexo server
 npx hexo generate
 ```
 
-浏览器打开 `http://localhost:4000` 即可预览
+浏览器打开 `http://localhost:4000` 即可预览。
 
 ## 目录结构
 
@@ -27,6 +27,6 @@ source/_data/   — 配置数据（社交链接、友链等）
 themes/xf/      — 自制主题
 ```
 
-## License
+## 许可证
 
 Apache 2.0
