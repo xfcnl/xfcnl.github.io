@@ -339,7 +339,7 @@ dynamics-link()
       margin 0
       font-size 100%
       word-break normal
-      white-space pre
+      white-space pre-wrap
       background transparent
       border 0
 
@@ -367,7 +367,7 @@ dynamics-link()
     margin 0
     overflow visible
     line-height inherit
-    word-wrap normal
+    word-wrap break-word
     background-color transparent
     border 0
 
@@ -1287,9 +1287,12 @@ input
   border 1px solid var(--border-color)
   border-radius 6px
 
-.markdown-body pre
+.markdown-body pre,
+.markdown-body .highlight pre
   padding 16px
-  overflow-x auto
+  overflow-wrap anywhere
+  white-space pre-wrap
+  word-break break-word
 
 .markdown-body code
   background-color transparent
