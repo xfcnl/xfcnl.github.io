@@ -1,6 +1,11 @@
+<%
+var activeLinks = site.data.link || [];
+var lostLinks = site.data['lost-link'] || [];
+%>
 <h1>友链</h1>
+<% if (activeLinks.length > 0) { %>
 <div class="link-grid">
-<% if (site.data.link) { site.data.link.forEach(function(link) { %>
+<% activeLinks.forEach(function(link) { %>
 <div class="link-card">
   <img src="<%= link.avatar %>" alt="<%= link.name %>的头像" loading="lazy">
   <div class="link-card-body">
@@ -11,8 +16,28 @@
     <% } %>
   </div>
 </div>
-<% }); } %>
+<% }); %>
 </div>
+<% } %>
+<% if (lostLinks.length > 0) { %>
+<hr>
+<h2>失联人员</h2>
+<p class="lost-desc">以下站点已无法访问、长期未更新或内容与描述严重不符，已从友链中移除</p>
+<div class="link-grid lost-grid">
+<% lostLinks.forEach(function(link) { %>
+<div class="link-card link-card-lost">
+  <img src="<%= link.avatar %>" alt="<%= link.name %>的头像" loading="lazy">
+  <div class="link-card-body">
+    <a href="<%= link.url %>" target="_blank" rel="noopener noreferrer"><%= link.name %></a>
+    <div class="link-desc"><%= link.desc %></div>
+    <% if (link.note) { %>
+    <span class="link-note"><%= link.note %></span>
+    <% } %>
+  </div>
+</div>
+<% }); %>
+</div>
+<% } %>
 <hr>
 <section class="link-section">
   <h2>交换友链</h2>
