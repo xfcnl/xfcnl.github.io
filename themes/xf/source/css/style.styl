@@ -919,20 +919,22 @@ div.bg-pending
 .card-list
   display flex
   flex-direction column
-  gap 0.75rem
+  gap 1rem
 
 .card
   card()
+  padding 1.25rem
 
   &:hover
     border-color var(--text-link)
 
 .card-title
   display block
-  font-size 1.05rem
+  font-size 1.15rem
   font-weight 600
   color var(--text-heading)
-  line-height 1.4
+  line-height 1.45
+  margin-bottom 0.45rem
 
   &:hover
     color var(--text-link)
@@ -942,9 +944,8 @@ div.bg-pending
   display flex
   align-items center
   gap 0.75rem
-  font-size 0.8rem
+  font-size 0.875rem
   color var(--text-secondary)
-  margin-bottom 0.35rem
 
 // ============================================================
 // .post-card
@@ -952,20 +953,21 @@ div.bg-pending
 .post-card-list
   display flex
   flex-direction column
-  gap 0.75rem
+  gap 1rem
 
 .post-card
   card()
+  padding 1.25rem
 
   &:hover
     border-color var(--text-link)
 
 .category-pill
   display inline-block
-  font-size 0.75rem
-  padding 2px 10px
+  font-size 0.8125rem
+  padding 3px 12px
   border-radius 12px
-  margin-bottom 0.5rem
+  margin-bottom 0.6rem
   font-weight 500
 
 .category-tech
@@ -980,11 +982,11 @@ div.bg-pending
 
 .post-card-title
   display block
-  font-size 1.05rem
+  font-size 1.15rem
   font-weight 600
   color var(--text-heading)
-  margin-bottom 0.35rem
-  line-height 1.4
+  margin-bottom 0.45rem
+  line-height 1.45
 
   &:hover
     color var(--text-link)
@@ -993,7 +995,7 @@ div.bg-pending
 .post-card-meta
   display flex
   gap 1rem
-  font-size 0.8rem
+  font-size 0.875rem
   color var(--text-secondary)
 
   span + span::before
