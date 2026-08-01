@@ -8,11 +8,6 @@
   avatar: https://www.xhehm.com/assets/img/my.png
   desc: 人生是開發，不是預設
 
-- name: ccw_china的博客
-  url: https://ccwchina.gt.tc
-  avatar: https://ccwchina.gt.tc/image.png
-  desc: 爱编程的初中生，热爱生活，热爱编程
-
 - name: GitHub加速下载代理
   url: https://gh-proxy.com
   avatar: https://r2.gh-proxy.com/GitHub-Mark-ea2971cee799.png
@@ -61,7 +56,7 @@
 
 - name: CoteNite的咖啡屋
   url: https://cotenite.github.io/blog/
-  avatar: https://cotenite.github.io/blog/assets/header1.quEifFkO.png
+  avatar: https://cotenite.github.io/blog/header1.png
   desc: 前排出售各类咖啡
 
 # - name: 二丫讲梵
