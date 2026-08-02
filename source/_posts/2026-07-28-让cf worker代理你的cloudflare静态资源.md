@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "让cf worker代理你的GitHub静态资源"
-date: "2026--:day"
+date: "2026-07-28"
 categories: [tech]
 tags: [worker, web]
 ---
