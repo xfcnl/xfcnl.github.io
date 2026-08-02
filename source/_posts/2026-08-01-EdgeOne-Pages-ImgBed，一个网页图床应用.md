@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "EdgeOne-Pages-ImgBed，一个网页图床应用"
-date: "2026-07-31"
+date: "2026-08-01"
 categories: [tech]
 tags: [图床, web]
 ---
