@@ -1,0 +1,9 @@
+<% if (site.data.social) { %>
+<div class="ba-social-links">
+  <% site.data.social.forEach(function(s) { %>
+  <a href="<%= s.url %>" class="ba-social-button" <% if (s.external) { %>target="_blank" rel="noopener"<% } %> title="<%= s.name %>">
+    <i class="fab fa-<%= s.key %>"></i>
+  </a>
+  <% }); %>
+</div>
+<% } %>

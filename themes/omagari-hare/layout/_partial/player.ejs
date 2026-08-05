@@ -1,0 +1,36 @@
+<% if (config.netease_player && config.netease_player.enable) { %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script>
+(function() {
+  var ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    mini: true,
+    autoplay: false,
+    theme: '<%= config.netease_player.theme %>',
+    loop: 'list',
+    order: '<%= config.netease_player.order %>',
+    volume: <%= config.netease_player.volume %>,
+    mutex: true,
+    listFolded: true,
+    listMaxHeight: 200,
+    audio: []
+  });
+  fetch('https://api.i-meto.com/meting/netease/playlist/<%= config.netease_player.playlist_id %>')
+    .then(function(r) { return r.json(); })
+    .then(function(songs) {
+      songs.forEach(function(s) {
+        ap.list.add([{
+          name: s.title || s.name,
+          artist: s.artist || s.author,
+          url: s.url,
+          cover: s.cover,
+          lrc: s.lrc || ''
+        }]);
+      });
+    });
+})();
+</script>
+<% } %>

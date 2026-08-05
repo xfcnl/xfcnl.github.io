@@ -1,0 +1,74 @@
+<div class="ba-post-footer-section">
+  <div class="ba-post-share">
+    <span class="ba-share-label">分享：</span>
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=<%= encodeURIComponent(config.url + url_for(page.path)) %>&title=<%= encodeURIComponent(page.title) %>" target="_blank" rel="noopener" class="ba-share-btn" title="分享到QQ"><i class="fab fa-qq"></i></a>
+    <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/sns_qzshare_onekey?url=<%= encodeURIComponent(config.url + url_for(page.path)) %>&title=<%= encodeURIComponent(page.title) %>" target="_blank" rel="noopener" class="ba-share-btn" title="分享到QQ空间"><i class="fas fa-star"></i></a>
+    <a href="https://twitter.com/intent/tweet?url=<%= encodeURIComponent(config.url + url_for(page.path)) %>&text=<%= encodeURIComponent(page.title) %>" target="_blank" rel="noopener" class="ba-share-btn" title="分享到X"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=<%= encodeURIComponent(config.url + url_for(page.path)) %>" target="_blank" rel="noopener" class="ba-share-btn" title="分享到Facebook"><i class="fab fa-facebook-f"></i></a>
+  </div>
+
+  <div class="ba-giscus ba-post-comments">
+    <script src="https://giscus.app/client.js"
+      data-repo="xfcnl/xfcnl.github.io"
+      data-repo-id="R_kgDOIbP3Aw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOIbP3A84Cd4Du"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="transparent_dark"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+
+  <div class="ba-post-related">
+    <h4>相关文章</h4>
+    <div class="ba-related-grid">
+      <%
+        const tagCounts = {};
+        (page.tags || []).forEach(function(tag) {
+          if (tag.name === '分享') return;
+          tagCounts[tag.name] = (tagCounts[tag.name] || 0) + 1;
+        });
+        const related = site.posts.filter(function(post) {
+          if (post.path === page.path) return false;
+          if (!post.tags || !post.tags.length) return false;
+          return post.tags.some(function(t) { return t.name !== '分享'; });
+        }).map(function(post) {
+          var score = 0;
+          (post.tags || []).forEach(function(t) {
+            if (t.name === '分享') return;
+            if (tagCounts[t.name]) score += tagCounts[t.name];
+          });
+          return { post: post, score: score };
+        }).filter(function(item) { return item.score > 0; })
+          .sort(function(a, b) {
+            if (b.score !== a.score) return b.score - a.score;
+            return b.post.date.valueOf() - a.post.date.valueOf();
+          })
+          .slice(0, 5)
+          .map(function(item) { return item.post; });
+
+        if (related.length) {
+          related.forEach(function(post) {
+      %>
+      <a href="<%= url_for(post.path) %>" class="ba-related-card ba-card">
+        <span class="ba-related-label"><i class="fas fa-tags"></i> 相关文章</span>
+        <span class="ba-related-title"><%= post.title %></span>
+      </a>
+      <%
+          });
+        } else {
+      %>
+      <a href="<%= url_for(site.posts.first().path) %>" class="ba-related-card ba-card">
+        <span class="ba-related-label"><i class="fas fa-tags"></i> 最新文章</span>
+        <span class="ba-related-title"><%= site.posts.first().title %></span>
+      </a>
+      <% } %>
+    </div>
+  </div>
+</div>

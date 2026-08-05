@@ -1,0 +1,67 @@
+<div class="ba-link-page">
+  <!-- 活跃友链 -->
+  <section class="ba-section">
+    <h2 class="ba-section-title">
+      <span class="ba-title-zh">活跃友链</span>
+      <span class="ba-title-en">Friends</span>
+    </h2>
+    <div class="ba-link-grid cascade-list">
+      <% if (site.data.link) { site.data.link.forEach(function(item) { %>
+      <a href="<%= item.url %>" target="_blank" rel="noopener" class="ba-link-card ba-card">
+        <img src="<%= item.avatar %>" alt="<%= item.name %>" class="ba-link-avatar" loading="lazy">
+        <div class="ba-link-info">
+          <h3 class="ba-link-name"><%= item.name %></h3>
+          <p class="ba-link-desc"><%= item.desc %></p>
+          <% if (item.note) { %><p class="ba-link-note"><%= item.note %></p><% } %>
+        </div>
+      </a>
+      <% }); } %>
+    </div>
+  </section>
+
+  <!-- 遗失人员 -->
+  <section class="ba-section">
+    <h2 class="ba-section-title">
+      <span class="ba-title-zh">遗失人员</span>
+      <span class="ba-title-en">Lost Friends</span>
+    </h2>
+    <div class="ba-link-grid ba-link-lost cascade-list">
+      <% if (site.data['lost-link']) { site.data['lost-link'].forEach(function(item) { %>
+      <div class="ba-link-card ba-card lost">
+        <img src="<%= item.avatar %>" alt="<%= item.name %>" class="ba-link-avatar" loading="lazy">
+        <div class="ba-link-info">
+          <h3 class="ba-link-name"><%= item.name %></h3>
+          <p class="ba-link-desc"><%= item.desc %></p>
+          <% if (item.note) { %><p class="ba-link-note"><i class="fas fa-exclamation-triangle"></i> <%= item.note %></p><% } %>
+        </div>
+      </div>
+      <% }); } %>
+    </div>
+  </section>
+
+  <!-- 留言板 -->
+  <section class="ba-section">
+    <h2 class="ba-section-title">
+      <span class="ba-title-zh">留言板</span>
+      <span class="ba-title-en">Guestbook</span>
+    </h2>
+    <p class="ba-text-secondary">欢迎留言, 交换友链请附上你的博客信息~</p>
+    <div class="ba-giscus">
+      <script src="https://giscus.app/client.js"
+        data-repo="xfcnl/xfcnl.github.io"
+        data-repo-id="R_kgDOIbP3Aw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOIbP3A84Cd4Du"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="transparent_dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
+  </section>
+</div>

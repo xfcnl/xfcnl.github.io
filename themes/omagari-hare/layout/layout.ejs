@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="<%= page.lang || config.language %>">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <% var pageTitle = page.title || (page.archive ? '归档' : (page.category ? '分类：' + page.category : (page.tag ? '标签：' + page.tag : ''))); %>
+  <title><%= pageTitle ? pageTitle + ' | ' + config.title : config.title %></title>
+  <meta name="description" content="<%= page.description || config.description %>">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://u.mikufans1.dpdns.org https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://giscus.app https://fonts.googleapis.com;
+    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://cdn.jsdelivr.net/gh/xfcnl/ba-assets@main;
+    img-src 'self' https://*.hdslb.com https: data:;
+    connect-src 'self' https://u.mikufans1.dpdns.org https://giscus.app https://api.github.com https://raw.gh.1s.fan https://*.music.126.net wss://giscus.app;
+    frame-src https://giscus.app https://www.youtube.com https://player.bilibili.com https://www.bilibili.com;
+    media-src 'self' https://*.music.126.net;
+    font-src 'self' data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.gstatic.com;
+    form-action 'self';
+  ">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous">
+  <link rel="stylesheet" href="<%= url_for('/css/ba/fonts.css') %>">
+  <link rel="stylesheet" href="<%= url_for('/css/ba/animations.css') %>">
+  <link rel="stylesheet" href="<%= url_for('/css/style.css') %>">
+  <link rel="icon" type="image/jpeg" href="<%= url_for(config.favicon) %>">
+  <%- partial('_partial/head') %>
+  <% if (page.layout === 'post') { %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": <%- JSON.stringify(page.title) %>,
+    "datePublished": "<%= date(page.date, 'YYYY-MM-DD') %>",
+    "dateModified": "<%= date(page.updated, 'YYYY-MM-DD') %>",
+    "author": {
+      "@type": "Person",
+      "name": "<%= config.author %>"
+    },
+    "url": "<%= config.url %><%= url_for(page.path) %>"
+  }
+  </script>
+  <% } %>
+</head>
+<body class="<%= page.layout === 'post' ? 'ba-post-page' : '' %>">
+  <%- partial('_partial/header') %>
+  <% if (page.layout === 'post') { %>
+  <div class="hero-banner hero-post">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1 class="hero-title hero-post-title"><%= page.title %></h1>
+    </div>
+  </div>
+  <% } else { %>
+  <div class="hero-banner">
+    <div class="hero-bg" style="background-image: url('<%= config.hero_image %>'); --hero-bg-mobile: url('<%= config.hero_image_mobile %>')"></div>
+    <div class="hero-content">
+      <h1 class="hero-title typewriter"><%= config.hero_text %></h1>
+      <p class="hero-subtitle">Teacher of Kivotos</p>
+    </div>
+  </div>
+  <% } %>
+  <div class="page-with-sidebar">
+    <main class="page-main" role="main">
+      <div class="markdown-body">
+        <%- body %>
+      </div>
+      <% if (page.layout === 'post') { %>
+      <div class="post-extras">
+        <%- partial('_partial/post-footer') %>
+      </div>
+      <% } %>
+    </main>
+    <%- partial('_partial/sidebar') %>
+  </div>
+  <%- partial('_partial/footer') %>
+  <script>window.BA_CONFIG = { dynamicUrl: '<%= config.dynamic_url %>' };</script>
+  <script src="<%= url_for('/js/core.js') %>"></script>
+  <%- partial('_partial/player') %>
+</body>
+</html>

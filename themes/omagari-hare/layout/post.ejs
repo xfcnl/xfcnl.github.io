@@ -1,0 +1,29 @@
+<article class="ba-post-article">
+  <header class="ba-post-header">
+    <div class="ba-post-subheader">
+      <span class="ba-post-date"><i class="far fa-calendar"></i> <%= date(page.date, 'YYYY-MM-DD') %></span>
+      <span class="ba-post-time"><i class="far fa-clock"></i> <%= Math.ceil(page.content.length / 400) %> min read</span>
+      <% if (page.categories.length) { %><span class="ba-post-category ba-cat-<%= page.categories.first().name %>"><%= page.categories.first().name === 'tech' ? '技术' : '随记' %></span><% } %>
+    </div>
+    <div class="ba-post-tags">
+      <% if (page.tags.length) { page.tags.each(function(tag) { %>
+      <a href="<%= url_for(`/tag/${tag.name}`) %>" class="tag-pill">#<%= tag.name %></a>
+      <% }); } %>
+    </div>
+  </header>
+  <div class="ba-post-content">
+    <%- page.content %>
+  </div>
+  <nav class="ba-post-nav">
+    <% if (page.prev) { %>
+    <a href="<%= url_for(page.prev.path) %>" class="ba-post-nav-prev">
+      <i class="fas fa-arrow-left"></i> <%= page.prev.title %>
+    </a>
+    <% } %>
+    <% if (page.next) { %>
+    <a href="<%= url_for(page.next.path) %>" class="ba-post-nav-next">
+      <%= page.next.title %> <i class="fas fa-arrow-right"></i>
+    </a>
+    <% } %>
+  </nav>
+</article>

@@ -1,0 +1,20 @@
+- icon: fa-code
+  title: xf_blog
+  description: Blue Archive 风格博客 — Hexo + EJS + Stylus
+  url: https://github.com/xfcnl/xfcnl.github.io
+  btn_text: 源代码
+  btn_icon: fa-github
+
+- icon: fa-images
+  title: 画廊
+  description: Glassmorphism 风格图片画廊，支持拖拽缩放
+  url: https://hsdf1.dpdns.org/gallery/
+  btn_text: 访问
+  btn_icon: fa-external-link-alt
+
+- icon: fa-terminal
+  title: 终端主页
+  description: Catppuccin 暗色主题模拟终端，多命令交互
+  url: https://hsdf1.dpdns.org/
+  btn_text: 访问
+  btn_icon: fa-external-link-alt

@@ -1,0 +1,107 @@
+/* ========================================
+   Blue Archive 字体系统 — jsDelivr CDN 加载
+   来源: https://github.com/xfcnl/ba-assets
+   全部为开源 / 免费可商用字体
+   ======================================== */
+
+/* ---- 中文标题: 得意黑 Smiley Sans (OFL) ---- */
+@font-face {
+  font-family: 'SmileySans';
+  src: url('https://cdn.jsdelivr.net/gh/xfcnl/ba-assets@main/SmileySans-Oblique.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- 思源黑体 CN (5 字重, OFL) ---- */
+@font-face {
+  font-family: 'SourceHanSansCN-Light';
+  src: url('https://cdn.jsdelivr.net/gh/xfcnl/ba-assets@main/SourceHanSansCN-Light.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SourceHanSansCN-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/xfcnl/ba-assets@main/SourceHanSansCN-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SourceHanSansCN-Normal';
+  src: url('https://cdn.jsdelivr.net/gh/xfcnl/ba-assets@main/SourceHanSansCN-Normal.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SourceHanSansCN-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/xfcnl/ba-assets@main/SourceHanSansCN-Bold.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SourceHanSansCN-Heavy';
+  src: url('https://cdn.jsdelivr.net/gh/xfcnl/ba-assets@main/SourceHanSansCN-Heavy.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- 英文正文/标题: Montserrat (OFL, 可变字重 100-900) ---- */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('https://cdn.jsdelivr.net/gh/xfcnl/ba-assets@main/Montserrat.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- 英文圆润装饰: Baloo 2 (OFL, 可变字重 400-800) ---- */
+@font-face {
+  font-family: 'Baloo 2';
+  src: url('https://cdn.jsdelivr.net/gh/xfcnl/ba-assets@main/Baloo2.ttf') format('truetype');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- 英文粗装饰: Bungee (OFL) ---- */
+@font-face {
+  font-family: 'Bungee';
+  src: url('https://cdn.jsdelivr.net/gh/xfcnl/ba-assets@main/Bungee-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ========================================
+ * CSS 变量字体栈
+ * ======================================== */
+:root {
+  --ba-font-heading-zh:   'SmileySans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --ba-font-title-zh:     'SourceHanSansCN-Bold', 'Noto Sans SC', 'PingFang SC', sans-serif;
+  --ba-font-round-zh:     'SmileySans', 'PingFang SC', sans-serif;
+  --ba-font-body-zh:      'SourceHanSansCN-Regular', 'Noto Sans SC', 'PingFang SC', sans-serif;
+  --ba-font-heading-en:   'Montserrat', 'Arial', sans-serif;
+  --ba-font-sub-en:       'Montserrat', 'Arial', sans-serif;
+  --ba-font-decor:        'Baloo 2', 'Varela Round', cursive;
+  --ba-font-decor-bold:   'Bungee', 'Baloo 2', 'Impact', cursive;
+
+  /* BA 色彩系统 — xiaofen 定制调色板 */
+  --ba-primary:           #D2E004;
+  --ba-primary-hover:     #e5f028;
+  --ba-accent:            #F58021;
+  --ba-accent-hover:      #f79a4a;
+  --ba-bg-base:           #384057;
+  --ba-bg-gradient:       linear-gradient(135deg, #384057 0%, #2c3348 50%, #384057 100%);
+  --ba-glass-bg:          rgba(210, 224, 4, 0.08);
+  --ba-glass-bg-hover:    rgba(210, 224, 4, 0.15);
+  --ba-glass-border:      rgba(210, 224, 4, 0.22);
+  --ba-glass-border-hover:rgba(210, 224, 4, 0.5);
+  --ba-text:              #f5f6f8;
+  --ba-text-secondary:    rgba(245, 246, 248, 0.72);
+  --ba-text-muted:        rgba(245, 246, 248, 0.45);
+}

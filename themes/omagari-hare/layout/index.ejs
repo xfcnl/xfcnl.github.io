@@ -1,0 +1,49 @@
+<section class="ba-section">
+  <h2 class="ba-section-title">
+    <span class="ba-title-zh">近期文章</span>
+    <span class="ba-title-en">Recent Posts</span>
+  </h2>
+  <div class="ba-post-grid cascade-list">
+    <% site.posts.toArray().sort((a,b) => b.date.valueOf() - a.date.valueOf()).slice(0, 10).forEach(function(post) { %>
+    <article class="ba-post-card ba-card">
+      <div class="ba-post-card-body">
+        <div class="ba-post-meta">
+          <span class="ba-post-date"><i class="far fa-calendar"></i> <%= date(post.date, 'YYYY-MM-DD') %></span>
+          <% if (post.categories.length) { %>
+          <span class="ba-post-category ba-cat-<%= post.categories.first().name %>"><%= post.categories.first().name === 'tech' ? '技术' : '随记' %></span>
+          <% } %>
+        </div>
+        <h3 class="ba-post-title">
+          <a href="<%= url_for(post.path) %>"><%= post.title %></a>
+        </h3>
+        <p class="ba-post-excerpt"><%= post.excerpt ? post.excerpt.replace(/<[^>]+>/g, '').substring(0, 120) + '...' : (post.content ? post.content.replace(/<[^>]+>/g, '').substring(0, 120) + '...' : '') %></p>
+        <div class="ba-post-footer">
+          <span class="ba-post-tags">
+            <% if (post.tags.length) { post.tags.each(function(tag) { %>
+            <a href="<%= url_for(`/tag/${tag.name}`) %>" class="tag-pill">#<%= tag.name %></a>
+            <% }); } %>
+          </span>
+          <a href="<%= url_for(post.path) %>" class="ba-read-more">阅读 <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </article>
+    <% }); %>
+  </div>
+</section>
+
+<section class="ba-section">
+  <h2 class="ba-section-title">
+    <span class="ba-title-zh">个人项目</span>
+    <span class="ba-title-en">Projects</span>
+  </h2>
+  <div class="ba-project-grid cascade-up">
+    <% if (site.data.projects) { site.data.projects.forEach(function(p) { %>
+    <div class="ba-project-card ba-card">
+      <div class="ba-project-icon"><i class="fas <%= p.icon %>"></i></div>
+      <h3><%= p.title %></h3>
+      <p><%= p.description %></p>
+      <a href="<%= p.url %>" target="_blank" class="ba-btn"><%= p.btn_text %> <i class="fab <%= p.btn_icon %>"></i></a>
+    </div>
+    <% }); } %>
+  </div>
+</section>

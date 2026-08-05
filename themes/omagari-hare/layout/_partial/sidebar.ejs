@@ -1,0 +1,43 @@
+<aside class="ba-sidebar">
+  <!-- 1. 个人卡片 -->
+  <div class="ba-sidebar-card slide-in-right">
+    <img src="<%= config.avatar %>" alt="avatar" class="ba-sidebar-avatar">
+    <h3 class="ba-sidebar-name">Hi, I am xiaofen</h3>
+    <p class="ba-sidebar-bio">初二学生 / AI辅助开发 / 热爱折腾</p>
+    <div class="ba-sidebar-stats">
+      <span><a href="/archive/"><i class="fas fa-file-lines"></i> <%= site.posts.length %> 篇文章</a></span>
+      <span><a href="/tag/"><i class="fas fa-tags"></i> <%= site.tags.length %> 个标签</a></span>
+    </div>
+  </div>
+
+  <!-- 2. 社交媒体 -->
+  <div class="ba-sidebar-card">
+    <h4 class="ba-sidebar-title"><i class="fas fa-link"></i> 社交</h4>
+    <div class="ba-sidebar-social">
+      <% site.data.social.forEach(function(s) { %>
+      <a href="<%= s.url %>" class="ba-social-link" <% if(s.external) { %>target="_blank" rel="noopener"<% } %> title="<%= s.name %>">
+        <i class="fab fa-<%= s.key %>"></i>
+        <span><%= s.about_display || s.name %></span>
+      </a>
+      <% }); %>
+    </div>
+  </div>
+
+  <!-- 3. 热门标签 -->
+  <div class="ba-sidebar-card">
+    <h4 class="ba-sidebar-title"><i class="fas fa-tags"></i> 热门标签</h4>
+    <div class="ba-sidebar-tags">
+      <% site.tags.sort('length', -1).limit(8).each(function(tag) { %>
+      <a href="<%= url_for(`/tag/${tag.name}`) %>" class="tag-pill">#<%= tag.name %></a>
+      <% }); %>
+    </div>
+  </div>
+
+  <!-- 4. B站动态 -->
+  <div class="ba-sidebar-card">
+    <h4 class="ba-sidebar-title"><i class="fab fa-bilibili"></i> B站动态</h4>
+    <div class="ba-sidebar-dyn" id="sidebarDynamics">
+      <p class="ba-text-muted">加载中...</p>
+    </div>
+  </div>
+</aside>

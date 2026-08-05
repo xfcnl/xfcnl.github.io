@@ -1,0 +1,23 @@
+<div class="ba-archive-page">
+  <section class="ba-section">
+    <h2 class="ba-section-title">
+      <span class="ba-title-zh">文章归档</span>
+      <span class="ba-title-en">Archive</span>
+    </h2>
+    <div class="ba-archive-timeline cascade-list">
+      <% page.posts.toArray().sort((a,b) => b.date.valueOf() - a.date.valueOf()).forEach(function(post){ %>
+      <div class="ba-archive-item ba-card">
+        <span class="ba-archive-date"><%= date(post.date, 'YYYY-MM-DD') %></span>
+        <div class="ba-archive-info">
+          <a href="<%= url_for(post.path) %>" class="ba-archive-title"><%= post.title %></a>
+          <div class="ba-archive-tags">
+            <% if (post.tags.length) { post.tags.each(function(tag){ %>
+            <a href="<%= url_for(`/tag/${tag.name}`) %>" class="tag-pill">#<%= tag.name %></a>
+            <% }); } %>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,48 @@
+<div class="ba-dynamics-page">
+  <section class="ba-section">
+    <h2 class="ba-section-title">
+      <span class="ba-title-zh">B站动态</span>
+      <span class="ba-title-en">Bilibili Dynamics</span>
+    </h2>
+    <div class="ba-dynamics-list" id="dynamicsList">
+      <div class="ba-dyn-loading">
+        <div class="ba-spinner"></div>
+        <p>正在从B站抓取动态...</p>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+(function() {
+  var container = document.getElementById('dynamicsList');
+  fetch('<%= config.dynamic_url %>')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data.dynamics || !data.dynamics.length) {
+        container.innerHTML = '<p class="ba-text-muted">暂无动态~</p>';
+        return;
+      }
+      var html = '';
+      data.dynamics.forEach(function(d, i) {
+        var typeLabel = '';
+        var typeClass = '';
+        switch(d.type) {
+          case '置顶': typeLabel = '置顶'; typeClass = 'ba-dyn-pin'; break;
+          case '视频': typeLabel = '视频'; typeClass = 'ba-dyn-video'; break;
+          case '转发': typeLabel = '转发'; typeClass = 'ba-dyn-repost'; break;
+          default: typeLabel = '动态'; typeClass = 'ba-dyn-normal';
+        }
+        html += '<div class="ba-dyn-card ba-card fade-in" style="animation-delay:' + (i * 0.1) + 's">';
+        html += '<span class="ba-dyn-type ' + typeClass + '">' + typeLabel + '</span>';
+        html += '<span class="ba-dyn-time"><i class="far fa-clock"></i> ' + d.time + '</span>';
+        html += '<p class="ba-dyn-content">' + d.content + '</p>';
+        html += '<a href="' + d.url + '" target="_blank" rel="noopener" class="ba-dyn-link"><i class="fab fa-bilibili"></i> 查看原文</a>';
+        html += '</div>';
+      });
+      container.innerHTML = html;
+    })
+    .catch(function() {
+      container.innerHTML = '<p class="ba-text-muted">加载失败，请稍后重试~</p>';
+    });
+})();
+</script>

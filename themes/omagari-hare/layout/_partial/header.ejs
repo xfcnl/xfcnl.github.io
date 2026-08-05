@@ -1,0 +1,32 @@
+<nav class="ba-navbar">
+  <div class="ba-navbar-content">
+    <a href="<%= url_for('/') %>" class="ba-nav-logo">
+      <span class="ba-logo-text">Xf_blog</span>
+    </a>
+    <ul class="ba-nav-links" id="navLinks">
+      <li><a href="<%= url_for('/') %>" class="ba-nav-link">首页</a></li>
+      <li><a href="<%= url_for('/link/') %>" class="ba-nav-link">友链</a></li>
+      <li>
+        <a href="<%= url_for('/archive/') %>" class="ba-nav-link">归档</a>
+      </li>
+      <li><a href="<%= url_for('/tag/') %>" class="ba-nav-link">标签</a></li>
+      <li>
+        <a href="<%= url_for('/classify/') %>" class="ba-nav-link">分类</a>
+      </li>
+      <li>
+        <a href="<%= url_for('/dynamics/') %>" class="ba-nav-link">动态</a>
+      </li>
+      <li><a href="<%= url_for('/about/') %>" class="ba-nav-link">关于</a></li>
+    </ul>
+    <button
+      class="ba-nav-toggle"
+      id="navToggle"
+      aria-label="菜单"
+      aria-expanded="false"
+    >
+      <span class="ba-bar"></span>
+      <span class="ba-bar"></span>
+      <span class="ba-bar"></span>
+    </button>
+  </div>
+</nav>

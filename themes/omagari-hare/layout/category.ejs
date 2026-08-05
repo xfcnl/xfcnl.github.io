@@ -1,0 +1,40 @@
+<div class="ba-category-page">
+  <section class="ba-section">
+    <h2 class="ba-section-title">
+      <span class="ba-title-zh">文章分类</span>
+      <span class="ba-title-en">Categories</span>
+    </h2>
+
+    <div class="ba-category-columns">
+      <!-- 技术 (tech) -->
+      <div class="ba-category-column">
+        <h3 class="ba-cat-header ba-cat-tech">
+          <i class="fas fa-laptop-code"></i> 技术博客
+        </h3>
+        <div class="ba-cat-posts cascade-list">
+          <% site.categories.findOne({name: 'tech'}).posts.sort('date', -1).each(function(post) { %>
+          <div class="ba-tag-post-item ba-card">
+            <span class="ba-archive-date"><%= date(post.date, 'YYYY-MM-DD') %></span>
+            <a href="<%= url_for(post.path) %>"><%= post.title %></a>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+
+      <!-- 随记 (note) -->
+      <div class="ba-category-column">
+        <h3 class="ba-cat-header ba-cat-note">
+          <i class="fas fa-feather"></i> 随记
+        </h3>
+        <div class="ba-cat-posts cascade-learning">
+          <% site.categories.findOne({name: 'note'}).posts.sort('date', -1).each(function(post) { %>
+          <div class="ba-tag-post-item ba-card">
+            <span class="ba-archive-date"><%= date(post.date, 'YYYY-MM-DD') %></span>
+            <a href="<%= url_for(post.path) %>"><%= post.title %></a>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

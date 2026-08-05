@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: category
 title: 分类
 permalink: /classify/
 ---
