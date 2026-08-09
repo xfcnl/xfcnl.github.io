@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "我发布的npm包“sl-file-server”"
-date: "2026-07-16"
+date: "2026-07-15"
 categories: [tech]
 tags: [npm, 发布, 分享]
 ---
