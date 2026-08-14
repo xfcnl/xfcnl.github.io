@@ -7,6 +7,7 @@
   <% var pageTitle = page.title || (page.archive ? '归档' : (page.category ? '分类：' + page.category : (page.tag ? '标签：' + page.tag : ''))); %>
   <title><%= pageTitle ? pageTitle + ' | ' + config.title : config.title %></title>
   <meta name="description" content="<%= page.description || config.description %>">
+  <meta name="msvalidate.01" content="D5445386A5E1A0BC14AD1610E2EB822F" />
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     script-src 'self' https://u.mikufans1.dpdns.org https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://giscus.app https://fonts.googleapis.com;
