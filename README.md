@@ -1,8 +1,8 @@
-# XF
+# Xf
 
 [GitHub](https://xfcnl.github.io)　[Cloudflare](https://husd.cc.cd)　[EdgeOne](https://blog.sfvg.de5.net)
 
-基于 [Hexo](https://hexo.io) 构建的自用博客，主题为自制的 `xf`。
+基于 [Hexo](https://hexo.io) 构建的自用博客，主题为自制的 `Omagari Hare`。
 
 ## 本地预览
 
@@ -24,7 +24,7 @@ npx hexo generate
 ```
 source/_posts/  — 博客文章
 source/_data/   — 配置数据（社交链接、友链等）
-themes/xf/      — 自制主题
+themes/omagari-hare/      — 自制主题
 ```
 
 ## 许可证
