@@ -127,11 +127,10 @@ hero_image_mobile: https://xiaofen.us.ci/raw/xfcnl/ba-assets/main/hero/hero-sp.j
 dynamic_url: https://xiaofen.us.ci/raw/xfcnl/get-bilibili-dynamic-for-ci/main/dynamic.json
 dynamic_sidebar_count: 2 # 侧边栏最多显示的动态条数
 
-# Stylus 压缩（已改用 CSS，无需 Stylus 配置）
+# Stylus 压缩
 stylus:
-  compress: false
+  compress: true
 
-# 归档
 archive_generator:
   enabled: true
   per_page: 0
