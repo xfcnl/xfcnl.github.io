@@ -1,5 +1,5 @@
 /* ============================================
-   xf_blog — Service Worker（由 Hexo 移植）
+   xf_blog — Service Worker
     策略:
       - 导航页面: 网络优先 + 3 秒超时回退到缓存
       - 静态资源: 缓存优先（CSS / JS / 图片）

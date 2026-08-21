@@ -1,0 +1,137 @@
+*,
+*::before,
+*::after
+  transition-timing-function ease
+
+@keyframes ba-bounce
+  0%
+    transform translateY(-1.667rem)
+  50%
+    transform translateY(0)
+  100%
+    transform translateY(-1.667rem)
+
+.bounce-top
+  animation ba-bounce 1s both infinite
+
+@keyframes typewriter-blink
+  0%, 100%
+    opacity 1
+  50%
+    opacity 0
+
+.typewriter::after
+  content '▍'
+  margin-left 0.1em
+  animation typewriter-blink 0.8s step-end infinite
+
+@keyframes fade-in
+  from
+    opacity 0
+  to
+    opacity 1
+
+.fade-in
+  animation fade-in 0.5s ease both
+
+@keyframes slide-in-top
+  from
+    transform translateY(-3.333rem)
+    opacity 0
+  to
+    transform translateY(0)
+    opacity 1
+
+.slide-in-top
+  animation slide-in-top 1s ease both
+
+@keyframes slide-in-right
+  from
+    transform translateX(3.333rem)
+    opacity 0
+  to
+    transform translateX(0)
+    opacity 1
+
+.slide-in-right
+  animation slide-in-right 1s ease both
+
+@keyframes slide-in-bottom
+  from
+    transform translateY(3.333rem)
+    opacity 0
+  to
+    transform translateY(0)
+    opacity 1
+
+.slide-in-bottom
+  animation slide-in-bottom 0.8s ease both
+
+for n in (1..10)
+  .cascade-list > *:nth-child({n})
+    animation slide-in-right 0.5s ease (n - 1) * 0.1s both
+
+for n in (1..6)
+  .cascade-up > *:nth-child({n})
+    delay = n == 1 ? 0s : 0.05s * n
+    animation slide-in-bottom 0.5s ease delay both
+
+.ba-card
+  background var(--ba-glass-bg)
+  border 1px solid var(--ba-glass-border)
+  border-radius 12px
+  transition all 0.3s ease
+  &:hover
+    background var(--ba-glass-bg-hover)
+    border-color var(--ba-glass-border-hover)
+    transform translateY(-2px)
+    box-shadow 0 8px 32px rgba(210, 224, 4, 0.2)
+
+.ba-btn
+  display inline-flex
+  align-items center
+  gap 0.5rem
+  padding 0.5rem 1.25rem
+  background var(--ba-primary)
+  color #384057
+  border none
+  border-radius 8px
+  font-family var(--ba-font-heading-zh)
+  font-size 0.875rem
+  cursor pointer
+  transition all 0.3s ease
+  text-decoration none
+  &:hover
+    background var(--ba-primary-hover)
+    transform scale(1.05)
+    box-shadow 0 4px 16px rgba(245, 128, 33, 0.3)
+
+.tag-pill
+  display inline-block
+  padding 0.25rem 0.75rem
+  background rgba(210, 224, 4, 0.15)
+  color var(--ba-primary-hover)
+  border 1px solid rgba(210, 224, 4, 0.25)
+  border-radius 999px
+  font-size 0.8rem
+  text-decoration none
+  transition all 0.3s ease
+  &:hover
+    background rgba(245, 128, 33, 0.2)
+    border-color var(--ba-primary)
+    color var(--ba-text)
+
+.wc-opacity
+  will-change opacity
+
+.wc-transform
+  will-change transform
+
+.wc-both
+  will-change transform, opacity
+
+.transition-fast
+  transition all 0.3s ease
+
+.transition-normal
+  transition all 0.5s ease
