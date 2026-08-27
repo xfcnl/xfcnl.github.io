@@ -5,7 +5,7 @@ hexo.extend.generator.register("indexnow-key", function () {
     return;
   }
   return {
-    path: key,
+    path: key + ".txt",
     data: key,
     layout: false,
   };

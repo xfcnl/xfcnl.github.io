@@ -27,7 +27,7 @@ async function submit(host, key, urlList) {
   const body = JSON.stringify({
     host,
     key,
-    keyLocation: "https://" + host + "/" + key,
+    keyLocation: "https://" + host + "/" + key + ".txt",
     urlList,
   });
   const res = await fetch(ENDPOINT, {
