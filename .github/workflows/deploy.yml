@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: Asia/Shanghai
+      INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -29,6 +30,8 @@ jobs:
         run: npm ci
       - name: Generate static files
         run: npx hexo generate
+      - name: Submit to IndexNow
+        run: node scripts/indexnow.js
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

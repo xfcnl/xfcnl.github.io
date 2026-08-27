@@ -1,36 +1,51 @@
 <% if (config.netease_player && config.netease_player.enable) { %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<div id="aplayer"></div>
+<style>
+.aplayer {
+  background: var(--ba-bg-base) !important;
+  color: var(--ba-text) !important;
+}
+.aplayer .aplayer-info .aplayer-music .aplayer-title,
+.aplayer .aplayer-info .aplayer-music .aplayer-author,
+.aplayer .aplayer-info .aplayer-controller .aplayer-time,
+.aplayer .aplayer-lrc p {
+  color: var(--ba-text) !important;
+}
+.aplayer .aplayer-info .aplayer-controller .aplayer-icon path {
+  fill: var(--ba-text) !important;
+}
+.aplayer .aplayer-lrc p.aplayer-lrc-current {
+  color: var(--ba-primary) !important;
+}
+.aplayer .aplayer-list ol li {
+  color: var(--ba-text) !important;
+  border-color: var(--ba-glass-border) !important;
+}
+.aplayer .aplayer-list ol li.aplayer-list-light {
+  background: var(--ba-glass-bg) !important;
+}
+.aplayer .aplayer-list ol li .aplayer-list-index,
+.aplayer .aplayer-list ol li .aplayer-list-author {
+  color: var(--ba-text-secondary) !important;
+}
+</style>
 <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-<script>
-(function() {
-  var ap = new APlayer({
-    container: document.getElementById('aplayer'),
-    fixed: true,
-    mini: true,
-    autoplay: false,
-    theme: '<%= config.netease_player.theme %>',
-    loop: 'list',
-    order: '<%= config.netease_player.order %>',
-    volume: <%= config.netease_player.volume %>,
-    mutex: true,
-    listFolded: true,
-    listMaxHeight: 200,
-    audio: []
-  });
-  fetch('https://api.i-meto.com/meting/netease/playlist/<%= config.netease_player.playlist_id %>')
-    .then(function(r) { return r.json(); })
-    .then(function(songs) {
-      songs.forEach(function(s) {
-        ap.list.add([{
-          name: s.title || s.name,
-          artist: s.artist || s.author,
-          url: s.url,
-          cover: s.cover,
-          lrc: s.lrc || ''
-        }]);
-      });
-    });
-})();
-</script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+<meting-js
+  server="netease"
+  type="playlist"
+  id="<%= config.netease_player.playlist_id %>"
+  api="https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&r=:r"
+  fixed="true"
+  mini="true"
+  autoplay="false"
+  theme="var(--ba-primary)"
+  loop="all"
+  order="<%= config.netease_player.order %>"
+  volume="<%= config.netease_player.volume %>"
+  mutex="true"
+  list-folded="true"
+  list-max-height="200px"
+  preload="none"
+></meting-js>
 <% } %>
