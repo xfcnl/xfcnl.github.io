@@ -1,0 +1,51 @@
+name: Auto Post (AI)
+
+on:
+  schedule:
+    # UTC 04:00 = 北京时间 12:00，每周一 / 三 / 五
+    - cron: "0 4 * * 1,3,5"
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "指定文章主题（留空则 AI 自由发挥）"
+        required: false
+        type: string
+
+permissions:
+  contents: write # 把新文章 push 回 main
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Generate AI post
+        id: ai
+        env:
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          AI_BASE_URL: ${{ secrets.AI_BASE_URL }}
+          AI_MODEL: ${{ secrets.AI_MODEL }}
+          AI_TOPIC: ${{ github.event.inputs.topic || '' }}
+        run: |
+          if node scripts/ai-post.mjs; then
+            echo "生成脚本执行完毕"
+          fi
+
+      - name: Commit and push
+        if: steps.ai.outputs.title != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$FILE"
+          git commit -m "🤖 auto post: $TITLE"
+          git push
+        env:
+          FILE: ${{ steps.ai.outputs.file }}
+          TITLE: ${{ steps.ai.outputs.title }}
