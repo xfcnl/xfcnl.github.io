@@ -24,22 +24,27 @@ function rewriteHost(url, host) {
 }
 
 async function submit(host, key, urlList) {
-  const body = JSON.stringify({
-    host,
-    key,
-    urlList,
-  });
-  const res = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body,
-  });
-  const text = await res.text();
-  console.log("[" + host + "] " + res.status + " " + res.statusText);
-  if (!res.ok) {
-    console.log(text);
+  let failed = 0;
+  let ok = 0;
+  for (const url of urlList) {
+    const target =
+      ENDPOINT +
+      "?url=" +
+      encodeURIComponent(url) +
+      "&key=" +
+      encodeURIComponent(key);
+    const res = await fetch(target);
+    if (res.ok) {
+      ok++;
+    } else {
+      failed++;
+      console.log("  [" + host + "] " + res.status + " " + url);
+    }
   }
-  return res.ok;
+  console.log(
+    "[" + host + "] ok=" + ok + " failed=" + failed + " (of " + urlList.length + ")"
+  );
+  return failed === 0;
 }
 
 async function main() {
