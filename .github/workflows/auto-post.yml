@@ -49,3 +49,10 @@ jobs:
         env:
           FILE: ${{ steps.ai.outputs.file }}
           TITLE: ${{ steps.ai.outputs.title }}
+
+      - name: Trigger deploy workflow
+        if: steps.ai.outputs.title != ''
+        # GITHUB_TOKEN 的 push 不会触发部署 workflow（GitHub 防递归限制），这里手动 dispatch
+        run: gh workflow run deploy.yml -R ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
