@@ -25,7 +25,8 @@
     "hexo-server": "^3.0.0"
   },
   "devDependencies": {
-    "sass-embedded": "^1.100.0"
+    "sass-embedded": "^1.100.0",
+    "workbox-build": "^7.4.1"
   },
   "overrides": {
     "jsdom": "24.1.3"
