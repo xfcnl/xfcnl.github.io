@@ -1,25 +1,66 @@
 <% if (config.netease_player && config.netease_player.enable) { %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <style>
-.aplayer {
+.aplayer,
+.aplayer .aplayer-body,
+.aplayer.aplayer-fixed .aplayer-body,
+.aplayer .aplayer-info,
+.aplayer .aplayer-controller {
   background: var(--ba-bg-base) !important;
+  color: var(--ba-text) !important;
+}
+.aplayer {
+  color: var(--ba-text) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35) !important;
+}
+.aplayer.aplayer-withlist .aplayer-info,
+.aplayer.aplayer-fixed .aplayer-info {
+  border-color: var(--ba-glass-border) !important;
+}
+.aplayer.aplayer-fixed .aplayer-lrc {
+  text-shadow: -1px -1px 0 var(--ba-bg-base) !important;
+  background: transparent !important;
+}
+.aplayer .aplayer-lrc:before {
+  background: linear-gradient(180deg, var(--ba-bg-base) 0, rgba(56, 64, 87, 0)) !important;
+}
+.aplayer .aplayer-notice {
+  background-color: var(--ba-glass-bg) !important;
   color: var(--ba-text) !important;
 }
 .aplayer .aplayer-info .aplayer-music .aplayer-title,
 .aplayer .aplayer-info .aplayer-music .aplayer-author,
 .aplayer .aplayer-info .aplayer-controller .aplayer-time,
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-time-inner,
 .aplayer .aplayer-lrc p {
   color: var(--ba-text) !important;
 }
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon path,
 .aplayer .aplayer-info .aplayer-controller .aplayer-icon path {
+  fill: var(--ba-text) !important;
+}
+.aplayer .aplayer-info .aplayer-controller .aplayer-icon:hover path {
+  fill: var(--ba-primary) !important;
+}
+
+.aplayer .aplayer-icon-mode,
+.aplayer .aplayer-icon-order {
   fill: var(--ba-text) !important;
 }
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
   color: var(--ba-primary) !important;
 }
+.aplayer .aplayer-list,
+.aplayer .aplayer-list ol {
+  background: var(--ba-bg-base) !important;
+  color: var(--ba-text) !important;
+}
 .aplayer .aplayer-list ol li {
   color: var(--ba-text) !important;
   border-color: var(--ba-glass-border) !important;
+}
+.aplayer .aplayer-list ol li:hover {
+  background: var(--ba-glass-bg) !important;
 }
 .aplayer .aplayer-list ol li.aplayer-list-light {
   background: var(--ba-glass-bg) !important;
@@ -27,6 +68,34 @@
 .aplayer .aplayer-list ol li .aplayer-list-index,
 .aplayer .aplayer-list ol li .aplayer-list-author {
   color: var(--ba-text-secondary) !important;
+}
+.aplayer .aplayer-bar-wrap .aplayer-bar {
+  background: var(--ba-glass-border) !important;
+}
+.aplayer .aplayer-bar-wrap .aplayer-bar .aplayer-loaded {
+  background: var(--ba-text-muted) !important;
+}
+.aplayer .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+  background: var(--ba-primary) !important;
+}
+.aplayer .aplayer-bar-wrap .aplayer-bar .aplayer-played .aplayer-thumb {
+  background: var(--ba-primary) !important;
+}
+.aplayer .aplayer-volume-bar-wrap .aplayer-volume-bar {
+  background: var(--ba-glass-border) !important;
+}
+.aplayer .aplayer-volume-bar-wrap .aplayer-volume-bar .aplayer-volume {
+  background: var(--ba-primary) !important;
+}
+.aplayer .aplayer-miniswitcher {
+  background: var(--ba-bg-base) !important;
+}
+.aplayer .aplayer-miniswitcher .aplayer-icon path {
+  fill: var(--ba-text) !important;
+}
+.aplayer .aplayer-list ol li::-webkit-scrollbar-thumb,
+.aplayer .aplayer-lrc::-webkit-scrollbar-thumb {
+  background: var(--ba-glass-border) !important;
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
@@ -48,4 +117,25 @@
   list-max-height="200px"
   preload="none"
 ></meting-js>
+<script>
+(function () {
+  function setup() {
+    if (!window.aplayers || !window.aplayers.length) {
+      return setTimeout(setup, 300);
+    }
+    window.aplayers.forEach(function (ap) {
+      // 用 APlayer 自带的歌词开关按钮，初始化时模拟点击一次 -> 默认关闭歌词
+      var btn = ap.container.querySelector('.aplayer-icon-lrc');
+      if (btn && !btn.classList.contains('aplayer-icon-lrc-inactivity')) {
+        btn.click();
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
+})();
+</script>
 <% } %>
