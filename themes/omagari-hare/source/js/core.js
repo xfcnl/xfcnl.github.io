@@ -4,6 +4,13 @@
    ======================================== */
 
 (function () {
+  // ---- Service Worker 注册（静态资源缓存） ----
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("/sw.js").catch(function () {});
+    });
+  }
+
   // ---- Hero 标题终端打字效果 ----
   var typewriterEl = document.querySelector(".hero-title.typewriter");
   if (typewriterEl) {

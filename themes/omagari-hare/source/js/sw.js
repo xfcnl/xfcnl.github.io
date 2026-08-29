@@ -1,15 +1,28 @@
 /* ============================================
    xf_blog — Service Worker
-    策略:
-      - 导航页面: 网络优先 + 3 秒超时回退到缓存
-      - 静态资源: 缓存优先（CSS / JS / 图片）
-      - 首次访问: 页面发送 URL 列表 → SW 逐个缓存所有文章
+   策略:
+     - 所有同源请求（页面 + 静态资源）:
+       缓存优先，后台更新（stale-while-revalidate）
+     - 激活时预缓存首页等核心页面
+     - 离线时直接由缓存提供页面
    ============================================ */
 
-var CACHE_NAME = 'xf-blog-v1'
+var CACHE_NAME = 'xf-blog-v4'
 
-self.addEventListener('install', function() {
-  self.skipWaiting()
+// 激活时预缓存的核心页面
+var PRECACHE_URLS = ['/', '/archive/', '/classify/', '/tag/', '/about/', '/link/', '/search/']
+
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(function(cache) {
+      // 逐个缓存，单个失败不影响其它
+      return Promise.all(
+        PRECACHE_URLS.map(function(url) {
+          return cache.add(url).catch(function() {})
+        })
+      )
+    }).then(function() { return self.skipWaiting() })
+  )
 })
 
 self.addEventListener('activate', function(event) {
@@ -18,75 +31,41 @@ self.addEventListener('activate', function(event) {
       return Promise.all(
         keys.filter(function(k) { return k !== CACHE_NAME }).map(function(k) { return caches.delete(k) })
       )
-    })
+    }).then(function() { return self.clients.claim() })
   )
-})
-
-self.addEventListener('message', function(event) {
-  if (event.data && event.data.type === 'CACHE_URLS') {
-    event.waitUntil(
-      caches.open(CACHE_NAME).then(function(cache) {
-        var urls = event.data.urls
-        var cached = 0
-        var p = Promise.resolve()
-        urls.forEach(function(url) {
-          p = p.then(function() {
-            return fetch(url).then(function(resp) {
-              if (resp.ok) {
-                return cache.put(url, resp).then(function() { cached++ })
-              }
-            }).catch(function() {})
-          })
-        })
-        return p.then(function() {
-          event.source.postMessage({ type: 'PRECACHE_DONE', count: cached })
-        })
-      })
-    )
-  }
 })
 
 self.addEventListener('fetch', function(event) {
   var request = event.request
   var url = new URL(request.url)
 
+  if (request.method !== 'GET') return
   if (url.origin !== location.origin) return
 
-  if (request.mode === 'navigate') {
-    event.respondWith(networkFirst(request))
-  } else if (/\.(css|js|jpg|jpeg|png|gif|svg|webp|woff2?|ico)$/i.test(url.pathname)) {
-    event.respondWith(cacheFirst(request))
-  }
+  event.respondWith(staleWhileRevalidate(request))
 })
 
-function networkFirst(request) {
-  var timeout = 3000
-
-  return Promise.race([
-    fetch(request).then(function(resp) {
-      return caches.open(CACHE_NAME).then(function(cache) {
-        cache.put(request, resp.clone())
+function staleWhileRevalidate(request) {
+  return caches.open(CACHE_NAME).then(function(cache) {
+    return cache.match(request).then(function(cached) {
+      var fetchPromise = fetch(request).then(function(resp) {
+        if (resp.ok) cache.put(request, resp.clone())
         return resp
-      })
-    }),
-    new Promise(function(_, reject) {
-      setTimeout(function() { reject(new Error('timeout')) }, timeout)
-    })
-  ]).catch(function() {
-    return caches.match(request)
-  })
-}
+      }).catch(function() { return null })
 
-function cacheFirst(request) {
-  return caches.match(request).then(function(cached) {
-    if (cached) return cached
-    return fetch(request).then(function(resp) {
-      return caches.open(CACHE_NAME).then(function(cache) {
-        cache.put(request, resp.clone())
-        return resp
+      // 有缓存先返回缓存，后台更新；没缓存等网络
+      if (cached) return cached
+      return fetchPromise.then(function(resp) {
+        if (resp) return resp
+        // 离线且没有缓存
+        if (request.mode === 'navigate') {
+          return new Response('离线状态：此页面尚未缓存', {
+            status: 503,
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+          })
+        }
+        return new Response('Offline', { status: 503 })
       })
-    }).catch(function() {
-      return new Response('Offline', { status: 503 })
     })
   })
 }
