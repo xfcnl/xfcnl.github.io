@@ -1,0 +1,25 @@
+name: 新功能建议
+description: 想让博客加点什么新花样？
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 想解决什么问题
+      description: 现在的博客有什么让你不爽的地方？
+      placeholder: 每次我想……的时候都没法……
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: 期望的功能
+      description: 你希望它变成什么样？
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 有没有替代方案
+      description: 你考虑过别的实现方式吗？（选填）

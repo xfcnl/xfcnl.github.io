@@ -1,0 +1,35 @@
+name: 站内使用问题
+description: 使用过程中遇到困难？在这提交工单
+title: "[Help] "
+labels: [question]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: 问题类型
+      options:
+        - 网站访问不了
+        - 页面加载很慢
+        - RSS 订阅问题
+        - 评论相关
+        - 其他
+    validations:
+      required: true
+  - type: input
+    id: page_url
+    attributes:
+      label: 相关页面地址
+      placeholder: https://xfcnl.github.io/xxxx
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 说清楚你遇到了什么状况
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: 环境信息（选填）
+      description: 设备 / 系统 / 浏览器 / 网络环境，越详细越好排查
+      placeholder: Pixel 7 / Android 15 / Chrome / Wi-Fi

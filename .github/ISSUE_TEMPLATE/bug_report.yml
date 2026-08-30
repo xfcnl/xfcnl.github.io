@@ -1,0 +1,64 @@
+name: Bug 反馈
+description: 博客出现了 bug？来这报告吧
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: 出问题的地方
+      description: 大概是哪一类问题？
+      options:
+        - 页面显示异常
+        - 样式错乱
+        - 链接失效 / 404
+        - 构建 / 部署失败
+        - 其他
+    validations:
+      required: true
+  - type: input
+    id: page_url
+    attributes:
+      label: 出问题的页面地址
+      description: 把链接贴过来，方便定位
+      placeholder: https://xfcnl.github.io/xxxx
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 详细描述一下遇到了什么问题
+      placeholder: 我打开……发现……
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤
+      description: 怎么才能重现这个问题？
+      placeholder: 1. 打开……
+        2. 点击……
+        3. 出现……
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: 使用的浏览器
+      options:
+        - Chrome
+        - Edge
+        - Firefox
+        - Safari
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望的正常效果
+      description: 本来应该是什么样的？
+  - type: textarea
+    id: extra
+    attributes:
+      label: 截图 / 补充说明
+      description: 有截图的话直接粘贴在这里

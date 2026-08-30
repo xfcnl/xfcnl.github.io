@@ -1,0 +1,16 @@
+name: 其他反馈
+description: 不属于上面几类的任何事
+title: "[Other] "
+labels: [其他]
+body:
+  - type: textarea
+    id: content
+    attributes:
+      label: 想说点什么
+      description: 随意发挥
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充说明（选填）
