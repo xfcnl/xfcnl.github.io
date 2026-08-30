@@ -7,6 +7,7 @@ on:
 permissions:
   contents: write # 写 link.yaml 并 push 到 main
   issues: write   # 评论、关闭 Issue
+  actions: write  # gh workflow run deploy.yml 手动触发部署
 
 concurrency:
   group: add-link-${{ github.event.issue.number }}
