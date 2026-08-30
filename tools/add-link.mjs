@@ -41,7 +41,8 @@ async function gh(method, path, body) {
 
 async function parseInput() {
   const issue = await gh("GET", `/repos/${repo}/issues/${issueNumber}`);
-  const body = issue.body || "";
+  // GitHub API 返回的 body 用 CRLF 行尾、可能带 BOM，先归一化成 LF 再解析
+  const body = (issue.body || "").replace(/^\uFEFF/, "").replace(/\r\n/g, "\n");
   const pick = (label) => {
     const m = body.match(new RegExp(`### ${label}\\s*\\n+([\\s\\S]*?)(?=\\n### |$)`));
     return m ? m[1].trim() : "";
