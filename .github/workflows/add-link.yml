@@ -1,0 +1,53 @@
+name: Auto Add Friend Link
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write # 写 link.yaml 并 push 到 main
+  issues: write   # 评论、关闭 Issue
+
+concurrency:
+  group: add-link-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, '友链申请')
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Validate and add link
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node tools/add-link.mjs
+
+      - name: Commit and push
+        id: commit
+        run: |
+          if ! git diff --quiet -- "source/_data/link.yaml"; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add "source/_data/link.yaml"
+            git commit -m "🔗 友链申请: ${{ github.event.issue.title }}"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "link.yaml 无变更，跳过提交"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Trigger deploy workflow
+        if: steps.commit.outputs.changed == 'true'
+        # GITHUB_TOKEN 的 push 不会触发部署 workflow，这里手动 dispatch
+        run: gh workflow run deploy.yml -R ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

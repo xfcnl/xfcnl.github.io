@@ -1,0 +1,50 @@
+name: 友链申请
+description: 想交换友链？填这个表单，机器人会自动审核并添加
+title: "[友链] "
+labels: [友链申请]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢交换友链！请确保你已经在自己的友链页面添加了本站链接（https://xfcnl.github.io），
+        提交后机器人会自动校验，通过后直接上线。
+  - type: input
+    id: name
+    attributes:
+      label: 网站名称
+      description: 显示在友链卡片上的名字
+      placeholder: 某某的小窝
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: 可访问链接
+      description: 你的网站首页地址
+      placeholder: https://example.com
+    validations:
+      required: true
+  - type: input
+    id: desc
+    attributes:
+      label: 网站描述
+      description: 一句话介绍你的网站
+      placeholder: 记录生活与技术
+    validations:
+      required: true
+  - type: input
+    id: avatar
+    attributes:
+      label: 网站头像链接
+      description: 方形图片最佳，需可直接访问
+      placeholder: https://example.com/avatar.png
+    validations:
+      required: true
+  - type: input
+    id: linkpage
+    attributes:
+      label: 友链页面链接
+      description: 你网站上放置友链的页面地址，域名必须和「可访问链接」完全一致，且页面中需包含指向本站的链接
+      placeholder: https://example.com/link/
+    validations:
+      required: true
