@@ -101,3 +101,8 @@
   url: https://blog.wudarensheng.top/
   avatar: https://q2.qlogo.cn/headimg_dl?dst_uin=3574552394&spec=0
   desc: 远赴人间惊鸿宴，一睹人间盛世颜。
+
+- name: 自动友链测试站
+  url: "https://gist.github.com/xfcnl/f215f1a30b1ea62541cecdd02a558712"
+  avatar: "https://github.com/fluidicon.png"
+  desc: "测试自动友链 workflow 的临时站点"
