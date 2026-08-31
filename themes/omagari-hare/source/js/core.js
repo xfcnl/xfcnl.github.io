@@ -268,7 +268,18 @@
     }
 
     function doSearch() {
-      var keyword = searchInput.value.trim().toLowerCase();
+      var rawKeyword = searchInput.value.trim();
+      var keyword = rawKeyword.toLowerCase();
+      // URL 同步 ?q= 参数（不刷新页面），与导航栏搜索框跳转行为一致，方便分享链接
+      try {
+        var newUrl =
+          window.location.pathname +
+          (rawKeyword ? "?q=" + encodeURIComponent(rawKeyword) : "");
+        if (window.location.search !==
+          (rawKeyword ? "?q=" + encodeURIComponent(rawKeyword) : "")) {
+          history.replaceState(null, "", newUrl);
+        }
+      } catch (e) {}
       if (!keyword) {
         searchResults.innerHTML = '<p class="ba-text-muted">请先输入关键词讷~</p>';
         return;

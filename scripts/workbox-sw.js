@@ -57,7 +57,10 @@ hexo.on("generateAfter", async () => {
     globIgnores: ["sw.js", "**/*.map"],
 
     navigateFallback: "/index.html",
-    navigateFallbackDenylist: [/^\/api\//, /\.json$/],
+    // 搜索页导航带 ?q= 参数，precache 的 directoryIndex 变体会带 query 导致无法命中，
+    // 会被 navigateFallback 无脑替换成首页（URL 变了但页面不跳）。
+    // 因此把 /search/ 排除出 fallback，让它走 NetworkFirst 页面路由从网络取真实搜索页。
+    navigateFallbackDenylist: [/^\/api\//, /\.json$/, /\/search\//],
 
     runtimeCaching: [
       // 页面导航 / HTML：网络优先，离线回退缓存
