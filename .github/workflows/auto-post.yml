@@ -35,6 +35,8 @@ jobs:
           AI_MODEL: ${{ secrets.AI_MODEL }}
           AI_TOPIC: ${{ github.event.inputs.topic || '' }}
           AI_TRIGGER: ${{ github.event_name }}
+          ZHIHU_ACCESS_SECRET: ${{ secrets.ZHIHU_ACCESS_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if node tools/ai-post.mjs; then
             echo "生成脚本执行完毕"

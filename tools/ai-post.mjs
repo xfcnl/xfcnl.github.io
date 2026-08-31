@@ -108,16 +108,171 @@ function countChars(md) {
   return md.replace(/\s/g, "").length;
 }
 
+// —— 热榜素材抓取 ——
+
+async function fetchJson(url, options = {}, timeoutMs = 12_000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, { ...options, signal: controller.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function fetchBiliTrending() {
+  const data = await fetchJson(
+    "https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all",
+    {
+      headers: { "User-Agent": "Mozilla/5.0", Referer: "https://www.bilibili.com" },
+    },
+  );
+  const list = data?.data?.list;
+  if (data?.code !== 0 || !Array.isArray(list))
+    throw new Error("bilibili: 响应结构异常");
+  return list.slice(0, 15).map((v) => ({
+    title: v.title,
+    url: `https://www.bilibili.com/video/${v.bvid}`,
+  }));
+}
+
+async function fetchGithubTrending() {
+  const since = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+  const data = await fetchJson(
+    `https://api.github.com/search/repositories?q=created:%3E${since}&sort=stars&order=desc&per_page=10`,
+    {
+      headers: {
+        "User-Agent": "xfcnl-blog",
+        Accept: "application/vnd.github+json",
+        ...(process.env.GITHUB_TOKEN
+          ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` }
+          : {}),
+      },
+    },
+  );
+  if (!Array.isArray(data?.items)) throw new Error("github: 响应结构异常");
+  return data.items.slice(0, 10).map((r) => ({
+    name: r.full_name,
+    url: r.html_url,
+    desc: r.description ?? "",
+    stars: r.stargazers_count ?? 0,
+    lang: r.language ?? "",
+  }));
+}
+
+async function fetchZhihuTrending() {
+  const secret = process.env.ZHIHU_ACCESS_SECRET?.trim();
+  if (!secret) {
+    console.log("[素材] zhihu: 未配置 ZHIHU_ACCESS_SECRET，跳过");
+    return null;
+  }
+  const data = await fetchJson(
+    "https://developer.zhihu.com/api/v1/content/hot_list?Limit=15",
+    {
+      headers: {
+        Authorization: `Bearer ${secret}`,
+        "X-Request-Timestamp": String(Math.floor(Date.now() / 1000)),
+        "Content-Type": "application/json",
+      },
+    },
+  );
+  const items = data?.Data?.Items;
+  if (data?.Code !== 0 || !Array.isArray(items))
+    throw new Error("zhihu: 响应结构异常");
+  return items.slice(0, 15).map((it) => ({ title: it.Title, url: it.Url }));
+}
+
+async function collectMaterials() {
+  const dev = [];
+  const life = [];
+  const logs = [];
+  const jobs = [
+    ["github", async () => dev.push(...(await fetchGithubTrending()))],
+    ["bilibili", async () => life.push(...(await fetchBiliTrending()))],
+    [
+      "zhihu",
+      async () => {
+        const z = await fetchZhihuTrending();
+        if (z) life.push(...z);
+      },
+    ],
+  ];
+  await Promise.all(
+    jobs.map(async ([name, fn]) => {
+      try {
+        await fn();
+        logs.push(`${name}: ok`);
+      } catch (err) {
+        logs.push(`${name}: 失败(${err.message})`);
+      }
+    }),
+  );
+  logs.forEach((l) => console.log(`[素材] ${l}`));
+  return { dev, life };
+}
+
+function pickTrendingTopic({ dev, life }) {
+  // 50% 开发类（GitHub）/ 50% 生活类（B站+知乎）
+  const coin = Math.random() < 0.5 ? "dev" : "life";
+  let kind = coin;
+  let pool = kind === "dev" ? dev : life;
+  if (pool.length === 0) {
+    kind = kind === "dev" ? "life" : "dev";
+    pool = kind === "dev" ? dev : life;
+    if (pool.length === 0) return null;
+  }
+  const item = pool[Math.floor(Math.random() * pool.length)];
+  return { kind, pool, item };
+}
+
+function formatDevList(list) {
+  return list
+    .slice(0, 10)
+    .map(
+      (m, i) =>
+        `${i + 1}. ${m.name}（⭐${m.stars}${m.lang ? ` / ${m.lang}` : ""}）\n   ${m.desc || m.url}\n   ${m.url}`,
+    )
+    .join("\n");
+}
+
+function formatLifeList(list) {
+  return list
+    .slice(0, 10)
+    .map((m, i) => `${i + 1}. ${m.title}\n   ${m.url}`)
+    .join("\n");
+}
+
 async function generate() {
   const topic = process.env.AI_TOPIC?.trim();
+  const materials = await collectMaterials();
+
+  let userContent;
+  if (topic) {
+    const ref = [formatDevList(materials.dev), formatLifeList(materials.life)]
+      .filter(Boolean)
+      .join("\n");
+    userContent = `今天是 ${dateStr}，请围绕这个话题写一篇博客：「${topic}」${
+      ref ? `\n\n（附今日热榜素材，可自由选用或忽略）：\n${ref}` : ""
+    }`;
+  } else {
+    const pick = pickTrendingTopic(materials);
+    if (pick) {
+      const label = pick.kind === "dev" ? "开发/技术" : "生活/热点";
+      const list =
+        pick.kind === "dev" ? formatDevList(pick.pool) : formatLifeList(pick.pool);
+      console.log(`[选题] 方向=${label}`);
+      userContent = `今天是 ${dateStr}。以下是从今日热门抓到的【${label}】素材，挑一个你最有感触的话题写一篇博客（不要照搬素材标题，用自己的雌小鬼口吻展开）：\n\n${list}`;
+    } else {
+      console.log("[选题] 无可用素材，自由发挥");
+      userContent = `今天是 ${dateStr}，写一篇新博客吧。`;
+    }
+  }
+
   const messages = [
     { role: "system", content: SYSTEM_PROMPT },
-    {
-      role: "user",
-      content: topic
-        ? `今天是 ${dateStr}，请围绕这个话题写一篇博客：「${topic}」`
-        : `今天是 ${dateStr}，写一篇新博客吧。`,
-    },
+    { role: "user", content: userContent },
   ];
 
   let lastErr = null;
