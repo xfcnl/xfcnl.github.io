@@ -52,7 +52,7 @@ push 到 `main` 后由 [`.github/workflows/deploy.yml`](.github/workflows/deploy
 
 ## 其他功能
 
-- **PWA / Service Worker**：构建后由 [`scripts/workbox-sw.js`](scripts/workbox-sw.js) 自动生成 `sw.js`，页面 NetworkFirst、静态资源 CacheFirst，可离线访问
+- **PWA / Service Worker**：~~构建后由 [`scripts/workbox-sw.js`](scripts/workbox-sw.js) 自动生成 `sw.js`，页面 NetworkFirst、静态资源 CacheFirst，可离线访问~~（已停用，代码已注释，保留脚本便于日后恢复）
 - **RSS 订阅**：`/feed.xml`（[`_config.yml`](_config.yml) 的 `feed` 项）
 - **站点地图**：`/sitemap.xml`，构建时同时给 SEO 与 IndexNow 使用
 - **统计**：Umami 访问统计（`umami_url` / `umami_website_id`）
@@ -67,7 +67,7 @@ source/_data/         — 配置数据（link.yaml 友链、social.yml 社交链
 source/*.md           — 独立页面（友链、搜索、关于、动态、404 等）
 themes/omagari-hare/  — 自制主题
 tools/                — AI 发文、友链审核脚本（ESM）
-scripts/              — IndexNow 提交、PWA Service Worker 构建（CJS，构建时挂载到 Hexo）
+scripts/              — IndexNow 提交、PWA Service Worker 构建（CJS，构建时挂载到 Hexo；SW 已停用，脚本整体注释）
 .github/workflows/    — 自动部署、AI 发文、友链审核工作流
 ```
 

@@ -15,9 +15,15 @@
 <script>
 (function() {
   var container = document.getElementById('dynamicsList');
-  fetch('<%= config.dynamic_url %>')
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
+  var ctrl = new AbortController();
+  var timer = setTimeout(function(){ ctrl.abort(); }, 8000);
+  fetch('<%= config.dynamic_url %>', { signal: ctrl.signal })
+    .then(function(r) { return r.arrayBuffer(); })
+    .then(function(buf) {
+      clearTimeout(timer);
+      var text = new TextDecoder('utf-8').decode(buf);
+      if (text.indexOf('\ufffd') !== -1) text = new TextDecoder('gbk').decode(buf);
+      var data = JSON.parse(text);
       if (!data.dynamics || !data.dynamics.length) {
         container.innerHTML = '<p class="ba-text-muted">暂无动态~</p>';
         return;

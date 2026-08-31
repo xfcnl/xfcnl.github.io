@@ -5,11 +5,11 @@
 
 (function () {
   // ---- Service Worker 注册（静态资源缓存） ----
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function () {
-      navigator.serviceWorker.register("/sw.js").catch(function () {});
-    });
-  }
+  // if ("serviceWorker" in navigator) {
+  //   window.addEventListener("load", function () {
+  //     navigator.serviceWorker.register("/sw.js").catch(function () {});
+  //   });
+  // }
 
   // ---- Hero 标题终端打字效果 ----
   var typewriterEl = document.querySelector(".hero-title.typewriter");
@@ -74,15 +74,30 @@
   }
 
   // ---- 侧边栏 B站动态 加载（URL 与条数均由 _config.yml 注入的 BA_CONFIG 管理）----
+  // 先按 UTF-8 解析（当前 JSON 为 UTF-8）；若出现替换符则回退 GBK
+  function decodeDynamicJson(buf) {
+    var text = new TextDecoder("utf-8").decode(buf);
+    if (text.indexOf("\ufffd") !== -1) {
+      text = new TextDecoder("gbk").decode(buf);
+    }
+    return JSON.parse(text);
+  }
+
   var sidebarDyn = document.getElementById("sidebarDynamics");
   var dynamicUrl = window.BA_CONFIG && window.BA_CONFIG.dynamicUrl;
   var sidebarCount = (window.BA_CONFIG && window.BA_CONFIG.sidebarCount) || 2;
   if (sidebarDyn && dynamicUrl) {
-    fetch(dynamicUrl)
+    var dynAbort = new AbortController();
+    var dynTimer = setTimeout(function () {
+      dynAbort.abort();
+    }, 8000);
+    fetch(dynamicUrl, { signal: dynAbort.signal })
       .then(function (r) {
-        return r.json();
+        return r.arrayBuffer();
       })
-      .then(function (data) {
+      .then(function (buf) {
+        clearTimeout(dynTimer);
+        var data = JSON.parse(decodeDynamicJson(buf));
         if (!data.dynamics || !data.dynamics.length) {
           sidebarDyn.innerHTML = '<p class="ba-text-muted">暂无动态~</p>';
           return;
