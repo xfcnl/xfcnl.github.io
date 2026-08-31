@@ -17,7 +17,8 @@ const now = new Date(
 );
 const dateStr = now.toISOString().slice(0, 10);
 
-// 同日已有 AI 文章则跳过，避免手动触发时刷文
+// 定时触发时同日已有 AI 文章则跳过；手动触发（workflow_dispatch）即便有文章也照常写
+const isScheduled = process.env.AI_TRIGGER === "schedule";
 const aiToday = readdirSync(POSTS_DIR).some((f) => {
   if (!f.startsWith(dateStr)) return false;
   try {
@@ -29,7 +30,7 @@ const aiToday = readdirSync(POSTS_DIR).some((f) => {
     return false;
   }
 });
-if (aiToday) {
+if (isScheduled && aiToday) {
   console.log(`[skip] ${dateStr} 已有 AI 文章，今天歇了～`);
   process.exit(0);
 }

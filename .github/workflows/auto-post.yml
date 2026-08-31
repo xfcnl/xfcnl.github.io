@@ -34,6 +34,7 @@ jobs:
           AI_BASE_URL: ${{ secrets.AI_BASE_URL }}
           AI_MODEL: ${{ secrets.AI_MODEL }}
           AI_TOPIC: ${{ github.event.inputs.topic || '' }}
+          AI_TRIGGER: ${{ github.event_name }}
         run: |
           if node tools/ai-post.mjs; then
             echo "生成脚本执行完毕"
