@@ -3,6 +3,15 @@
     <a href="<%= url_for('/') %>" class="ba-nav-logo">
       <span class="ba-logo-text">Xf_blog</span>
     </a>
+    <form class="ba-nav-search" action="<%= url_for('/search/') %>" method="get">
+      <input
+        type="search"
+        name="q"
+        class="ba-nav-search-input"
+        placeholder="搜索..."
+        aria-label="搜索"
+      />
+    </form>
     <ul class="ba-nav-links" id="navLinks">
       <li><a href="<%= url_for('/') %>" class="ba-nav-link">首页</a></li>
       <li><a href="<%= config.sub_site_url %>" class="ba-nav-link" target="_blank" rel="noopener">副站</a></li>

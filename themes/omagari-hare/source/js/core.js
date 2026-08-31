@@ -229,6 +229,134 @@
     el.style.color = "var(--ba-primary)";
   });
 
+  // ---- 站内搜索 (search.json 全文检索) ----
+  var searchInput = document.getElementById("searchInput");
+  var searchResults = document.getElementById("searchResults");
+  var searchBtn = document.querySelector(".search-btn");
+  if (searchInput && searchResults && searchBtn) {
+    var searchIndex = null;
+
+    function loadSearchIndex(cb) {
+      if (searchIndex) {
+        cb(searchIndex);
+        return;
+      }
+      fetch("/search.json")
+        .then(function (r) {
+          return r.json();
+        })
+        .then(function (data) {
+          searchIndex = data.posts || [];
+          cb(searchIndex);
+        })
+        .catch(function () {
+          searchResults.innerHTML = '<p class="ba-text-muted">搜索数据加载失败~</p>';
+        });
+    }
+
+    function stripHtml(html) {
+      var div = document.createElement("div");
+      div.innerHTML = html || "";
+      return (div.textContent || "").replace(/\s+/g, " ").trim();
+    }
+
+    function escapeHtml(s) {
+      return String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    function doSearch() {
+      var keyword = searchInput.value.trim().toLowerCase();
+      if (!keyword) {
+        searchResults.innerHTML = '<p class="ba-text-muted">请先输入关键词讷~</p>';
+        return;
+      }
+      loadSearchIndex(function (posts) {
+        posts.forEach(function (p) {
+          if (!p._text) p._text = stripHtml(p.content);
+        });
+
+        var hits = [];
+        posts.forEach(function (p) {
+          var titleHit =
+            p.title && p.title.toLowerCase().indexOf(keyword) !== -1;
+          var contentHit =
+            p._text && p._text.toLowerCase().indexOf(keyword) !== -1;
+          if (titleHit || contentHit) hits.push({ post: p, titleHit: titleHit });
+        });
+
+        hits.sort(function (a, b) {
+          if (a.titleHit !== b.titleHit) return a.titleHit ? -1 : 1;
+          return 0;
+        });
+
+        if (!hits.length) {
+          searchResults.innerHTML =
+            '<p class="ba-text-muted">没有找到包含「' +
+            escapeHtml(keyword) +
+            '」的文章~</p>';
+          return;
+        }
+
+        searchResults.innerHTML =
+          '<p class="ba-search-count">共找到 ' + hits.length + ' 篇文章</p>';
+        var list = document.createElement("div");
+        hits.forEach(function (h) {
+          var item = document.createElement("div");
+          item.className = "ba-search-item";
+
+          var header = document.createElement("div");
+          header.className = "ba-search-item-head";
+          var a = document.createElement("a");
+          a.className = "ba-search-title";
+          a.href = h.post.url;
+          a.textContent = h.post.title || "无标题";
+          var type = document.createElement("span");
+          type.className = "ba-search-type";
+          type.textContent = h.post.type || "";
+          header.appendChild(a);
+          header.appendChild(type);
+          item.appendChild(header);
+
+          var meta = document.createElement("div");
+          meta.className = "ba-search-meta";
+          meta.textContent = h.post.date || "";
+          item.appendChild(meta);
+
+          var text = h.post._text;
+          var idx = text.toLowerCase().indexOf(keyword);
+          var start = Math.max(0, idx - 20);
+          var end = Math.min(text.length, idx + keyword.length + 40);
+          var snippet =
+            (start > 0 ? "..." : "") +
+            text.slice(start, end) +
+            (end < text.length ? "..." : "");
+          var snip = document.createElement("div");
+          snip.className = "ba-search-snippet";
+          snip.textContent = snippet;
+          item.appendChild(snip);
+
+          list.appendChild(item);
+        });
+        searchResults.appendChild(list);
+      });
+    }
+
+    searchBtn.addEventListener("click", doSearch);
+    searchInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") doSearch();
+    });
+
+    // 从 URL ?q= 参数自动填充并搜索（导航栏搜索框跳转带参）
+    var urlParam = new URLSearchParams(window.location.search).get("q");
+    if (urlParam) {
+      searchInput.value = urlParam;
+      doSearch();
+    }
+  }
+
   // ---- Nav active state (根据当前 URL 高亮导航) ----
   var path = window.location.pathname.replace(/\/$/, "");
   document

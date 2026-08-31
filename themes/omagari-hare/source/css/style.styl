@@ -58,6 +58,28 @@ img
   text-decoration none
   font-size 1.1rem
 
+.ba-nav-search
+  display flex
+  align-items center
+  margin-left 1rem
+
+.ba-nav-search-input
+  width 180px
+  padding 0.4rem 0.9rem
+  font-size 0.85rem
+  font-family var(--ba-font-body-zh)
+  color var(--ba-text)
+  background var(--ba-glass-bg)
+  border 1px solid var(--ba-glass-border)
+  border-radius 20px
+  outline none
+  transition all 0.3s ease
+  &::placeholder
+    color var(--ba-text-muted)
+  &:focus
+    border-color var(--ba-primary)
+    width 220px
+
 .ba-nav-links
   display flex
   list-style none
@@ -804,6 +826,86 @@ img
   font-size 0.95rem
   line-height 1.8
 
+.search-input
+  width 100%
+  padding 0.7rem 1rem
+  font-size 0.95rem
+  font-family var(--ba-font-body-zh)
+  color var(--ba-text)
+  background var(--ba-glass-bg)
+  border 1px solid var(--ba-glass-border)
+  border-radius 8px
+  outline none
+  transition border-color 0.3s ease, box-shadow 0.3s ease
+  &::placeholder
+    color var(--ba-text-muted)
+  &:focus
+    border-color var(--ba-primary)
+    box-shadow 0 0 0 3px rgba(210, 224, 4, 0.15)
+
+.search-btn
+  width 100%
+  margin-top 0.75rem
+  padding 0.6rem 0
+  font-size 0.95rem
+  font-family var(--ba-font-body-zh)
+  color #fff
+  background var(--ba-primary)
+  border none
+  border-radius 8px
+  cursor pointer
+  transition opacity 0.3s ease
+  &:hover
+    opacity 0.85
+
+.ba-search-count
+  margin-top 1.5rem
+  margin-bottom 0.75rem
+  font-size 0.8rem
+  color var(--ba-text-muted)
+
+.ba-search-item
+  padding 0.9rem 1.1rem
+  margin-bottom 0.75rem
+  background var(--ba-glass-bg)
+  border 1px solid var(--ba-glass-border)
+  border-radius 8px
+  transition all 0.3s ease
+  &:hover
+    background var(--ba-glass-bg-hover)
+
+.ba-search-item-head
+  display flex
+  align-items center
+  gap 0.5rem
+
+.ba-search-title
+  font-family var(--ba-font-heading-zh)
+  font-size 0.95rem
+  color var(--ba-text) !important
+  &:hover
+    color var(--ba-primary-hover) !important
+
+.ba-search-type
+  flex-shrink 0
+  padding 0.1rem 0.4rem
+  font-size 0.68rem
+  color var(--ba-primary)
+  border 1px solid var(--ba-primary)
+  border-radius 4px
+
+.ba-search-meta
+  margin 0.25rem 0 0.35rem
+  font-size 0.75rem
+  color var(--ba-text-muted)
+
+.ba-search-snippet
+  font-size 0.82rem
+  color var(--ba-text-secondary)
+  line-height 1.6
+  overflow-wrap anywhere
+  word-break break-word
+
 @media (max-width: 768px)
   .page-with-sidebar
     flex-direction column
@@ -849,3 +951,10 @@ img
       font-size 0.95rem
   .ba-nav-toggle
     display flex
+  .ba-nav-search
+    margin-left auto
+    .ba-nav-search-input
+      width 110px
+      font-size 0.8rem
+      &:focus
+        width 140px
