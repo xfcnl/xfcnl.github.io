@@ -47,7 +47,8 @@
       });
       container.innerHTML = html;
     })
-    .catch(function() {
+    .catch(function(err) {
+      console.error('[dynamics] 动态页加载失败：', err);
       container.innerHTML = '<p class="ba-text-muted">加载失败，请稍后重试~</p>';
     });
 })();

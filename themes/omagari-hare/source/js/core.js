@@ -97,7 +97,7 @@
       })
       .then(function (buf) {
         clearTimeout(dynTimer);
-        var data = JSON.parse(decodeDynamicJson(buf));
+        var data = decodeDynamicJson(buf);
         if (!data.dynamics || !data.dynamics.length) {
           sidebarDyn.innerHTML = '<p class="ba-text-muted">暂无动态~</p>';
           return;
@@ -134,7 +134,8 @@
         });
         sidebarDyn.innerHTML = html;
       })
-      .catch(function () {
+      .catch(function (err) {
+        console.error("[dynamics] 侧边栏动态加载失败：", err);
         sidebarDyn.innerHTML = '<p class="ba-text-muted">加载失败</p>';
       });
   }
