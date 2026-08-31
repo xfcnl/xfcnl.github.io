@@ -5,7 +5,9 @@
     </a>
     <ul class="ba-nav-links" id="navLinks">
       <li><a href="<%= url_for('/') %>" class="ba-nav-link">首页</a></li>
+      <li><a href="<%= config.sub_site_url %>" class="ba-nav-link" target="_blank" rel="noopener">副站</a></li>
       <li><a href="<%= url_for('/link/') %>" class="ba-nav-link">友链</a></li>
+      <li><a href="<%= url_for('/search/') %>" class="ba-nav-link">搜索</a></li>
       <li>
         <a href="<%= url_for('/archive/') %>" class="ba-nav-link">归档</a>
       </li>

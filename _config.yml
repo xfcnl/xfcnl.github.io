@@ -120,11 +120,11 @@ avatar: http://xiaofen.us.ci/raw/xfcnl/xfcnl.github.io/main/image/MEITU_20260128
 favicon: http://xiaofen.us.ci/raw/xfcnl/xfcnl.github.io/main/image/MEITU_20260128_220225596.jpg
 
 # Hero 首页封面图
-hero_image: https://xiaofen.us.ci/raw/xfcnl/ba-assets/main/hero/hero.jpg
-hero_image_mobile: https://xiaofen.us.ci/raw/xfcnl/ba-assets/main/hero/hero-sp.jpg
+hero_image: https://ba-assets.pages.dev/hero/hero.jpg
+hero_image_mobile: https://ba-assets.pages.dev/hero/hero-sp.jpg
 
 # B站动态加载配置
-dynamic_url: https://xiaofen.us.ci/raw/xfcnl/get-bilibili-dynamic-for-ci/main/dynamic.json
+dynamic_url: https://get-bilibili-dynamic-for-ci.pages.dev/dynamic.json
 dynamic_sidebar_count: 2 # 侧边栏最多显示的动态条数
 
 # Stylus 压缩
