@@ -818,20 +818,28 @@ img
   .ba-related-grid
     grid-template-columns 1fr
   .ba-nav-links
-    display none
+    display flex
     flex-direction column
-    position absolute
+    align-items stretch
+    position fixed
     top 60px
-    left 0
     right 0
+    width 60%
+    height calc(100vh - 60px)
     background rgba(56, 64, 87, 0.97)
     backdrop-filter blur(20px)
-    border-bottom 1px solid var(--ba-glass-border)
+    -webkit-backdrop-filter blur(20px)
+    border-left 1px solid var(--ba-glass-border)
     padding 1rem
     gap 0.25rem
+    transform translateX(100%)
+    visibility hidden
+    transition transform 0.3s ease, visibility 0.3s ease
     &.show
-      display flex
+      transform translateX(0)
+      visibility visible
     .ba-nav-link
       padding 0.6rem 1rem
+      font-size 0.95rem
   .ba-nav-toggle
     display flex
