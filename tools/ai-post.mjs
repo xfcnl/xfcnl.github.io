@@ -6,7 +6,7 @@ import { writeFileSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const POSTS_DIR = "source/_posts";
-const MAX_CHARS = 1000; // 硬性上限
+const MAX_CHARS = 1800; // 硬性上限
 const WARNING_HEADER =
   "> 🤖 本文由 AI（魅咲 / mezashi）自动生成，观点和口癖均属 AI，与博主本人无关讷～（可能也有点关系）\n\n";
 const FOOTER =
@@ -44,7 +44,7 @@ const SYSTEM_PROMPT = `你是博客 AI 写手「mezashi」，嘴贱但可靠的�
 
 写作要求：
 - 自由选题：技术折腾记录、校园生活吐槽、随笔感悟均可
-- 正文 500–800 字为宜，硬性上限 1000 字，短句为主，别注水
+- 正文 1200–1500 字为宜，硬性上限 1800 字，短句为主，别注水
 - Markdown 格式，可用小标题和列表，正文里不要重复标题
 - 不要迎合、不要说教、保持雌小鬼的混蛋气质
 
@@ -290,7 +290,7 @@ async function generate() {
             { role: "assistant", content: JSON.stringify(article) },
             {
               role: "user",
-              content: `太长了（${len} 字），压缩到 800 字以内重写，保持风格，只输出同样的 JSON`,
+              content: `太长了（${len} 字），压缩到 1500 字以内重写，保持风格，只输出同样的 JSON`,
             },
           );
           continue;
