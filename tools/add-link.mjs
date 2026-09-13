@@ -17,7 +17,9 @@ const issueNumber = process.env.ISSUE_NUMBER;
 const token = process.env.GITHUB_TOKEN;
 
 const LINK_YAML = "source/_data/link.yaml";
-const SITE = "xfcnl.github.io";
+const SITE = "xfchannel.top";
+// 反链检查：指向任一入口域名都算通过（新主域名 / GitHub Pages 源站 / 旧镜像）
+const SITE_ALIASES = [SITE, "xfcnl.github.io", "husd.cc.cd", "blog.sfvg.de5.net"];
 
 const api = "https://api.github.com";
 
@@ -163,7 +165,7 @@ async function main() {
     await fail(`**友链页面链接** ${linkpage} 无法访问（连接超时或 DNS 解析失败）。`);
     process.exit(0);
   }
-  if (!html.includes(SITE)) {
+  if (!SITE_ALIASES.some((host) => html.includes(host))) {
     await fail(
       `**友链页面链接** ${linkpage} 没有发现指向本站（${SITE}）的链接，\n` +
         "请在自己的友链页添加本站友链后再来申请。",

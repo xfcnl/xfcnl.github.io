@@ -21,7 +21,7 @@ body:
     attributes:
       label: 出问题的页面地址
       description: 把链接贴过来，方便定位
-      placeholder: https://xfcnl.github.io/xxxx
+      placeholder: https://xfchannel.top/xxxx
   - type: textarea
     id: description
     attributes:

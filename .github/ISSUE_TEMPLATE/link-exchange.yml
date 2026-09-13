@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        感谢交换友链！请确保你已经在自己的友链页面添加了本站链接（https://xfcnl.github.io），
+        感谢交换友链！请确保你已经在自己的友链页面添加了本站链接（https://xfchannel.top），
         提交后机器人会自动校验，通过后直接上线。
   - type: input
     id: name

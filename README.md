@@ -1,9 +1,10 @@
 # Xf
 
-[GitHub](https://xfcnl.github.io)　[Cloudflare](https://husd.cc.cd)　[EdgeOne](https://blog.sfvg.de5.net)
+[xfchannel.top](https://xfchannel.top)　[GitHub Pages](https://xfcnl.github.io)　[Cloudflare 旧入口](https://husd.cc.cd)　[EdgeOne](https://blog.sfvg.de5.net)
 
 基于 [Hexo](https://hexo.io) 构建的自用博客，主题为自制的 `Omagari Hare`
-同一份构建产物通过三个入口访问：GitHub Pages 主站 + Cloudflare / EdgeOne 备用站点
+主域名为 `xfchannel.top`（Cloudflare CDN 回源 GitHub Pages），另保留 GitHub Pages 源站与 Cloudflare / EdgeOne 备用入口
+同一份构建产物，多个入口访问
 
 ## 本地预览
 
@@ -26,7 +27,7 @@ npm run clear
 ## 自动部署
 
 push 到 `main` 后由 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) 自动构建并部署到 GitHub Pages：
-构建完成后上传 Pages artifact → `pages/deploy-pages` 部署 → push 触发时额外运行 `scripts/indexnow.js` 向 IndexNow 提交新 URL（覆盖 GitHub / Cloudflare / EdgeOne 三个域名，需配置 `INDEXNOW_KEY`）
+构建完成后上传 Pages artifact → `pages/deploy-pages` 部署 → push 触发时额外运行 `scripts/indexnow.js` 向 IndexNow 提交新 URL（覆盖 xfchannel.top / GitHub Pages / Cloudflare / EdgeOne 四个域名，需配置 `INDEXNOW_KEY`）
 也可在 Actions 页手动触发，或执行 `gh workflow run deploy.yml`
 
 ## AI 自动发文
@@ -45,7 +46,7 @@ push 到 `main` 后由 [`.github/workflows/deploy.yml`](.github/workflows/deploy
 1. 字段齐全、URL 格式合法
 2. 友链页面与可访问链接域名一致
 3. 可访问链接、头像均可访问
-4. 友链页面必须包含指向本站的链接
+4. 友链页面必须包含指向本站（`xfchannel.top` 或任一入口域名）的链接
 5. 已存在的友链自动去重
 
 全部通过 → 写入 `source/_data/link.yaml` → push → 联动部署，评论并关闭 Issue；不通过则在 Issue 里说明原因，改完触发 `edited` 自动重试

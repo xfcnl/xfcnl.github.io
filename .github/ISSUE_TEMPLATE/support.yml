@@ -19,7 +19,7 @@ body:
     id: page_url
     attributes:
       label: 相关页面地址
-      placeholder: https://xfcnl.github.io/xxxx
+      placeholder: https://xfchannel.top/xxxx
   - type: textarea
     id: description
     attributes:

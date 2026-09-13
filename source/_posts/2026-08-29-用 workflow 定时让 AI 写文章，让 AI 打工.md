@@ -290,7 +290,7 @@ try {
 
 我也不知道，随手定的，如果你非要给理由可以看看
 
-[本站新功能：AI 魅咲自动写博客上线啦（杂鱼站长狂喜） | xf_blog](https://xfcnl.github.io/note/2026-08-28-ai-mtcv0szj/#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%91%A8%E4%B8%80%E4%B8%89%E4%BA%94%E4%B8%AD%E5%8D%88)
+[本站新功能：AI 魅咲自动写博客上线啦（杂鱼站长狂喜） | xf_blog](https://xfchannel.top/note/2026-08-28-ai-mtcv0szj/#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%91%A8%E4%B8%80%E4%B8%89%E4%BA%94%E4%B8%AD%E5%8D%88)
 
 至于为什么周六周日没有呢，因为双休啊，有时间自己写了
 

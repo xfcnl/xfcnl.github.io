@@ -8,7 +8,7 @@ language: zh-CN
 timezone: Asia/Shanghai
 
 # 网址
-url: https://xfcnl.github.io
+url: https://xfchannel.top
 permalink: :category/:year-:month-:day-:title/
 permalink_defaults:
   category: tech

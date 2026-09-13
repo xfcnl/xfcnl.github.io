@@ -3,7 +3,13 @@
 const fs = require("fs");
 const path = require("path");
 
-const HOSTS = ["xfcnl.github.io", "husd.cc.cd", "blog.sfvg.de5.net"];
+// 主域名（Cloudflare CDN）在前，其余为 GitHub Pages 源站与备用入口
+const HOSTS = [
+  "xfchannel.top",
+  "xfcnl.github.io",
+  "husd.cc.cd",
+  "blog.sfvg.de5.net",
+];
 const ENDPOINT = "https://api.indexnow.org/indexnow";
 
 function readUrls() {
