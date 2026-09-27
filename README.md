@@ -27,7 +27,7 @@ npm run clear
 ## 自动部署
 
 push 到 `main` 后由 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) 自动构建并部署到 GitHub Pages：
-构建完成后上传 Pages artifact → `pages/deploy-pages` 部署 → push 触发时额外运行 `scripts/indexnow.js` 向 IndexNow 提交新 URL（覆盖 xfchannel.top / GitHub Pages / Cloudflare / EdgeOne 四个域名，需配置 `INDEXNOW_KEY`）
+构建完成后上传 Pages artifact → `pages/deploy-pages` 部署 → push 触发时额外运行 `scripts/indexnow.js` 向 IndexNow 提交新 URL（仅提交主域名 xfchannel.top，需配置 `INDEXNOW_KEY`）
 也可在 Actions 页手动触发，或执行 `gh workflow run deploy.yml`
 
 ## AI 自动发文
