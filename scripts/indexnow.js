@@ -3,13 +3,8 @@
 const fs = require("fs");
 const path = require("path");
 
-// 主域名（Cloudflare CDN）在前，其余为 GitHub Pages 源站与备用入口
-const HOSTS = [
-  "xfchannel.top",
-  "xfcnl.github.io",
-  "husd.cc.cd",
-  "blog.sfvg.de5.net",
-];
+// 主域名
+const HOST = "xfchannel.top";
 const ENDPOINT = "https://api.indexnow.org/indexnow";
 
 function readUrls() {
@@ -24,12 +19,7 @@ function readUrls() {
   return urls;
 }
 
-function rewriteHost(url, host) {
-  const u = new URL(url);
-  return u.protocol + "//" + host + u.pathname + u.search + u.hash;
-}
-
-async function submit(host, key, urlList) {
+async function submit(key, urlList) {
   let failed = 0;
   let ok = 0;
   for (const url of urlList) {
@@ -44,11 +34,11 @@ async function submit(host, key, urlList) {
       ok++;
     } else {
       failed++;
-      console.log("  [" + host + "] " + res.status + " " + url);
+      console.log("  [" + HOST + "] " + res.status + " " + url);
     }
   }
   console.log(
-    "[" + host + "] ok=" + ok + " failed=" + failed + " (of " + urlList.length + ")"
+    "[" + HOST + "] ok=" + ok + " failed=" + failed + " (of " + urlList.length + ")"
   );
   return failed === 0;
 }
@@ -62,13 +52,9 @@ async function main() {
   if (!urls.length) {
     throw new Error("No URLs found in public/sitemap.xml");
   }
-  console.log("Submitting " + urls.length + " URLs for " + HOSTS.length + " hosts");
+  console.log("Submitting " + urls.length + " URLs for " + HOST);
 
-  let allOk = true;
-  for (const host of HOSTS) {
-    const urlList = urls.map((u) => rewriteHost(u, host));
-    allOk = (await submit(host, key, urlList)) && allOk;
-  }
+  const allOk = await submit(key, urls);
   if (!allOk) {
     process.exitCode = 1;
   }
