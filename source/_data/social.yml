@@ -2,7 +2,7 @@
   name: bilibili
   url: https://space.bilibili.com/3494372658121066
   external: true
-  about_display: lm_xiao-fen
+  about_display: xfChannel
 
 - key: email
   name: email
