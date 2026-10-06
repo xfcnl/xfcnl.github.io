@@ -6,7 +6,7 @@
     "build": "hexo generate && node scripts/copy-image.js",
     "clear": "hexo clean",
     "deploy": "hexo deploy",
-    "dev": "hexo server"
+    "dev": "node scripts/copy-image.js && hexo server"
   },
   "hexo": {
     "version": "8.1.2"
