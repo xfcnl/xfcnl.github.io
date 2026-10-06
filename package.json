@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate && node scripts/copy-image.js",
+    "build": "node scripts/copy-image.js && hexo generate",
     "clear": "hexo clean",
     "deploy": "hexo deploy",
     "dev": "node scripts/copy-image.js && hexo server"

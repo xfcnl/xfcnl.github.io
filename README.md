@@ -1,10 +1,13 @@
 # Xf
 
-[xfchannel.top](https://xfchannel.top)　[GitHub Pages](https://xfcnl.github.io)　[Cloudflare 旧入口](https://husd.cc.cd)　[EdgeOne](https://blog.sfvg.de5.net)
+[xfchannel.top](https://xfchannel.top)
+[GitHub Pages 可用](https://xfcnl.github.io)　[Cloudflare 旧入口 不可用](https://husd.cc.cd)　[EdgeOne 不可用](https://blog.sfvg.de5.net)
 
 基于 [Hexo](https://hexo.io) 构建的自用博客，主题为自制的 `Omagari Hare`
-主域名为 `xfchannel.top`（Cloudflare CDN 回源 GitHub Pages），另保留 GitHub Pages 源站与 Cloudflare / EdgeOne 备用入口
-同一份构建产物，多个入口访问
+
+主域名为 `xfchannel.top`（Cloudflare CDN 回源 GitHub Pages），另保留 GitHub Pages 源站 
+
+Cloudflare / EdgeOne 备用入口不可用
 
 ## 本地预览
 
