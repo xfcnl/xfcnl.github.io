@@ -22,7 +22,7 @@
   url: https://github.com
   avatar: https://github.com/fluidicon.png
   desc: The future of building happens together
-  note: 本网站的 Jekyll 代码和 HTML 代码由 GitHub 免费托管，并负责提供访问服务（GitHub pages 线路）
+  note: 本网站的 Hexo 代码和 HTML 代码由 GitHub 免费托管，并负责提供访问服务（GitHub pages 线路）
 
 - name: Wcowin's Blog
   url: https://wcowin.work
@@ -56,13 +56,9 @@
 
 - name: UpXuu's Blog
   url: https://upxuu.com
-  avatar: https://upxuu.com/images/20260214145619.jpg
+  avatar: https://upxuu.com/images/me.jpg
   desc: 逐光而上
 
-# - name: 二丫讲梵
-#   url: https://wiki.eryajf.net
-#   avatar: https://wiki.eryajf.net/img/logo.png
-#    desc: 💻学习📝记录🔗分享
 - name: NNNullptr/南
   url: https://www.xnmoe.com/
   avatar: https://www.xnmoe.com/assets/images/pfp.png
@@ -109,7 +105,7 @@
 
 - name: 羊角快车Blog
   url: https://jiaoblog.dpdns.org
-  avater: https://yangjiao.dpdns.org/images/avatar2.png
+  avater: https://r2page.jiaoblog.dpdns.org/images/aebcb8f461af86e7df331bee79fa5d0953dbaeed.png
   desc: 把有用的东西，合成你需要的模样
 
 - name: CarryRao
