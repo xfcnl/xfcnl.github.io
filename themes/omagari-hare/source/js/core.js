@@ -140,7 +140,7 @@
       });
   }
 
-  // ---- 文章页 Hero 随机背景（从 ba-assets img/{pc|mb} 随机选一张，刷新即换） ----
+  // ---- 文章页 Hero 随机背景（从 assets.raw.xfchannel.top img/{pc|mb} 随机选一张，刷新即换） ----
   (function () {
     var heroBg = document.querySelector(".hero-post .hero-bg");
     if (!heroBg) return;
@@ -149,10 +149,7 @@
     var folder = isMobile ? "mb" : "pc";
     var apiUrl =
       "https://api.github.com/repos/xfcnl/ba-assets/contents/img/" + folder;
-    var rawBase =
-      "https://raw.gh.1s.fan/xfcnl/ba-assets/refs/heads/main/img/" +
-      folder +
-      "/";
+    var rawBase = "https://assets.raw.xfchannel.top/img/" + folder + "/";
     var cacheKey = "ba-assets-" + folder + "-list";
     var ttl = 6 * 60 * 60 * 1000; // 缓存 6 小时，避免频繁调 GitHub API
 
