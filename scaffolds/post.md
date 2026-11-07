@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ""
-date: :year-:month-:day
+date: ""
 categories: []
 tags: []
 ---
