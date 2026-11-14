@@ -9,7 +9,7 @@ timezone: Asia/Shanghai
 
 # 网址
 url: https://xfchannel.top
-permalink: :category/:year-:month-:day-:title/
+permalink: :category/:year-:month-:day-:name/
 permalink_defaults:
   category: tech
 pretty_urls:
