@@ -68,7 +68,8 @@ push 到 `main` 后由 [`.github/workflows/deploy.yml`](.github/workflows/deploy
 
 ## 其他功能
 
-- **RSS 订阅**：`/feed.xml`（[`_config.yml`](_config.yml) 的 `feed` 项）
+- **公告**：`/announcements/`，最新公告默认展开、历史公告折叠；在 `source/_data/announcements.yml` 添加公告，支持 Markdown
+- **RSS 订阅**：`/feed.xml`（[`_config.yml`](_config.yml) 的 `feed` 项），文章和公告按日期合并在同一个 Atom Feed 中
 - **站点地图**：`/sitemap.xml`，构建时同时给 SEO 与 IndexNow 使用
 - **统计**：Umami 访问统计（`umami_url` / `umami_website_id`）
 - **网易云音乐播放器**：左下角固定迷你播放器（`netease_player` 配置项）
@@ -79,11 +80,11 @@ push 到 `main` 后由 [`.github/workflows/deploy.yml`](.github/workflows/deploy
 
 ```text
 source/_posts/        — 博客文章
-source/_data/         — 配置数据（link.yaml 友链、social.yml 社交链接等）
+source/_data/         — 配置数据（announcements.yml 公告、link.yaml 友链等）
 source/*.md           — 独立页面（友链、搜索、关于、动态、404 等）
 themes/omagari-hare/  — 自制主题
 tools/                — AI 发文、友链审核、重定向站点构建脚本（ESM/CJS 混用）
-scripts/              — IndexNow 提交、PWA Service Worker 构建、复制静态资源（CJS，构建时挂载到 Hexo）
+scripts/              — IndexNow、公告与 RSS 生成、PWA、静态资源复制（构建时挂载）
 .github/workflows/
   ├── deploy.yml              # Cloudflare Pages 部署
   ├── gh-pages-redirect.yml   # GitHub Pages 重定向站点（仅手动）

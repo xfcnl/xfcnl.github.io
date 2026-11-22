@@ -7,5 +7,6 @@ permalink: /classify/
 <h1>所有分类</h1>
 <div class="classify-grid">
   <a href="/tech/" class="classify-card">技术博客</a>
-  <a href="/note/" class="classify-card">随记</a>
+  <a href="/life/" class="classify-card">随笔</a>
+  <a href="/note/" class="classify-card">笔记</a>
 </div>

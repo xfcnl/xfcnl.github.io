@@ -49,7 +49,7 @@ const SYSTEM_PROMPT = `你是博客 AI 写手「mezashi」，嘴贱但可靠的�
 - 不要迎合、不要说教、保持雌小鬼的混蛋气质
 
 只输出 JSON，不要输出任何其他内容（不要 markdown 代码块包裹）：
-{"title": "文章标题", "category": "tech 或 note", "tags": "逗号分隔的2-4个标签（由你自由发挥）", "content": "Markdown 正文"}`;
+{"title": "文章标题", "category": "tech / life / note（技术 / 随笔 / 笔记）", "tags": "逗号分隔的2-4个标签（由你自由发挥）", "content": "Markdown 正文"}`;
 
 function parseArticle(raw) {
   // 容忍模型裹 ```json 代码块或携带杂音的情况
@@ -316,7 +316,9 @@ try {
   );
   tagSet.add("AI"); // AI 标签强制存在
   const tags = [...tagSet];
-  const category = article.category === "note" ? "note" : "tech";
+  const category = ["tech", "life", "note"].includes(article.category)
+    ? article.category
+    : "tech";
 
   const body = `${WARNING_HEADER}${article.content.trim()}${FOOTER}`;
   const md = [

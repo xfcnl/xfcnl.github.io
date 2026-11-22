@@ -35,7 +35,7 @@ npm run clear    # hexo clean
 
 - 文件名: `source/_posts/YYYY-MM-DD-标题.md`
 - Front-matter: `layout / title / date / categories / tags`
-- 分类仅两个：`tech`、`note`
+- 分类：`tech`（技术）、`life`（随笔）、`note`（笔记）
 - 中文写作，`language: zh-CN`，timezone `Asia/Shanghai`
 
 ### ⚠️ AI 文章硬性规范
@@ -84,6 +84,12 @@ push 到 `main` 时构建 Hexo 并部署到 GitHub Pages，随后 IndexNow 提�
 任一不通过 → 只在 Issue 评论失败原因，**保持 Issue open**，申请人改完触发 `edited` 自动重试。
 
 > ⚠️ 权限需要 `actions: write`，否则 `gh workflow run deploy.yml` 会失败（add-link.yml 和 auto-post.yml 都已配置）。
+
+### 公告
+
+公告写在 `source/_data/announcements.yml` 的数组中，字段为 `id / title / date / content`（`updated` 可选），正文支持 Markdown。`id` 只能包含字母、数字、`_`、`-`，是 RSS 的稳定链接锚点，发布后不要修改。`date` 建议写成带时区的 ISO 格式（如 `2026-11-22T21:00:00+08:00`），避免日期偏移。
+
+页面地址 `/announcements/`：最新公告默认展开，历史公告折叠。`scripts/announcements.js` 会将公告和文章按日期合并到 `/feed.xml`，不会把公告混入首页、归档或文章列表。
 
 ### 需要配置的 GitHub Secrets
 

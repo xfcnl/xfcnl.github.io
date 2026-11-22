@@ -1,0 +1,32 @@
+<section class="ba-section ba-announcements-page">
+  <h2 class="ba-section-title">
+    <span class="ba-title-zh">网站公告</span>
+    <span class="ba-title-en">Announcements</span>
+  </h2>
+  <p class="ba-announcements-intro">
+    最新公告默认展开，历史公告点击标题即可查看。公告与文章也会一起出现在 <a href="<%= url_for('/feed.xml') %>">RSS 订阅</a>中。
+  </p>
+
+  <% const announcements = site.announcements || []; %>
+  <% if (announcements.length) { %>
+  <div class="ba-announcement-list">
+    <% announcements.forEach(function(announcement, index) { %>
+    <details class="ba-announcement ba-card" id="<%= announcement.id %>"<%= index === 0 ? ' open' : '' %>>
+      <summary>
+        <span class="ba-announcement-heading">
+          <% if (index === 0) { %><span class="ba-announcement-latest">最新</span><% } %>
+          <span class="ba-announcement-title"><%= announcement.title %></span>
+        </span>
+        <time class="ba-announcement-date" datetime="<%= announcement.date.toISOString() %>"><%= date(announcement.date, 'YYYY-MM-DD') %></time>
+        <i class="fas fa-chevron-down ba-announcement-chevron" aria-hidden="true"></i>
+      </summary>
+      <div class="ba-announcement-content">
+        <%- announcement.content %>
+      </div>
+    </details>
+    <% }); %>
+  </div>
+  <% } else { %>
+  <p>暂时没有公告。</p>
+  <% } %>
+</section>

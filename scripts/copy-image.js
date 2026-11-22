@@ -6,9 +6,9 @@ const path = require("path");
 const SRC_DIR = path.join(process.cwd(), "image");
 const DEST_DIR = path.join(process.cwd(), "public", "image");
 
-// 额外需要复制的文件（如 _redirects 等下划线开头的文件）
+// 额外需要复制的文件（下划线开头的文件不被 Hexo 处理）
 const EXTRA_FILES = [
-  { src: "source/_redirects", dest: "public/_redirects" },
+  // _redirects 现在由 scripts/legacy-redirects.js 自动生成
 ];
 
 function copyDir(src, dest) {

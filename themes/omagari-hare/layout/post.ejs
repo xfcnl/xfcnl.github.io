@@ -3,7 +3,7 @@
     <div class="ba-post-subheader">
       <span class="ba-post-date"><i class="far fa-calendar"></i> <%= date(page.date, 'YYYY-MM-DD') %></span>
       <span class="ba-post-time"><i class="far fa-clock"></i> <%= Math.ceil(page.content.length / 400) %> min read</span>
-      <% if (page.categories.length) { %><span class="ba-post-category ba-cat-<%= page.categories.first().name %>"><%= page.categories.first().name === 'tech' ? '技术' : '随记' %></span><% } %>
+      <% if (page.categories.length) { %><span class="ba-post-category ba-cat-<%= page.categories.first().name %>"><%= { tech: '技术', life: '随笔', note: '笔记' }[page.categories.first().name] || page.categories.first().name %></span><% } %>
     </div>
     <div class="ba-post-tags">
       <% if (page.tags.length) { page.tags.each(function(tag) { %>

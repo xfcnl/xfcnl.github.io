@@ -10,7 +10,7 @@
         <div class="ba-post-meta">
           <span class="ba-post-date"><i class="far fa-calendar"></i> <%= date(post.date, 'YYYY-MM-DD') %></span>
           <% if (post.categories.length) { %>
-          <span class="ba-post-category ba-cat-<%= post.categories.first().name %>"><%= post.categories.first().name === 'tech' ? '技术' : '随记' %></span>
+          <span class="ba-post-category ba-cat-<%= post.categories.first().name %>"><%= { tech: '技术', life: '随笔', note: '笔记' }[post.categories.first().name] || post.categories.first().name %></span>
           <% } %>
         </div>
         <h3 class="ba-post-title">

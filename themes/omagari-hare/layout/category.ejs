@@ -1,40 +1,45 @@
 <div class="ba-category-page">
   <section class="ba-section">
     <h2 class="ba-section-title">
-      <span class="ba-title-zh">文章分类</span>
-      <span class="ba-title-en">Categories</span>
+      <span class="ba-title-zh"><%= page.category ? ({ tech: '技术', life: '随笔', note: '笔记' }[page.category] || page.category) : '文章分类' %></span>
+      <span class="ba-title-en"><%= page.category ? 'Category' : 'Categories' %></span>
     </h2>
 
+    <% if (page.category) { %>
+    <div class="ba-cat-posts cascade-list">
+      <% if (page.posts && page.posts.length) { page.posts.sort('date', -1).each(function(post) { %>
+      <div class="ba-tag-post-item ba-card">
+        <span class="ba-archive-date"><%= date(post.date, 'YYYY-MM-DD') %></span>
+        <a href="<%= url_for(post.path) %>"><%= post.title %></a>
+      </div>
+      <% }); } %>
+    </div>
+    <% if (!page.posts.length) { %><p>这里还没有文章。</p><% } %>
+    <% } else { %>
     <div class="ba-category-columns">
-      <!-- 技术 (tech) -->
+      <% [
+        { name: 'tech', title: '技术博客', icon: 'fa-laptop-code' },
+        { name: 'life', title: '随笔', icon: 'fa-feather' },
+        { name: 'note', title: '笔记', icon: 'fa-book-open' }
+      ].forEach(function(category) {
+        const posts = site.categories.findOne({ name: category.name });
+      %>
       <div class="ba-category-column">
-        <h3 class="ba-cat-header ba-cat-tech">
-          <i class="fas fa-laptop-code"></i> 技术博客
+        <h3 class="ba-cat-header ba-cat-<%= category.name %>">
+          <i class="fas <%= category.icon %>"></i>
+          <a href="<%= url_for('/' + category.name + '/') %>"><%= category.title %></a>
         </h3>
         <div class="ba-cat-posts cascade-list">
-          <% site.categories.findOne({name: 'tech'}).posts.sort('date', -1).each(function(post) { %>
+          <% if (posts) { posts.posts.sort('date', -1).each(function(post) { %>
           <div class="ba-tag-post-item ba-card">
             <span class="ba-archive-date"><%= date(post.date, 'YYYY-MM-DD') %></span>
             <a href="<%= url_for(post.path) %>"><%= post.title %></a>
           </div>
-          <% }); %>
+          <% }); } else { %><p>这里还没有文章。</p><% } %>
         </div>
       </div>
-
-      <!-- 随记 (note) -->
-      <div class="ba-category-column">
-        <h3 class="ba-cat-header ba-cat-note">
-          <i class="fas fa-feather"></i> 随记
-        </h3>
-        <div class="ba-cat-posts cascade-learning">
-          <% site.categories.findOne({name: 'note'}).posts.sort('date', -1).each(function(post) { %>
-          <div class="ba-tag-post-item ba-card">
-            <span class="ba-archive-date"><%= date(post.date, 'YYYY-MM-DD') %></span>
-            <a href="<%= url_for(post.path) %>"><%= post.title %></a>
-          </div>
-          <% }); %>
-        </div>
-      </div>
+      <% }); %>
     </div>
+    <% } %>
   </section>
 </div>
