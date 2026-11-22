@@ -38,14 +38,10 @@ jobs:
           path: public/sitemap.xml
           if-no-files-found: error
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: xf-blog
-          directory: ./public
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+        run: npx wrangler pages deploy ./public --project-name=xf-blog --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
   submit:
     runs-on: ubuntu-latest
