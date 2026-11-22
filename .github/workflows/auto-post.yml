@@ -1,9 +1,6 @@
 name: Auto Post (AI)
 
 on:
-  schedule:
-    # UTC 04:00 = 北京时间 12:00，每周一 / 三 / 五
-    - cron: "0 4 * * 1,3,5"
   workflow_dispatch:
     inputs:
       topic:
@@ -13,7 +10,7 @@ on:
 
 permissions:
   contents: write # 把新文章 push 回 main
-  actions: write  # gh workflow run deploy.yml 手动触发部署
+  actions: write # gh workflow run deploy.yml 手动触发部署
 
 jobs:
   write:
@@ -26,7 +23,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-
       - name: Generate AI post
         id: ai
         env:
@@ -54,7 +50,7 @@ jobs:
           FILE: ${{ steps.ai.outputs.file }}
           TITLE: ${{ steps.ai.outputs.title }}
 
-      - name: Trigger deploy workflow
+      - name: Trigger Cloudflare Pages deploy
         if: steps.ai.outputs.title != ''
         # GITHUB_TOKEN 的 push 不会触发部署 workflow（GitHub 防递归限制），这里手动 dispatch
         run: gh workflow run deploy.yml -R ${{ github.repository }}

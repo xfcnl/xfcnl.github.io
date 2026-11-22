@@ -1,0 +1,7 @@
+# Cloudflare Pages 重定向规则
+# 语法: 源路径 目标路径 状态码
+# 示例:
+# /old-page /new-page 301
+# /blog/* /news/:splat 301
+
+# 当前无特殊重定向需求，保留此文件备用

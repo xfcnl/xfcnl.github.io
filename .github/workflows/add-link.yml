@@ -46,7 +46,7 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Trigger deploy workflow
+      - name: Trigger Cloudflare Pages deploy
         if: steps.commit.outputs.changed == 'true'
         # GITHUB_TOKEN 的 push 不会触发部署 workflow，这里手动 dispatch
         run: gh workflow run deploy.yml -R ${{ github.repository }}
