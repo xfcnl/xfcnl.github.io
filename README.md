@@ -8,7 +8,7 @@
 **部署架构：**
 
 - `xfchannel.top` → Cloudflare Pages（主站，完整博客功能）
-- `xfcnl.github.io` → GitHub Pages（极简 JS 重定向站点，所有路径 302 跳转到新域名同路径）
+- `xfcnl.github.io` → GitHub Pages（极简 JS 重定向站点，所有路径 301 跳转到新域名同路径）
 
 ## 本地预览
 
@@ -33,7 +33,7 @@ npm run clear
 push 到 `main` 后由 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) 自动构建并部署到 **Cloudflare Pages**：
 
 1. 构建静态文件到 `public/`
-2. `cloudflare/pages-action` 部署到 Cloudflare Pages 项目 `xf-blog`
+2. `Wangler CLI` 部署到 Cloudflare Pages 项目 `xf-blog`
 3. push 触发时额外运行 `scripts/indexnow.js` 向 IndexNow 提交新 URL（需配置 `INDEXNOW_KEY`）
 
 也可在 Actions 页手动触发，或执行 `gh workflow run deploy.yml`
