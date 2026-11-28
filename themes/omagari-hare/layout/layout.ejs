@@ -9,6 +9,11 @@
   <title><%= pageTitle ? pageTitle + ' | ' + config.title : config.title %></title>
   <meta name="description" content="<%= page.description || config.description %>">
   <meta name="msvalidate.01" content="D5445386A5E1A0BC14AD1610E2EB822F" />
+  <% if (page.layout === 'post' && page.date) { %>
+  <meta property="og:title" content="<%= date(page.date, 'YYYY-MM-DD') %>-<%= page.title %>">
+  <% } else { %>
+  <meta property="og:title" content="<%= pageTitle || config.title %>">
+  <% } %>
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     script-src 'self' 'unsafe-inline' https://u.xfchannel.top https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://giscus.app https://fonts.googleapis.com;
